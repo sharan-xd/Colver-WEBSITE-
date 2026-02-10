@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useRef, useEffect, ReactNode } from 'react'
-import { motion, useInView, useScroll, useTransform, Variants } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { useRef, useEffect, ReactNode } from "react";
+import { motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { staggerContainer } from "@/lib/animations";
 
 // Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 // ============================================
@@ -16,21 +16,24 @@ if (typeof window !== 'undefined') {
 // ============================================
 
 interface SectionProps {
-  children: ReactNode
-  id?: string
-  className?: string
-  fullHeight?: boolean
-  padding?: 'none' | 'small' | 'medium' | 'large'
-  background?: 'transparent' | 'muted' | 'gradient'
-  animate?: boolean
-  onEnter?: () => void
-  onLeave?: () => void
+  children: ReactNode;
+  id?: string;
+  className?: string;
+  fullHeight?: boolean;
+  padding?: "none" | "small" | "medium" | "large";
+  background?: "transparent" | "muted" | "gradient";
+  animate?: boolean;
+  onEnter?: () => void;
+  onLeave?: () => void;
+
+  /** ✅ NEW: Center inner content (useful for text/hero sections) */
+  centerContent?: boolean;
 }
 
 interface ParallaxLayerProps {
-  children: ReactNode
-  speed?: number
-  className?: string
+  children: ReactNode;
+  speed?: number;
+  className?: string;
 }
 
 // ============================================
@@ -40,41 +43,42 @@ interface ParallaxLayerProps {
 export default function Section({
   children,
   id,
-  className = '',
+  className = "",
   fullHeight = false,
-  padding = 'large',
-  background = 'transparent',
+  padding = "large",
+  background = "transparent",
   animate = true,
   onEnter,
   onLeave,
+  centerContent = false, // ✅ NEW default
 }: SectionProps) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const isInView = useInView(sectionRef, { 
-    once: false, 
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, {
+    once: false,
     amount: 0.2,
-    margin: '-100px'
-  })
+    margin: "-100px",
+  });
 
   // Notify parent of visibility changes
   useEffect(() => {
-    if (isInView && onEnter) onEnter()
-    if (!isInView && onLeave) onLeave()
-  }, [isInView, onEnter, onLeave])
+    if (isInView && onEnter) onEnter();
+    if (!isInView && onLeave) onLeave();
+  }, [isInView, onEnter, onLeave]);
 
   // Padding classes
   const paddingClasses = {
-    none: '',
-    small: 'py-8',
-    medium: 'py-16',
-    large: 'py-24 md:py-32',
-  }
+    none: "",
+    small: "py-8",
+    medium: "py-16",
+    large: "py-24 md:py-32",
+  };
 
   // Background classes
   const backgroundClasses = {
-    transparent: '',
-    muted: 'bg-secondary/30',
-    gradient: 'bg-gradient-to-b from-transparent via-secondary/10 to-transparent',
-  }
+    transparent: "",
+    muted: "bg-secondary/30",
+    gradient: "bg-gradient-to-b from-transparent via-secondary/10 to-transparent",
+  };
 
   return (
     <motion.section
@@ -82,48 +86,45 @@ export default function Section({
       id={id}
       className={`
         relative w-full
-        ${fullHeight ? 'min-h-screen flex items-center' : ''}
+        ${fullHeight ? "min-h-screen flex items-center" : ""}
         ${paddingClasses[padding]}
         ${backgroundClasses[background]}
         ${className}
       `}
-      initial={animate ? 'hidden' : 'visible'}
-      whileInView={animate ? 'visible' : undefined}
+      initial={animate ? "hidden" : "visible"}
+      whileInView={animate ? "visible" : undefined}
       viewport={{ once: false, amount: 0.2 }}
       variants={animate ? staggerContainer : undefined}
     >
-      {children}
+      {/* ✅ NEW: optional inner wrapper */}
+      {centerContent ? (
+        <div className="max-w-7xl mx-auto px-6 w-full text-center">{children}</div>
+      ) : (
+        children
+      )}
     </motion.section>
-  )
+  );
 }
 
 // ============================================
 // PARALLAX LAYER COMPONENT
 // ============================================
 
-export function ParallaxLayer({ 
-  children, 
-  speed = 0.5, 
-  className = '' 
-}: ParallaxLayerProps) {
-  const ref = useRef<HTMLDivElement>(null)
+export function ParallaxLayer({ children, speed = 0.5, className = "" }: ParallaxLayerProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start']
-  })
-  
-  const y = useTransform(scrollYProgress, [0, 1], [100 * speed, -100 * speed])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100 * speed, -100 * speed]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y, opacity }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ y, opacity }} className={className}>
       {children}
     </motion.div>
-  )
+  );
 }
 
 // ============================================
@@ -131,20 +132,20 @@ export function ParallaxLayer({
 // ============================================
 
 interface RevealTextProps {
-  children: string
-  className?: string
-  delay?: number
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  children: string;
+  className?: string;
+  delay?: number;
+  as?: "h1" | "h2" | "h3" | "p" | "span";
 }
 
-export function RevealText({ 
-  children, 
-  className = '', 
+export function RevealText({
+  children,
+  className = "",
   delay = 0,
-  as: Component = 'span'
+  as: Component = "span",
 }: RevealTextProps) {
-  const words = children.split(' ')
-  
+  const words = children.split(" ");
+
   const container: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -154,45 +155,34 @@ export function RevealText({
         delayChildren: delay,
       },
     },
-  }
-  
+  };
+
   const child: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      rotateX: -90,
-    },
+    hidden: { opacity: 0, y: 20, rotateX: -90 },
     visible: {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1],
-      },
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
     },
-  }
+  };
 
   return (
-    <motion.span
-      className={`inline-block ${className}`}
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-    >
-      {words.map((word, index) => (
-        <motion.span
-          key={index}
-          className="inline-block mr-[0.25em]"
-          variants={child}
-          style={{ transformOrigin: 'bottom' }}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.span>
-  )
+    <Component className={`inline-block ${className}`}>
+      <motion.span variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+        {words.map((word, index) => (
+          <motion.span
+            key={index}
+            className="inline-block mr-[0.25em]"
+            variants={child}
+            style={{ transformOrigin: "bottom" }}
+          >
+            {word}
+          </motion.span>
+        ))}
+      </motion.span>
+    </Component>
+  );
 }
 
 // ============================================
@@ -200,19 +190,19 @@ export function RevealText({
 // ============================================
 
 interface FadeInViewProps {
-  children: ReactNode
-  className?: string
-  delay?: number
-  direction?: 'up' | 'down' | 'left' | 'right' | 'none'
-  distance?: number
-  duration?: number
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  distance?: number;
+  duration?: number;
 }
 
 export function FadeInView({
   children,
-  className = '',
+  className = "",
   delay = 0,
-  direction = 'up',
+  direction = "up",
   distance = 40,
   duration = 0.8,
 }: FadeInViewProps) {
@@ -222,30 +212,19 @@ export function FadeInView({
     left: { x: distance },
     right: { x: -distance },
     none: {},
-  }
+  };
 
   return (
     <motion.div
       className={className}
-      initial={{ 
-        opacity: 0, 
-        ...directions[direction] 
-      }}
-      whileInView={{ 
-        opacity: 1, 
-        x: 0, 
-        y: 0 
-      }}
+      initial={{ opacity: 0, ...directions[direction] }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+      transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 // ============================================
@@ -253,15 +232,15 @@ export function FadeInView({
 // ============================================
 
 interface StaggerContainerProps {
-  children: ReactNode
-  className?: string
-  staggerDelay?: number
-  delayChildren?: number
+  children: ReactNode;
+  className?: string;
+  staggerDelay?: number;
+  delayChildren?: number;
 }
 
 export function StaggerContainer({
   children,
-  className = '',
+  className = "",
   staggerDelay = 0.1,
   delayChildren = 0,
 }: StaggerContainerProps) {
@@ -269,12 +248,9 @@ export function StaggerContainer({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren,
-      },
+      transition: { staggerChildren: staggerDelay, delayChildren },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -286,7 +262,7 @@ export function StaggerContainer({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 // ============================================
@@ -294,28 +270,21 @@ export function StaggerContainer({
 // ============================================
 
 interface StaggerItemProps {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }
 
-export function StaggerItem({ children, className = '' }: StaggerItemProps) {
+export function StaggerItem({ children, className = "" }: StaggerItemProps) {
   const item: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  };
 
   return (
     <motion.div className={className} variants={item}>
       {children}
     </motion.div>
-  )
+  );
 }
 
 // ============================================
@@ -323,43 +292,39 @@ export function StaggerItem({ children, className = '' }: StaggerItemProps) {
 // ============================================
 
 interface PinnedSectionProps {
-  children: ReactNode
-  className?: string
-  pinDuration?: string
+  children: ReactNode;
+  className?: string;
+  pinDuration?: string;
 }
 
-export function PinnedSection({ 
-  children, 
-  className = '',
-  pinDuration = '200%'
-}: PinnedSectionProps) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const triggerRef = useRef<ScrollTrigger | null>(null)
+export function PinnedSection({ children, className = "", pinDuration = "200%" }: PinnedSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       triggerRef.current = ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: 'top top',
+        start: "top top",
         end: `+=${pinDuration}`,
         pin: true,
         pinSpacing: true,
         scrub: 1,
-      })
-    }, sectionRef)
+      });
+    }, sectionRef);
 
     return () => {
-      ctx.revert()
-    }
-  }, [pinDuration])
+      ctx.revert();
+    };
+  }, [pinDuration]);
 
   return (
     <section ref={sectionRef} className={`relative min-h-screen ${className}`}>
       {children}
     </section>
-  )
+  );
 }
 
 // ============================================
@@ -367,13 +332,13 @@ export function PinnedSection({
 // ============================================
 
 export function ScrollProgressBar() {
-  const { scrollYProgress } = useScroll()
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <motion.div
       className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary z-50 origin-left"
       style={{ scaleX }}
     />
-  )
+  );
 }
