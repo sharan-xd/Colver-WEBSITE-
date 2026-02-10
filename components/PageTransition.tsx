@@ -1,28 +1,22 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
-import LoadingScreen from './LoadingScreen'
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
-  const [isLoading, setIsLoading] = useState(true)
-  const pathname = usePathname()
-
-  useEffect(() => {
-    setIsLoading(true)
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1500)
-
-    return () => clearTimeout(timer)
-  }, [pathname])
+  const pathname = usePathname();
 
   return (
-    <>
-      {isLoading && <LoadingScreen />}
-      <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -6 }}
+        transition={{ duration: 0.2 }}
+      >
         {children}
-      </div>
-    </>
-  )
+      </motion.div>
+    </AnimatePresence>
+  );
 }
