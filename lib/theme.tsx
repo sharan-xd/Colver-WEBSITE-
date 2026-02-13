@@ -1,65 +1,69 @@
+// ThemeProvider.tsx (or theme.tsx)
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
 
 interface ThemeContextType {
-  theme: Theme;
-  resolvedTheme: "dark" | "light";
+  theme: Theme; // user's selection
+  resolvedTheme: "dark" | "light"; // actual applied theme
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
 }
 
+const STORAGE_KEY = "colver-theme";
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+function getSystemTheme(): "dark" | "light" {
+  if (typeof window === "undefined") return "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyThemeClass(resolved: "dark" | "light") {
+  const root = document.documentElement;
+
+  // Ensure we never end up with both classes at once
+  root.classList.remove("dark", "light");
+  root.classList.add(resolved);
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("system");
   const [resolvedTheme, setResolvedTheme] = useState<"dark" | "light">("dark");
   const [mounted, setMounted] = useState(false);
 
-  // Initial load
+  // Initial load (client only)
   useEffect(() => {
     setMounted(true);
 
-    const stored = localStorage.getItem("colver-theme") as Theme | null;
-    const initialTheme = stored ?? "dark";
-    setThemeState(initialTheme);
+    const stored = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? "system";
+    setThemeState(stored);
 
-    const systemIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialResolved =
-      initialTheme === "system" ? (systemIsDark ? "dark" : "light") : initialTheme;
-
+    const initialResolved = stored === "system" ? getSystemTheme() : stored;
     setResolvedTheme(initialResolved);
-    document.documentElement.classList.toggle("dark", initialResolved === "dark");
+    applyThemeClass(initialResolved);
   }, []);
 
   // Apply theme changes
   useEffect(() => {
     if (!mounted) return;
 
-    const root = document.documentElement;
-    let nextResolved: "dark" | "light";
-
-    if (theme === "system") {
-      nextResolved = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    } else {
-      nextResolved = theme;
-    }
-
+    const nextResolved = theme === "system" ? getSystemTheme() : theme;
     setResolvedTheme(nextResolved);
-    root.classList.toggle("dark", nextResolved === "dark");
+    applyThemeClass(nextResolved);
   }, [theme, mounted]);
 
-  // System theme listener
+  // Listen to system changes only in "system" mode
   useEffect(() => {
     if (!mounted || theme !== "system") return;
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (e: MediaQueryListEvent) => {
-      const next = e.matches ? "dark" : "light";
+    const handler = () => {
+      const next = media.matches ? "dark" : "light";
       setResolvedTheme(next);
-      document.documentElement.classList.toggle("dark", next === "dark");
+      applyThemeClass(next);
     };
 
     media.addEventListener("change", handler);
@@ -68,18 +72,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (next: Theme) => {
     setThemeState(next);
-    localStorage.setItem("colver-theme", next);
+    localStorage.setItem(STORAGE_KEY, next);
   };
 
   const toggleTheme = () => {
+    // Toggles based on currently applied theme
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+  const value = useMemo(
+    () => ({ theme, resolvedTheme, setTheme, toggleTheme }),
+    [theme, resolvedTheme]
   );
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

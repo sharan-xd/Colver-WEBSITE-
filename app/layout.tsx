@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "../styles/globals.css";
-
 import Providers from "./providers";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +20,8 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-  description: "AI-driven tools for modern creators. Build, collaborate, and ship faster with Colver.",
+  description:
+    "AI-driven tools for modern creators. Build, collaborate, and ship faster with Colver.",
   keywords: ["AI", "creation", "collaboration", "design", "development"],
   authors: [{ name: "Colver" }],
   creator: "Colver",
@@ -75,11 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body className={inter.className}>
-        <Providers>
-          <Navigation />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
