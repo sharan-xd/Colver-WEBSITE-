@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/Section'
+import Section, { FadeInView, StaggerContainer, StaggerItem } from '@/components/Section'
 
 const features = [
   {
@@ -62,51 +62,58 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <div className="max-w-7xl mx-auto px-6">
-      {/* Section header */}
-      <div className="text-center mb-20">
-        <FadeInView>
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            Features
-          </span>
-        </FadeInView>
-        
+    <Section padding="large">
+      {/* Title block */}
+      <div className="text-center mb-16">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6">Features</h1>
+        <p className="text-xl text-muted max-w-2xl mx-auto">
+          A complete toolkit designed for modern creators. From ideation to deployment, we&apos;ve got you covered.
+        </p>
+      </div>
+
+      {/* Narrow content (unchanged) */}
+      <div className="max-w-4xl mx-auto px-6">
         <FadeInView delay={0.1}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Everything you need to
-            <span className="text-gradient block mt-2">build faster</span>
-          </h2>
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              Everything you need to
+              <span className="text-gradient block mt-2">build faster</span>
+            </h2>
+          </div>
         </FadeInView>
-        
+
         <FadeInView delay={0.2}>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            A complete toolkit designed for modern creators. From ideation to deployment, 
-            we&apos;ve got you covered.
+          <p className="text-lg text-muted mb-12 max-w-2xl mx-auto text-center leading-relaxed">
+            Powerful building blocks that keep teams aligned, reduce context switching, and help you ship with momentum.
           </p>
         </FadeInView>
       </div>
 
-      {/* Features grid */}
-      <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
-        {features.map((feature, index) => (
-          <StaggerItem key={index}>
-            <motion.div
-              className="group p-8 rounded-2xl bg-secondary/30 border border-border/50
-                         hover:bg-secondary/50 hover:border-primary/30 
-                         transition-all duration-500 h-full"
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center
-                              text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-muted leading-relaxed">{feature.description}</p>
-            </motion.div>
-          </StaggerItem>
-        ))}
-      </StaggerContainer>
-    </div>
+      {/* ✅ GRID CONTAINER FIXED BACK TO NORMAL */}
+      <div className="max-w-7xl mx-auto px-6">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
+          {features.map((feature, index) => (
+            <StaggerItem key={index}>
+              <motion.div
+                className="group p-8 rounded-2xl bg-secondary/30 border border-border/50
+                           hover:bg-secondary/50 hover:border-primary/30
+                           transition-all duration-500 h-full"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center
+                             text-primary mb-6 group-hover:scale-110 transition-transform duration-300"
+                >
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="text-muted leading-relaxed">{feature.description}</p>
+              </motion.div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </div>
+    </Section>
   )
 }
