@@ -7,25 +7,10 @@ const footerLinks = {
   Product: [
     { label: 'Features', href: '/features' },
     { label: 'Showcase', href: '/showcase' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Changelog', href: '/changelog' },
   ],
   Company: [
     { label: 'About', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Careers', href: '/careers' },
     { label: 'Contact', href: '/contact' },
-  ],
-  Resources: [
-    { label: 'Documentation', href: '/docs' },
-    { label: 'API Reference', href: '/api' },
-    { label: 'Guides', href: '/guides' },
-    { label: 'Support', href: '/support' },
-  ],
-  Legal: [
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
-    { label: 'Security', href: '/security' },
   ],
 }
 
@@ -94,11 +79,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Colver. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-sm text-muted hover:text-foreground transition-colors">
-              Privacy Policy
+            <Link href="/contact" className="text-sm text-muted hover:text-foreground transition-colors">
+              Contact
             </Link>
-            <Link href="/terms" className="text-sm text-muted hover:text-foreground transition-colors">
-              Terms of Service
+            <Link href="/about" className="text-sm text-muted hover:text-foreground transition-colors">
+              About
             </Link>
           </div>
         </div>
