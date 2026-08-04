@@ -1,6 +1,6 @@
 # Colver
 
-A modern, high-end marketing website with immersive 3D backgrounds, smooth scroll animations, and theme switching.
+A modern, high-end marketing website with immersive 3D backgrounds, smooth scroll animations, and a dark-only design.
 
 ![Colver Preview](./preview.png)
 
@@ -8,7 +8,7 @@ A modern, high-end marketing website with immersive 3D backgrounds, smooth scrol
 
 - **Immersive 3D Background** - React Three Fiber powered background with floating blobs, particles, and gradient meshes
 - **Smooth Scroll Animations** - GSAP ScrollTrigger + Framer Motion for buttery-smooth section transitions
-- **Dark/Light Theme** - OLED-style dark mode with smooth theme transitions
+-- **Dark Theme** - OLED-style dark mode (dark-only)
 - **Responsive Design** - Mobile-first approach with Tailwind CSS
 - **Performance Optimized** - GPU-friendly animations, lazy loading, reduced motion support
 
@@ -33,7 +33,6 @@ colver/
 │   ├── AnimatedBackground.tsx   # 3D background with Three.js
 │   ├── Navigation.tsx           # Fixed navigation with scroll effects
 │   ├── Section.tsx              # Reusable section component
-│   └── ThemeToggle.tsx          # Dark/light mode toggle
 ├── lib/
 │   ├── animations.ts       # Animation variants & utilities
 │   └── theme.tsx           # Theme context & provider

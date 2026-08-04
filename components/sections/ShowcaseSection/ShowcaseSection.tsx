@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Section, { FadeInView, StaggerContainer, StaggerItem } from '@/components/Section'
 
+
 export default function ShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({

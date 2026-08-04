@@ -1,4 +1,4 @@
-import ContactSection from '@/components/sections/ContactSection'
+import ContactSection from '@/components/sections/ContactSection/ContactSection'
 
 export const metadata = {
   title: 'Contact | Colver',

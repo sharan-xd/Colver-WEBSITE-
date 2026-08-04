@@ -1,4 +1,4 @@
-import ShowcaseSection from '@/components/sections/ShowcaseSection'
+import ShowcaseSection from '@/components/sections/ShowcaseSection/ShowcaseSection'
 
 export const metadata = {
   title: 'Showcase | Colver',

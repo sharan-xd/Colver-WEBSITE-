@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from '@/lib/theme'
 
 export const navLinks = [
   { href: '/', label: 'Home' },
@@ -26,7 +25,6 @@ export default function Header({
   ctaLabel = 'Get started',
 }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
   const pathname = usePathname()
 
   // Close mobile menu when route changes
@@ -60,16 +58,6 @@ export default function Header({
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              aria-label="Toggle theme"
-              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full hover:bg-secondary transition-colors"
-            >
-              <span className="sr-only">Toggle theme</span>
-              {resolvedTheme === 'dark' ? '☀️' : '🌙'}
-            </button>
-
             <Link
               href={ctaHref}
               className="hidden sm:block px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium"

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "../styles/globals.css";
 import Providers from "./providers";
 
@@ -56,20 +55,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`
-            (function () {
-              try {
-                var stored = localStorage.getItem('colver-theme') || 'dark';
-                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                var resolved = stored === 'system' ? (systemDark ? 'dark' : 'light') : stored;
-                document.documentElement.classList.toggle('dark', resolved === 'dark');
-              } catch (e) {}
-            })();
-          `}
-        </Script>
-      </head>
+      <head />
 
       <body className={inter.className}>
         <Providers>{children}</Providers>

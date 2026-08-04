@@ -1,4 +1,4 @@
-import AboutSection from '@/components/sections/AboutSections/AboutSection'
+import AboutSection from '@/app/AboutSections/AboutSection'
 
 export const metadata = {
   title: 'About | Colver',
