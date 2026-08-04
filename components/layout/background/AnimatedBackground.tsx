@@ -1,13 +1,7 @@
-import dynamic from 'next/dynamic'
+"use client"
 
-const AnimatedBackground = dynamic(
-  () => import('./AnimatedBackground.client'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="fixed inset-0 -z-10 bg-black" />
-    ),
-  }
-)
+import AnimatedBackgroundClient from './AnimatedBackground.client'
 
-export default AnimatedBackground
+export default function AnimatedBackground() {
+  return <AnimatedBackgroundClient />
+}

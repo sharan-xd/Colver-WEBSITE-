@@ -74,7 +74,7 @@ export default function ShowcaseSection() {
 
             <FadeInView delay={0.5}>
               <motion.a
-                href="#"
+                href="/contact"
                 className="inline-flex items-center gap-2 mt-8 text-primary font-medium hover:gap-4 transition-all duration-300"
                 whileHover={{ x: 5 }}
               >

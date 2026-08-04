@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     template: "%s | Colver",
   },
   manifest: "/manifest.json",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  verification: {
-    google: "your-google-verification-code",
-  },
   description:
     "AI-driven tools for modern creators. Build, collaborate, and ship faster with Colver.",
   keywords: ["AI", "creation", "collaboration", "design", "development"],
@@ -54,10 +46,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head />
 
-      <body className={inter.className}>
+      <body className={`${inter.className} relative`}>
         <Providers>{children}</Providers>
       </body>
     </html>

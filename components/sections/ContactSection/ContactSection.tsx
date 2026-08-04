@@ -23,7 +23,6 @@ export default function ContactSection() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // TODO: Replace with server action / API route
-    console.log(formData)
   }
 
   return (

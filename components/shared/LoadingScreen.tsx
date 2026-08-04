@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
+    <div className="fixed inset-0 -z-10 flex items-center justify-center bg-background pointer-events-none opacity-0">
       <div className="relative w-64 h-32 overflow-hidden">
         {/* Blue Wave */}
         <motion.svg

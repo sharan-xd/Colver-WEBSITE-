@@ -30,10 +30,10 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { label: 'Twitter', href: '#', icon: 'X' },
-  { label: 'GitHub', href: '#', icon: 'GH' },
-  { label: 'Discord', href: '#', icon: 'DC' },
-  { label: 'LinkedIn', href: '#', icon: 'LI' },
+  { label: 'Twitter', href: 'mailto:hello@colver.com', icon: 'X' },
+  { label: 'GitHub', href: 'mailto:hello@colver.com', icon: 'GH' },
+  { label: 'Discord', href: '/contact', icon: 'DC' },
+  { label: 'LinkedIn', href: '/contact', icon: 'LI' },
 ]
 
 export default function Footer() {
