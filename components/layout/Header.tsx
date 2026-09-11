@@ -21,7 +21,7 @@ type HeaderProps = {
 
 export default function Header({
   brandName = 'Colver',
-  ctaHref = '/features',
+  ctaHref = '/contact',
   ctaLabel = 'Get started',
 }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
