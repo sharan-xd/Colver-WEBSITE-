@@ -33,7 +33,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-sm text-muted">Tomorrow's Tech , Trusted Today</span>
+          <span className="text-sm text-muted">Tomorrow&apos;s Tech , Trusted Today</span>
         </motion.div>
 
         {/* Main heading */}

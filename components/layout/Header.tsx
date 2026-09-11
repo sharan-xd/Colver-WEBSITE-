@@ -29,7 +29,9 @@ export default function Header({
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setIsOpen(false)
+    const frame = requestAnimationFrame(() => setIsOpen(false))
+
+    return () => cancelAnimationFrame(frame)
   }, [pathname])
 
   return (
