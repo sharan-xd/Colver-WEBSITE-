@@ -58,7 +58,7 @@ export default function ContactSection() {
                   className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border
                              focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary
                              transition-colors"
-                  placeholder="John Doe"
+                  placeholder="Your name"
                   required
                 />
               </div>
@@ -75,7 +75,7 @@ export default function ContactSection() {
                   className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border
                              focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary
                              transition-colors"
-                  placeholder="john@example.com"
+                  placeholder="you@example.com"
                   required
                 />
               </div>
@@ -92,7 +92,7 @@ export default function ContactSection() {
                   className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border
                              focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary
                              transition-colors"
-                  placeholder="How can we help?"
+                  placeholder="What can we help you with?"
                   required
                 />
               </div>
@@ -109,7 +109,7 @@ export default function ContactSection() {
                   className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border
                              focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary
                              transition-colors resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us a little about what you're working on..."
                   required
                 />
               </div>
@@ -132,41 +132,16 @@ export default function ContactSection() {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Email us</h3>
                 <p className="text-muted mb-2">For general inquiries:</p>
-                <a href="mailto:hello@colver.com" className="text-primary hover:underline">
-                  hello@colver.com
+                <a href="mailto:info@colver.in" className="text-primary hover:underline">
+                  info@colver.in
                 </a>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold mb-4">Visit us</h3>
                 <p className="text-muted">
-                  123 Innovation Drive <br />
-                  San Francisco, CA <br />
-                  United States
+                  Bangalore, India
                 </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Follow us</h3>
-                <div className="flex gap-4">
-                  {[
-                    { name: 'Twitter', href: '#' },
-                    { name: 'GitHub', href: '#' },
-                    { name: 'Discord', href: '#' },
-                    { name: 'LinkedIn', href: '#' },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      className="w-12 h-12 rounded-full bg-secondary/50 border border-border
-                                 flex items-center justify-center text-sm font-medium
-                                 hover:border-primary/50 hover:text-primary transition-colors"
-                      aria-label={social.name}
-                    >
-                      {social.name[0]}
-                    </a>
-                  ))}
-                </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-secondary/30 border border-border">
