@@ -8,13 +8,13 @@ A modern, high-end marketing website with immersive 3D backgrounds, smooth scrol
 
 - **Immersive 3D Background** - React Three Fiber powered background with floating blobs, particles, and gradient meshes
 - **Smooth Scroll Animations** - GSAP ScrollTrigger + Framer Motion for buttery-smooth section transitions
--- **Dark Theme** - OLED-style dark mode (dark-only)
+- **Dark Theme** - OLED-style dark mode (dark-only)
 - **Responsive Design** - Mobile-first approach with Tailwind CSS
 - **Performance Optimized** - GPU-friendly animations, lazy loading, reduced motion support
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **3D Graphics**: React Three Fiber + Three.js

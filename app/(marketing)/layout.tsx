@@ -1,31 +1,18 @@
-// app/(marketing)/layout.tsx
 import type { ReactNode } from "react";
-
-import Navigation from "@/components/layout/Navigation";
-import Footer from "@/components/layout/Footer";
+import AppShell from "@/components/layout/AppShell";
 import PageTransition from "@/components/motion/PageTransition";
 import AnimatedBackground from "@/components/layout/background/AnimatedBackground";
 
 export default function MarketingLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="relative min-h-dvh overflow-x-clip">
-      {/* Background behind everything */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <AnimatedBackground />
-      </div>
+    <div className="relative min-h-screen overflow-x-clip">
+      {/* Background ambient lighting behind everything */}
+      <AnimatedBackground />
 
-      {/* Marketing frame */}
-      <div className="flex min-h-dvh flex-col">
-        <header className="sticky top-0 z-50">
-          <Navigation />
-        </header>
-
-        <main className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-
-        <Footer />
-      </div>
+      {/* Main App Frame with Persistent Sidebar & Header */}
+      <AppShell>
+        <PageTransition>{children}</PageTransition>
+      </AppShell>
     </div>
   );
 }

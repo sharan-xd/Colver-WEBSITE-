@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import Header from '@/components/layout/Header'
+import Header from './Header'
 
 export default function Navigation() {
   return <Header />

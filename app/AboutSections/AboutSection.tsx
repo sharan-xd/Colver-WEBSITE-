@@ -1,190 +1,167 @@
 'use client'
 
-import Section, { FadeInView } from '@/components/Section'
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { 
+  Target, 
+  Eye, 
+  Sparkles, 
+  Zap, 
+  Users, 
+  ShieldCheck, 
+  ArrowRight, 
+  Award,
+  Layers
+} from 'lucide-react'
+import Section, { FadeInView, StaggerContainer, StaggerItem } from '@/components/Section'
+import Button from '@/components/ui/Button'
+import Badge from '@/components/ui/Badge'
 
 const values = [
   {
     title: 'Clarity over complexity',
-    desc: 'We remove friction, reduce noise, and make the next step obvious.',
+    desc: 'We aggressively eliminate technical noise, reduce tooling sprawl, and make the next architectural step obvious.',
+    icon: Sparkles,
   },
   {
     title: 'Build fast, ship confidently',
-    desc: 'Speed matters — but reliability and trust matter more.',
+    desc: 'Velocity matters, but rock-solid reliability, type safety, and user trust matter even more.',
+    icon: Zap,
   },
   {
     title: 'Collaboration by default',
-    desc: 'Great products are built together. We design for teams, not silos.',
+    desc: 'Great digital products are forged together. We design systems for cross-functional teams, not isolated silos.',
+    icon: Users,
   },
   {
-    title: 'Craft is a feature',
-    desc: 'Polish, performance, and thoughtful details are part of the product.',
+    title: 'Craft is a core feature',
+    desc: 'Performance metrics, micro-interaction feedback, and thoughtful accessibility are non-negotiable details.',
+    icon: Award,
   },
 ]
 
 export default function AboutSection() {
   return (
-    <Section padding="large">
-      {/* Title block */}
-      <div className="text-center mb-16">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6">About Us</h1>
-        <p className="text-xl text-muted max-w-2xl mx-auto">
-          Colver exists to help teams go from idea → shipped product with less friction,
-          fewer tools, and more momentum.
+    <div className="py-6 sm:py-10 space-y-16">
+      {/* Header */}
+      <div className="text-center max-w-3xl mx-auto px-4">
+        <Badge variant="purple" dot className="mb-4">
+          Company & Positioning
+        </Badge>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
+          Built to eliminate
+          <span className="text-gradient block mt-1">workflow friction</span>
+        </h1>
+        <p className="text-base sm:text-lg text-muted leading-relaxed">
+          Colver exists to help engineering and design teams move from concept to shipped production
+          with less noise, fewer fragmented tools, and sustained momentum.
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6">
-
-        {/* Main Headline */}
-        <FadeInView delay={0.1}>
-          <div className="text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Built to reduce
-              <span className="text-gradient block mt-2">
-                workflow friction
-              </span>
-            </h2>
-          </div>
-        </FadeInView>
-
-        <FadeInView delay={0.2}>
-          <p className="text-lg text-muted mb-12 max-w-2xl mx-auto text-center leading-relaxed">
-            Colver was created to help teams execute without constant context switching,
-            messy handoffs, and “where did that file go?” chaos. We believe the best tools
-            feel calm, fast, and obvious — from the first click.
-          </p>
-        </FadeInView>
-
-        {/* Mission + Vision */}
-        <FadeInView delay={0.25}>
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
-            <div className="p-6 rounded-2xl bg-secondary/30 border border-border">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Our
-                <span className="text-gradient block mt-2">
-                  Mission
-                </span>
-              </h3>
-
-              <p className="text-muted leading-relaxed">
-                Help creators and teams move faster with less friction — from planning
-                to shipping.
-              </p>
+      {/* Mission & Vision Grid */}
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="p-7 sm:p-9 rounded-3xl glass-card border border-border/60 space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+              <Target className="w-6 h-6" />
             </div>
-
-            <div className="p-6 rounded-2xl bg-secondary/30 border border-border">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Our
-                <span className="text-gradient block mt-2">
-                  Vision
-                </span>
-              </h3>
-
-              <p className="text-muted leading-relaxed">
-                A future where teams spend less time managing tools and more time
-                creating meaningful outcomes.
-              </p>
-            </div>
-          </div>
-        </FadeInView>
-
-        {/* Why We Built Colver */}
-        <FadeInView delay={0.3}>
-          <div className="p-8 rounded-2xl bg-secondary/20 border border-border mb-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Why we built
-              <span className="text-gradient block mt-2">
-                Colver
-              </span>
-            </h2>
-
-            <p className="text-lg text-muted leading-relaxed max-w-3xl mx-auto">
-              Teams don’t fail because they lack talent — they fail because workflows
-              get noisy. Colver brings planning, collaboration, and execution into a
-              single flow, with smart automation where it helps and simplicity where
-              it matters.
+            <h2 className="text-2xl font-bold text-foreground">Our Mission</h2>
+            <p className="text-sm sm:text-base text-muted leading-relaxed">
+              To empower modern engineering teams to ship high-polish, scalable web software
+              faster — without sacrificing stability, accessibility, or code elegance.
             </p>
           </div>
-        </FadeInView>
 
-        {/* Values */}
-        <FadeInView delay={0.35}>
-          <div className="mb-16">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                What we
-                <span className="text-gradient block mt-2">
-                  value
-                </span>
-              </h2>
-
-              <p className="text-muted max-w-2xl mx-auto">
-                These aren’t slogans — they’re how we make product decisions.
-              </p>
+          <div className="p-7 sm:p-9 rounded-3xl glass-card border border-border/60 space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 text-accent flex items-center justify-center">
+              <Eye className="w-6 h-6" />
             </div>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {values.map((v) => (
-                <div
-                  key={v.title}
-                  className="p-6 rounded-2xl bg-secondary/30 border border-border"
-                >
-                  <h4 className="font-semibold mb-2">{v.title}</h4>
-                  <p className="text-muted leading-relaxed">{v.desc}</p>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold text-foreground">Our Vision</h2>
+            <p className="text-sm sm:text-base text-muted leading-relaxed">
+              A future where software creators spend zero time wrangling fragmented devtools
+              and 100% of their creative energy designing meaningful outcomes that delight users.
+            </p>
           </div>
-        </FadeInView>
-
-        {/* CTA */}
-        <FadeInView delay={0.4}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center mb-16">
-            <a
-              href="/features"
-              className="px-8 py-4 rounded-full bg-primary text-white font-medium
-                         hover:bg-primary/90 transition-colors duration-300
-                         shadow-lg shadow-primary/25"
-            >
-              Explore features
-            </a>
-
-            <a
-              href="/contact"
-              className="px-8 py-4 rounded-full bg-secondary/50 border border-border font-medium
-                         hover:bg-secondary transition-colors duration-300"
-            >
-              Contact us
-            </a>
-          </div>
-        </FadeInView>
-
-        {/* Trust Section */}
-        <FadeInView delay={0.45}>
-          <div className="pt-16 border-t border-border text-center">
-            <h4 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
-              Trusted by
-              <span className="text-gradient block mt-2">
-                leading companies
-              </span>
-            </h4>
-
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-50">
-              {['Vercel', 'Stripe', 'Linear', 'Notion', 'Figma'].map(
-                (company) => (
-                  <span
-                    key={company}
-                    className="text-lg font-semibold text-muted"
-                  >
-                    {company}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-        </FadeInView>
-
+        </div>
       </div>
-    </Section>
+
+      {/* Why We Built Colver Banner */}
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-border text-center space-y-4">
+          <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+            The Philosophy
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
+            Why we built Colver
+          </h2>
+          <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+            Teams don&apos;t fail because they lack ambition; they stall because their workflows get noisy.
+            Context switching between five incompatible SaaS dashboards kills creative flow.
+            Colver unifies architectural foundations, AI-driven automation, and live previews into a calm, deterministic workspace.
+          </p>
+        </div>
+      </div>
+
+      {/* Core Values Grid */}
+      <div className="max-w-5xl mx-auto px-4 space-y-8">
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
+            What we value
+          </h2>
+          <p className="text-sm text-muted">
+            These principles guide every architectural decision and product release.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5">
+          {values.map((v) => {
+            const Icon = v.icon
+            return (
+              <div
+                key={v.title}
+                className="p-6 sm:p-7 rounded-2xl glass-card border border-border/60 space-y-3"
+              >
+                <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-primary">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">{v.title}</h3>
+                <p className="text-xs sm:text-sm text-muted leading-relaxed">{v.desc}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Trust & Enterprise Badges */}
+      <div className="max-w-5xl mx-auto px-4 pt-8 border-t border-border/40 text-center space-y-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+          Engineered to standards trusted across industry leaders
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-60">
+          {['Linear Standards', 'Vercel Edge', 'Stripe Payments', 'TypeScript', 'Tailwind 3.4'].map(
+            (item) => (
+              <span key={item} className="text-sm sm:text-base font-bold text-foreground font-mono">
+                {item}
+              </span>
+            )
+          )}
+        </div>
+
+        {/* CTA Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link href="/features" className="w-full sm:w-auto">
+            <Button size="lg" variant="primary" iconRight={<ArrowRight className="w-4 h-4" />}>
+              Explore Features
+            </Button>
+          </Link>
+          <Link href="/contact" className="w-full sm:w-auto">
+            <Button size="lg" variant="secondary" className="glass-panel">
+              Contact Engineering
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }

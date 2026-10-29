@@ -1,42 +1,39 @@
 'use client'
 
-// Simple CSS-based animated background (no three.js to avoid bundling issues)
+import React from 'react'
+
 export default function AnimatedBackgroundClient() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Main gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-black" />
+    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+      {/* Base gradient fill */}
+      <div className="absolute inset-0 bg-background transition-colors duration-300" />
 
-      {/* Animated blobs using CSS */}
-      <div className="absolute top-0 -left-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-      <div className="absolute top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-      <div className="absolute -bottom-8 left-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
+      {/* Subtle technical dot grid pattern */}
+      <div className="absolute inset-0 bg-grid-subtle opacity-60" />
 
-      <style jsx>{`
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
+      {/* Primary ambient glow - top center */}
+      <div 
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[400px] rounded-full blur-[120px] opacity-25 transition-all duration-700"
+        style={{
+          background: 'radial-gradient(ellipse at center, var(--primary) 0%, transparent 70%)',
+        }}
+      />
 
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
+      {/* Secondary accent glow - left */}
+      <div 
+        className="absolute top-[25%] -left-36 w-[480px] h-[480px] rounded-full blur-[130px] opacity-20"
+        style={{
+          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
+        }}
+      />
 
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
+      {/* Tertiary accent glow - right */}
+      <div 
+        className="absolute top-[60%] -right-36 w-[520px] h-[520px] rounded-full blur-[140px] opacity-15"
+        style={{
+          background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+        }}
+      />
     </div>
   )
 }

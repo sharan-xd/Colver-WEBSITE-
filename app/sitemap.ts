@@ -1,14 +1,21 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://colver.com'
+  const baseUrl = 'https://colver.in'
   
   const routes = [
     '',
-    '/features',
+    '/services',
     '/showcase',
     '/about',
     '/contact',
+    '/features',
+    '/docs',
+    '/guides',
+    '/blog',
+    '/security',
+    '/privacy',
+    '/terms',
   ]
 
   return routes.map((route) => ({

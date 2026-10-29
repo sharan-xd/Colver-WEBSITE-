@@ -4,6 +4,20 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/pricing',
+        destination: '/services',
+        permanent: false,
+      },
+      {
+        source: '/changelog',
+        destination: '/',
+        permanent: false,
+      },
+    ]
+  },
   async headers() {
     return [
       {
@@ -51,9 +65,9 @@ const nextConfig = {
               "object-src 'none'",
               `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''}`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https:",
+              "img-src 'self' data: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https:",
+              `connect-src 'self'${isDevelopment ? " ws: http:" : ''}`,
               "manifest-src 'self'",
               'upgrade-insecure-requests',
             ].join('; '),
@@ -64,7 +78,9 @@ const nextConfig = {
   },
 }
 
-// Allow dev HMR access from specific origins (safe for development only)
-nextConfig.allowedDevOrigins = ['10.31.14.229']
+// Allow dev HMR access from specific origins when configured via environment variable (safe for development only)
+if (isDevelopment && process.env.ALLOWED_DEV_ORIGINS) {
+  nextConfig.allowedDevOrigins = process.env.ALLOWED_DEV_ORIGINS.split(',').map((origin) => origin.trim())
+}
 
 module.exports = nextConfig

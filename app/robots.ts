@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://colver.com/sitemap.xml',
+    sitemap: 'https://colver.in/sitemap.xml',
   }
 }
