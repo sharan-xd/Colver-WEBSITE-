@@ -236,11 +236,6 @@ export default function IsometricChromeCanvas() {
     <div
       ref={containerRef}
       className="w-full h-full min-h-[420px] lg:min-h-[560px] relative rounded-[2px] overflow-hidden bg-[#121212]"
-    >
-      <div className="absolute top-4 left-5 z-10 flex items-center gap-2 text-sm text-[#F4F1EA] pointer-events-none select-none">
-        <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
-        <span className="font-semibold">Interactive 3D Architecture Monolith</span>
-      </div>
-    </div>
+    />
   )
 }

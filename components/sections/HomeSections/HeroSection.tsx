@@ -5,35 +5,39 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { ArrowRight, Layers } from '@/components/ui/Icons'
 
-const IsometricChromeCanvas = dynamic(
-  () => import('@/components/motion/IsometricChromeCanvas'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full min-h-[420px] lg:min-h-[560px] flex items-center justify-center bg-[#121212] rounded-[2px]">
-        <div className="text-sm text-[#BFC3C9] flex items-center gap-2 font-medium">
-          <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
-          Loading 3D Environment
-        </div>
-      </div>
-    ),
-  }
+const WebThreads = dynamic(
+  () => import('@/components/WebThreads/WebThreads'),
+  { ssr: false }
 )
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full pt-8 md:pt-16 pb-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full pt-12 md:pt-20 pb-28 overflow-hidden min-h-[640px] lg:min-h-[720px] flex items-center">
+      {/* Animated WebThreads Background occupying the entire background area behind foreground content */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <WebThreads
+          colors={['#5227FF', '#FF9FFC']}
+          coreColor="#FFFFFF"
+          threadCount={6}
+          spread={0.18}
+        />
+      </div>
+
+      {/* Foreground Content with High-Priority z-index */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          {/* Left Column: Direct Confident Typography rendered directly on frame 0 */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* Confident Swiss Typography */}
+          <div className="lg:col-span-8 space-y-8 animate-entrance">
             {/* Headline: Under 2 lines across all breakpoints */}
-            <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[68px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance animate-entrance">
+            <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[68px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
               Software Built for Real Operations.
             </h1>
 
             {/* Supporting Statement */}
-            <p className="text-base sm:text-xl text-[#BFC3C9] max-w-xl leading-relaxed">
+            <p className="text-base sm:text-xl text-[#BFC3C9] max-w-2xl leading-relaxed">
               Colver designs and engineers bespoke business systems, high-concurrency web applications, and automated operational pipelines for growing companies.
             </p>
 
@@ -88,11 +92,6 @@ export default function HeroSection() {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Right Column: 3D Interactive Isometric Chrome Canvas */}
-          <div className="lg:col-span-5 h-full">
-            <IsometricChromeCanvas />
           </div>
         </div>
       </div>
