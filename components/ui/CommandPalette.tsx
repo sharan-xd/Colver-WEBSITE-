@@ -18,12 +18,9 @@ import {
   ShieldCheck, 
   Lock, 
   FileCheck, 
-  Sun, 
-  Moon, 
   X,
   ArrowRight
 } from '@/components/ui/Icons'
-import { useTheme } from '@/lib/theme'
 
 interface CommandItem {
   id: string
@@ -42,7 +39,6 @@ export function CommandPalette({
   onClose: () => void
 }) {
   const router = useRouter()
-  const { theme, toggleTheme } = useTheme()
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -51,87 +47,87 @@ export function CommandPalette({
     {
       id: 'home',
       label: 'Home',
-      description: 'Landing page and core overview',
+      description: 'Landing page and architecture overview',
       category: 'Navigation',
       icon: Home,
       action: () => { router.push('/'); onClose(); },
     },
     {
-      id: 'features',
-      label: 'Features',
-      description: 'Explore our AI capabilities and tools',
-      category: 'Navigation',
-      icon: Sparkles,
-      action: () => { router.push('/features'); onClose(); },
-    },
-    {
       id: 'showcase',
-      label: 'Showcase',
-      description: 'Interactive gallery of products built with Colver',
-      category: 'Navigation',
+      label: 'Selected Work & Showcase',
+      description: 'Production systems, live portals and architecture specs',
+      category: 'Work',
       icon: Layers,
       action: () => { router.push('/showcase'); onClose(); },
     },
     {
       id: 'services',
-      label: 'Services',
-      description: 'Custom software, web apps, ecommerce & operations platforms',
-      category: 'Navigation',
+      label: 'Services & Capabilities',
+      description: 'Custom software, web systems, transactional commerce, AI pipelines',
+      category: 'Services',
       icon: Cpu,
       action: () => { router.push('/services'); onClose(); },
     },
     {
+      id: 'pricing',
+      label: 'Pricing & Sprints',
+      description: 'Engineering sprints, dedicated squads, transparent delivery rates',
+      category: 'Commercial',
+      icon: Sparkles,
+      action: () => { router.push('/pricing'); onClose(); },
+    },
+    {
       id: 'docs',
-      label: 'Documentation',
-      description: 'Guides and architectural references',
-      category: 'Resources',
+      label: 'Architecture Documentation',
+      description: 'Technical standards, API schemas, deployment specifications',
+      category: 'Docs',
       icon: BookOpen,
       action: () => { router.push('/docs'); onClose(); },
     },
     {
       id: 'guides',
-      label: 'Guides',
-      description: 'Tutorials and step-by-step walkthroughs',
-      category: 'Resources',
+      label: 'Engineering Guides',
+      description: 'Production patterns, edge caching, high-concurrency walkthroughs',
+      category: 'Docs',
       icon: Compass,
       action: () => { router.push('/guides'); onClose(); },
     },
     {
       id: 'blog',
-      label: 'Blog',
-      description: 'Engineering notes and design essays',
-      category: 'Resources',
+      label: 'Engineering Blog',
+      description: 'Insights on systems, performance, design engineering and AI',
+      category: 'Editorial',
       icon: FileText,
       action: () => { router.push('/blog'); onClose(); },
     },
     {
       id: 'about',
-      label: 'About Colver',
-      description: 'Our story, mission, and craftsmanship',
+      label: 'About Studio',
+      description: 'Studio philosophy, engineering craftsmanship, Bangalore team',
       category: 'Company',
       icon: Users,
       action: () => { router.push('/about'); onClose(); },
     },
     {
       id: 'careers',
-      label: 'Careers',
-      description: 'Join our team and build the future',
+      label: 'Careers & Engineering Roles',
+      description: 'Open engineering positions in Bengaluru',
       category: 'Company',
       icon: Briefcase,
       action: () => { router.push('/careers'); onClose(); },
     },
     {
       id: 'contact',
-      label: 'Contact',
-      description: 'Get in touch with our team or enterprise sales',
+      label: 'Discuss Architecture Spec',
+      description: 'Schedule a discovery session with senior engineering architects',
       category: 'Company',
       icon: Mail,
       action: () => { router.push('/contact'); onClose(); },
     },
     {
       id: 'security',
-      label: 'Security',
-      description: 'Enterprise data compliance and controls',
+      label: 'Security & Trust',
+      description: 'Zero secrets, hardened CSP, Cloudflare edge audit specifications',
       category: 'Trust & Legal',
       icon: ShieldCheck,
       action: () => { router.push('/security'); onClose(); },
@@ -151,14 +147,6 @@ export function CommandPalette({
       category: 'Trust & Legal',
       icon: FileCheck,
       action: () => { router.push('/terms'); onClose(); },
-    },
-    {
-      id: 'theme-toggle',
-      label: `Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`,
-      description: 'Toggle interface visual theme',
-      category: 'Preferences',
-      icon: theme === 'dark' ? Sun : Moon,
-      action: () => { toggleTheme(); onClose(); },
     },
   ]
 
@@ -182,9 +170,6 @@ export function CommandPalette({
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
         if (isOpen) onClose()
-        else {
-          // Open handled by parent or custom event
-        }
       }
       if (!isOpen) return
 
@@ -219,20 +204,20 @@ export function CommandPalette({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
           />
 
           {/* Dialog Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            initial={{ opacity: 0, scale: 0.98, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            exit={{ opacity: 0, scale: 0.98, y: -10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="relative w-full max-w-xl bg-card rounded-xl shadow-2xl overflow-hidden border border-border/40 z-10 flex flex-col max-h-[75vh]"
+            className="relative w-full max-w-xl bg-[#0e0e0e] rounded-[2px] shadow-2xl overflow-hidden border border-white/20 z-10 flex flex-col max-h-[75vh]"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center px-4 py-3.5 border-b border-border/40 gap-3">
-              <Search className="w-5 h-5 text-slate-400 shrink-0" />
+            <div className="flex items-center px-4 py-3.5 border-b border-white/10 gap-3 bg-[#121212]">
+              <Search className="w-4 h-4 text-[#C8FF00] shrink-0" />
               <input
                 ref={inputRef}
                 value={query}
@@ -240,13 +225,13 @@ export function CommandPalette({
                   setQuery(e.target.value)
                   setSelectedIndex(0)
                 }}
-                placeholder="Search pages, documentation, actions..."
-                className="w-full bg-transparent text-sm text-foreground placeholder:text-slate-400 focus:outline-none"
+                placeholder="Search commands, architectural specs, pages..."
+                className="w-full bg-transparent text-xs font-mono text-[#F4F1EA] placeholder:text-[#8E929A] focus:outline-none"
               />
               <button
                 type="button"
                 onClick={onClose}
-                className="p-1 rounded-md text-slate-400 hover:text-foreground hover:bg-surface"
+                className="p-1 rounded-[2px] text-[#8E929A] hover:text-[#F4F1EA] hover:bg-white/10 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -255,8 +240,8 @@ export function CommandPalette({
             {/* Results List */}
             <div className="overflow-y-auto p-2 space-y-1">
               {filteredItems.length === 0 ? (
-                <div className="py-12 text-center text-sm text-slate-400">
-                  No matching results for &ldquo;{query}&rdquo;
+                <div className="py-12 text-center text-xs font-mono text-[#8E929A]">
+                  NO COMMANDS MATCHING &ldquo;{query}&rdquo;
                 </div>
               ) : (
                 filteredItems.map((item, index) => {
@@ -270,32 +255,32 @@ export function CommandPalette({
                       onClick={item.action}
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`
-                        w-full flex items-center justify-between p-3 rounded-lg text-left
+                        w-full flex items-center justify-between p-3 rounded-[2px] text-left
                         transition-all duration-150 cursor-pointer
-                        ${isSelected ? 'bg-surface text-foreground font-semibold' : 'text-slate-400 hover:bg-surface/50'}
+                        ${isSelected ? 'bg-white/10 text-[#C8FF00] font-bold border-l-2 border-[#C8FF00]' : 'text-[#8E929A] hover:bg-white/5'}
                       `}
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                            isSelected ? 'bg-primary text-white' : 'bg-surface text-slate-400'
+                          className={`w-7 h-7 rounded-[2px] flex items-center justify-center shrink-0 ${
+                            isSelected ? 'bg-[#C8FF00] text-black' : 'bg-white/5 text-[#8E929A]'
                           }`}
                         >
-                          <Icon className="w-4 h-4" />
+                          <Icon className="w-3.5 h-3.5" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-semibold text-foreground">
+                          <p className={`text-xs font-mono ${isSelected ? 'text-[#F4F1EA]' : 'text-[#D0D4DC]'}`}>
                             {item.label}
                           </p>
-                          <p className="text-[13px] text-slate-400 truncate">{item.description}</p>
+                          <p className="text-[11px] text-[#8E929A] truncate font-sans">{item.description}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-[13px] font-medium px-2 py-0.5 rounded bg-surface text-slate-400">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-[2px] bg-white/5 text-[#8E929A] uppercase">
                           {item.category}
                         </span>
-                        {isSelected && <ArrowRight className="w-4 h-4 text-primary" />}
+                        {isSelected && <ArrowRight className="w-3.5 h-3.5 text-[#C8FF00]" />}
                       </div>
                     </button>
                   )
@@ -304,10 +289,10 @@ export function CommandPalette({
             </div>
 
             {/* Footer helper */}
-            <div className="px-4 py-2.5 border-t border-border/40 bg-surface/50 flex items-center justify-between text-[13px] text-slate-400">
-              <span>Navigate with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">↑</kbd> <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">↓</kbd></span>
-              <span>Select with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">Enter</kbd></span>
-              <span>Close with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">Esc</kbd></span>
+            <div className="px-4 py-2 border-t border-white/10 bg-[#080808] flex items-center justify-between text-[10px] font-mono text-[#8E929A]">
+              <span>NAVIGATE: <kbd className="px-1 py-0.5 rounded bg-white/10 border border-white/10">↑</kbd> <kbd className="px-1 py-0.5 rounded bg-white/10 border border-white/10">↓</kbd></span>
+              <span>SELECT: <kbd className="px-1 py-0.5 rounded bg-white/10 border border-white/10">ENTER</kbd></span>
+              <span>CLOSE: <kbd className="px-1 py-0.5 rounded bg-white/10 border border-white/10">ESC</kbd></span>
             </div>
           </motion.div>
         </div>

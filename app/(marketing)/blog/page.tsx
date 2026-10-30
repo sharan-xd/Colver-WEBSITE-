@@ -1,8 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Clock, ArrowRight, Calendar, User } from 'lucide-react'
-import Button from '@/components/ui/Button'
+import { ArrowRight } from '@/components/ui/Icons'
 import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -36,26 +35,19 @@ export const metadata: Metadata = {
       'Deep-dive articles on web performance engineering, Core Web Vitals, and Next.js architectures.',
     images: ['/og-image.jpg'],
   },
-  keywords: [
-    'web performance blog',
-    'Core Web Vitals optimization',
-    'Next.js engineering articles',
-    'security headers guide',
-    'frontend architecture blog',
-  ],
 }
 
 const posts = [
   {
     title: 'Designing Websites That Actually Feel Instant',
-    excerpt: 'Why standard Core Web Vitals alone do not capture perception of speed, and how optimistic UI updates combined with prefetching eliminate perceived latency.',
+    excerpt: 'Why standard Core Web Vitals alone do not capture perception of speed, and how optimistic UI updates combined with edge prefetching eliminate perceived latency.',
     tag: 'Performance',
     date: 'October 2026',
     readTime: '6 min read',
     author: 'Colver Engineering',
   },
   {
-    title: 'Strict Security Headers and CSP for Modern Jamstack & Next.js Sites',
+    title: 'Strict Security Headers and CSP for Modern Next.js Sites',
     excerpt: 'A comprehensive walkthrough of deploying nonce-based Content Security Policies, strict transport security, and preventing cross-site scripting vulnerabilities.',
     tag: 'Security',
     date: 'September 2026',
@@ -64,74 +56,77 @@ const posts = [
   },
   {
     title: 'Shipping with Fewer Moving Parts: The Case Against Microservice Sprawl',
-    excerpt: 'How consolidating complex tooling into cohesive Next.js App Router monoliths helped our teams ship 3x faster with 90% fewer runtime errors.',
+    excerpt: 'How consolidating complex tooling into cohesive Next.js App Router monoliths helped our teams ship 3x faster with 90% fewer runtime exceptions.',
     tag: 'Product Architecture',
     date: 'August 2026',
     readTime: '7 min read',
     author: 'Platform Lead',
   },
   {
-    title: 'Refining Glassmorphism: From Cheesy Frosted Glass to Premium Precision',
-    excerpt: 'The mathematical principles behind subtle translucency, top rim light reflections, and realistic shadows that elevate enterprise web design.',
+    title: 'Refining Digital Brutalism: Swiss Typography & 3D Isometric Viewports',
+    excerpt: 'The mathematical principles behind subtle translucency, chromatic finishes, and realistic shadows that elevate enterprise web design without framework bloat.',
     tag: 'Design Systems',
     date: 'July 2026',
     readTime: '5 min read',
-    author: 'Design Systems Lead',
+    author: 'Design Engineering Lead',
   },
 ]
 
 export default function BlogPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-8 sm:py-16 space-y-20 md:space-y-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <BreadcrumbsJsonLd
         items={[
           { name: 'Home', url: '/' },
           { name: 'Blog', url: '/blog' },
         ]}
       />
+
       {/* Header */}
-      <div className="max-w-4xl mx-auto px-4 pt-4 sm:pt-8 text-center">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Engineering & Architecture Journal
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-base text-[#C8FF00] font-mono">
+          <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+          <span>Engineering Journal · Production Architecture</span>
+        </div>
+
+        <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
+          Engineering & Architecture Journal.
         </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
+
+        <p className="text-base sm:text-xl text-[#BFC3C9] leading-relaxed max-w-3xl">
           Practical notes on software performance, resilient architectures, database modeling, and shipping high-concurrency systems.
         </p>
       </div>
 
       {/* Articles List */}
-      <div className="max-w-4xl mx-auto px-4 space-y-6">
-        {posts.map((post) => (
+      <div className="space-y-4">
+        {posts.map((post, idx) => (
           <article
             key={post.title}
-            className="p-6 sm:p-8 rounded-xl bg-card space-y-4 hover:bg-surface/80 transition-colors"
+            className={`p-6 sm:p-8 rounded-[2px] space-y-4 transition-all duration-200 hover:bg-[#141414] ${
+              idx % 2 === 0 ? 'bg-[#101010]' : 'bg-[#0d0d0d]'
+            }`}
           >
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-slate-400">
-              <span className="font-semibold text-blue-400">{post.tag}</span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-slate-500" />
-                <span>{post.date}</span>
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-slate-500" />
-                <span>{post.readTime}</span>
-              </span>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-[#8E929A]">
+              <span className="font-semibold text-[#C8FF00]">{post.tag}</span>
+              <span>·</span>
+              <span>{post.date}</span>
+              <span>·</span>
+              <span>{post.readTime}</span>
+              <span>·</span>
+              <span>By {post.author}</span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA]">
               {post.title}
             </h2>
 
-            <p className="text-base text-slate-300 leading-relaxed">
+            <p className="text-base text-[#BFC3C9] leading-relaxed">
               {post.excerpt}
             </p>
 
-            <div className="flex items-center justify-between pt-2">
-              <span className="text-[13px] text-slate-400 font-medium">
-                By {post.author}
-              </span>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300">
+            <div className="pt-2">
+              <span className="inline-flex items-center gap-2 text-base font-semibold text-[#C8FF00] hover:text-[#b8ea00] cursor-pointer">
                 <span>Read article</span>
                 <ArrowRight className="w-4 h-4" />
               </span>
@@ -141,16 +136,26 @@ export default function BlogPage() {
       </div>
 
       {/* Newsletter / Follow-up */}
-      <div className="max-w-3xl mx-auto px-4 text-center pt-8 space-y-4">
-        <h3 className="text-xl font-bold text-foreground">Want a specific topic covered?</h3>
-        <p className="text-base text-slate-300 max-w-md mx-auto leading-relaxed">
-          We welcome technical inquiries and architecture questions from our community.
-        </p>
-        <Link href="/contact">
-          <Button variant="primary" size="md">
-            Send Topic Suggestion
-          </Button>
-        </Link>
+      <div className="p-8 sm:p-14 bg-[#121212] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="space-y-3 max-w-2xl">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#F4F1EA] tracking-tight">
+            Want a specific architecture topic covered?
+          </h2>
+          <p className="text-base sm:text-lg text-[#BFC3C9] leading-relaxed">
+            We regularly publish deep-dive breakdowns requested by founders, CTOs, and systems engineers.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <Link href="/contact">
+            <button
+              type="button"
+              className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+            >
+              <span>Submit Topic Suggestion</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   )

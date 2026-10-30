@@ -1,39 +1,40 @@
 import React from 'react'
 import Link from 'next/link'
-import { FileQuestion, ArrowRight, Home, BookOpen } from 'lucide-react'
-import Button from '@/components/ui/Button'
-import Badge from '@/components/ui/Badge'
+import { ArrowRight } from '@/components/ui/Icons'
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
-      <div className="max-w-lg w-full p-8 sm:p-12 rounded-3xl glass-panel border border-border text-center space-y-6 shadow-2xl">
-        <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-sm">
-          <FileQuestion className="w-8 h-8" />
-        </div>
-
-        <div className="space-y-2">
-          <Badge variant="outline" className="font-mono">
-            HTTP 404
-          </Badge>
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            Page Not Located
+    <div className="min-h-[70vh] flex items-center justify-center px-4 py-20">
+      <div className="max-w-xl w-full p-8 sm:p-14 rounded-[2px] bg-[#101010] text-center space-y-8">
+        <div className="space-y-3">
+          <div className="font-mono text-sm font-semibold text-[#C8FF00] tracking-widest uppercase">
+            // HTTP 404 UNRESOLVED
+          </div>
+          <h1 className="font-display font-extrabold text-4xl sm:text-5xl tracking-tight text-[#F4F1EA]">
+            Route Not Located.
           </h1>
-          <p className="text-sm text-muted leading-relaxed">
-            The route or resource you requested could not be resolved. It may have moved or been updated in our latest release.
+          <p className="text-base text-[#BFC3C9] leading-relaxed max-w-md mx-auto">
+            The architectural endpoint or resource you requested could not be resolved across our edge cluster.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <Link href="/" className="w-full sm:w-auto">
-            <Button variant="primary" size="md" className="w-full sm:w-auto" iconRight={<Home className="w-4 h-4" />}>
-              Return to Overview
-            </Button>
+            <button
+              type="button"
+              className="w-full sm:w-auto h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+            >
+              <span>Return to Overview</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </Link>
           <Link href="/docs" className="w-full sm:w-auto">
-            <Button variant="secondary" size="md" className="w-full sm:w-auto glass-panel" iconRight={<BookOpen className="w-4 h-4" />}>
-              Browse Docs
-            </Button>
+            <button
+              type="button"
+              className="w-full sm:w-auto h-12 px-6 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#F4F1EA] font-semibold text-base tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
+              <span>Browse Docs</span>
+            </button>
           </Link>
         </div>
       </div>

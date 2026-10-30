@@ -1,60 +1,21 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  ChevronDown,
-  Search,
-  Sun,
-  Moon,
-  Menu,
-  ArrowRight,
-  BookOpen,
-  Compass,
-  FileText,
-  Sparkles,
-} from '@/components/ui/Icons'
-import { useTheme } from '@/lib/theme'
-import Button from '@/components/ui/Button'
+import { Menu, Search, ArrowRight } from '@/components/ui/Icons'
 
 export interface HeaderProps {
   onOpenMobileMenu?: () => void
   onOpenCommand?: () => void
 }
 
-interface ResourceItem {
-  title: string
-  description: string
-  href: string
-  icon: React.ComponentType<{ className?: string }>
-}
-
-const resourceItems: ResourceItem[] = [
-  {
-    title: 'Documentation',
-    description: 'Technical architecture, API specs and guides',
-    href: '/docs',
-    icon: BookOpen,
-  },
-  {
-    title: 'Guides',
-    description: 'Engineering walkthroughs and production patterns',
-    href: '/guides',
-    icon: Compass,
-  },
-  {
-    title: 'Engineering Blog',
-    description: 'Insights on systems, performance and design',
-    href: '/blog',
-    icon: FileText,
-  },
-  {
-    title: 'Platform Features',
-    description: 'Overview of engineering primitives and tools',
-    href: '/features',
-    icon: Sparkles,
-  },
+const navLinks = [
+  { label: 'Work', href: '/showcase' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Docs', href: '/docs' },
 ]
 
 export default function Header({
@@ -62,42 +23,14 @@ export default function Header({
   onOpenCommand,
 }: HeaderProps) {
   const pathname = usePathname()
-  const { theme, toggleTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [resourcesOpen, setResourcesOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setMounted(true)
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
+      setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    setResourcesOpen(false)
-  }, [pathname])
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setResourcesOpen(false)
-      }
-    }
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setResourcesOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
   }, [])
 
   const isActive = (href: string) => {
@@ -105,192 +38,88 @@ export default function Header({
     return pathname === href || pathname?.startsWith(href + '/')
   }
 
-  const isResourcesActive = resourceItems.some((item) => isActive(item.href))
-
   return (
     <header
       className={`
-        sticky top-0 z-40 w-full transition-colors duration-150
-        ${scrolled ? 'bg-background/95 backdrop-blur-md' : 'bg-background'}
+        sticky top-0 z-40 w-full transition-all duration-200
+        ${scrolled ? 'bg-[#080808]/95 backdrop-blur-md py-4' : 'bg-transparent py-5'}
       `}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Left: Brand Identity */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
+        {/* Brand Wordmark */}
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
-            aria-label="Colver Home"
+            className="group flex items-center gap-3 focus:outline-none"
+            aria-label="COLVER Home"
           >
-            <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center shrink-0">
-              <span className="w-2.5 h-2.5 bg-white rounded-sm" />
+            <div className="w-8 h-8 bg-[#C8FF00] text-black font-bold text-sm flex items-center justify-center rounded-[2px] transition-transform group-hover:rotate-6">
+              C/
             </div>
-            <span className="font-bold text-lg tracking-tight text-foreground">
-              Colver
+            <span className="font-display font-extrabold text-2xl tracking-tight text-[#F4F1EA] glitch-hover leading-none">
+              COLVER
             </span>
           </Link>
-
-          {/* Desktop Horizontal Navigation (lg and up) */}
-          <nav
-            className="hidden lg:flex items-center gap-1"
-            aria-label="Primary navigation"
-          >
-            <Link
-              href="/"
-              aria-current={isActive('/') ? 'page' : undefined}
-              className={`
-                px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                ${isActive('/') ? 'text-foreground bg-surface font-semibold' : 'text-slate-400 hover:text-foreground hover:bg-surface/60'}
-              `}
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/services"
-              aria-current={isActive('/services') ? 'page' : undefined}
-              className={`
-                px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                ${isActive('/services') ? 'text-foreground bg-surface font-semibold' : 'text-slate-400 hover:text-foreground hover:bg-surface/60'}
-              `}
-            >
-              Services
-            </Link>
-
-            <Link
-              href="/showcase"
-              aria-current={isActive('/showcase') ? 'page' : undefined}
-              className={`
-                px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                ${isActive('/showcase') ? 'text-foreground bg-surface font-semibold' : 'text-slate-400 hover:text-foreground hover:bg-surface/60'}
-              `}
-            >
-              Showcase
-            </Link>
-
-            <Link
-              href="/about"
-              aria-current={isActive('/about') ? 'page' : undefined}
-              className={`
-                px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                ${isActive('/about') ? 'text-foreground bg-surface font-semibold' : 'text-slate-400 hover:text-foreground hover:bg-surface/60'}
-              `}
-            >
-              About
-            </Link>
-
-            {/* Resources Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                type="button"
-                onClick={() => setResourcesOpen((prev) => !prev)}
-                aria-expanded={resourcesOpen}
-                aria-haspopup="true"
-                className={`
-                  flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors cursor-pointer
-                  ${isResourcesActive ? 'text-foreground bg-surface font-semibold' : 'text-slate-400 hover:text-foreground hover:bg-surface/60'}
-                `}
-              >
-                <span>Resources</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-150 ${resourcesOpen ? 'rotate-180' : ''}`}
-                />
-              </button>
-
-              {resourcesOpen && (
-                <div
-                  className="
-                    absolute top-full left-0 mt-2 w-72 rounded-lg p-2 bg-card
-                    z-50
-                  "
-                  role="menu"
-                  aria-orientation="vertical"
-                >
-                  <div className="space-y-1">
-                    {resourceItems.map((item) => {
-                      const Icon = item.icon
-                      const itemActive = isActive(item.href)
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          role="menuitem"
-                          onClick={() => setResourcesOpen(false)}
-                          className={`
-                            flex items-start gap-3 p-2.5 rounded-md transition-colors
-                            ${itemActive ? 'bg-surface text-foreground font-medium' : 'hover:bg-surface text-foreground'}
-                          `}
-                        >
-                          <div
-                            className={`
-                              w-8 h-8 rounded-md flex items-center justify-center shrink-0 mt-0.5
-                              ${itemActive ? 'bg-primary text-white' : 'bg-surface text-slate-400'}
-                            `}
-                          >
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold leading-snug">
-                              {item.title}
-                            </p>
-                            <p className="text-[13px] text-slate-400 leading-relaxed mt-0.5">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
-          </nav>
         </div>
 
-        {/* Right: Quick Actions */}
+        {/* Desktop Nav */}
+        <nav
+          className="hidden md:flex items-center gap-2 text-sm font-medium"
+          aria-label="Main Navigation"
+        >
+          {navLinks.map((item) => {
+            const active = isActive(item.href)
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`
+                  relative px-4 py-2 transition-colors duration-150
+                  ${active ? 'text-[#C8FF00] font-semibold' : 'text-[#BFC3C9] hover:text-[#F4F1EA]'}
+                `}
+              >
+                <span>{item.label}</span>
+                {active && (
+                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#C8FF00]" />
+                )}
+              </Link>
+            )
+          })}
+        </nav>
+
+        {/* Right Actions */}
         <div className="flex items-center gap-3">
-          {/* Quick Search Shortcut Trigger */}
+          {/* Quick Search Action */}
           <button
             type="button"
             onClick={onOpenCommand}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] bg-surface hover:bg-surface/80 text-slate-300 hover:text-foreground transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            aria-label="Open quick search dialog"
+            className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#BFC3C9] hover:text-[#F4F1EA] text-sm transition-colors cursor-pointer"
+            aria-label="Open Command Palette"
           >
-            <Search className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Search</span>
+            <Search className="w-4 h-4" />
+            <span>Search</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-black/50 text-xs text-[#C8FF00]">
+              ⌘K
+            </kbd>
           </button>
 
-          {/* Theme Toggle Button */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="p-2 rounded-md text-slate-400 hover:text-foreground hover:bg-surface transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            {mounted && theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-foreground" />
-            ) : (
-              <Moon className="w-4 h-4 text-foreground" />
-            )}
-          </button>
-
-          {/* Primary CTA Button (Desktop lg+) */}
-          <Link href="/contact" className="hidden lg:inline-block">
-            <Button
-              size="sm"
-              variant="primary"
-              iconRight={<ArrowRight className="w-3.5 h-3.5" />}
+          {/* Contact CTA: Visible on desktop */}
+          <Link href="/contact" className="hidden md:inline-block">
+            <button
+              type="button"
+              className="h-10 px-5 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-sm tracking-wide flex items-center gap-2 transition-all active:scale-[0.98] cursor-pointer"
             >
-              Discuss Your Project
-            </Button>
+              <span>Discuss Architecture</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </Link>
 
-          {/* Mobile & Tablet Menu Hamburger Button (up to lg) */}
+          {/* Mobile/Tablet Menu Button */}
           <button
             type="button"
             onClick={onOpenMobileMenu}
+            className="md:hidden p-2 rounded-[2px] bg-[#181818] text-[#F4F1EA] hover:bg-[#222222] transition-colors cursor-pointer"
             aria-label="Open navigation menu"
-            className="lg:hidden p-2 rounded-md text-slate-300 hover:text-foreground hover:bg-surface transition-colors cursor-pointer"
           >
             <Menu className="w-5 h-5" />
           </button>

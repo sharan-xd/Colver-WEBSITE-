@@ -1,20 +1,18 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ShieldCheck, Lock, Key, Server, FileText, CheckCircle2, ArrowRight } from 'lucide-react'
-import Badge from '@/components/ui/Badge'
-import Button from '@/components/ui/Button'
 import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
+import { ArrowRight } from '@/components/ui/Icons'
 
 export const metadata: Metadata = {
-  title: 'Security, Compliance & Trust Center | Colver',
+  title: 'Security Architecture & Trust Specifications | Colver',
   description:
     'Review Colver’s enterprise security architecture, Content Security Policy, HSTS enforcement, dependency vulnerability management, and responsible disclosure.',
   alternates: {
     canonical: 'https://colver.in/security',
   },
   openGraph: {
-    title: 'Security, Compliance & Trust Center | Colver',
+    title: 'Security Architecture & Trust Specifications | Colver',
     description:
       'Enterprise security architecture, hardened HTTP edge controls, and responsible disclosure policies.',
     url: 'https://colver.in/security',
@@ -32,111 +30,111 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Security, Compliance & Trust Center | Colver',
+    title: 'Security Architecture & Trust Specifications | Colver',
     description:
       'Hardened HTTP edge security, strict CSP, and automated vulnerability management.',
     images: ['/og-image.jpg'],
   },
-  keywords: [
-    'Colver security architecture',
-    'enterprise web security',
-    'Content Security Policy Next.js',
-    'responsible disclosure policy',
-    'HSTS preload security',
-  ],
 }
 
 const securityPillars = [
   {
     title: 'Hardened HTTP Edge Security',
     desc: 'Strict Content-Security-Policy, HSTS (max-age 31536000 with subdomains and preload), Permissions-Policy, and X-Frame-Options DENY.',
-    icon: ShieldCheck,
     status: 'Enforced',
   },
   {
     title: 'Minimal Attack Surface',
     desc: 'Static prerendering across marketing routes eliminates vulnerable runtime code evaluation and server-side injection vectors.',
-    icon: Lock,
     status: 'Hardened',
   },
   {
     title: 'Encryption in Transit & Rest',
     desc: 'All network transmissions utilize TLS 1.3 with Perfect Forward Secrecy. Automated certificate rotation prevents MITM tampering.',
-    icon: Key,
     status: 'TLS 1.3 Active',
   },
   {
     title: 'Continuous Dependency Auditing',
     desc: 'Automated vulnerability scanning across npm dependencies with strict semver locking and zero known CVE exposures.',
-    icon: Server,
     status: 'Automated Scans',
   },
 ]
 
 export default function SecurityPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-8 sm:py-16 space-y-20 md:space-y-28">
       <BreadcrumbsJsonLd
         items={[
           { name: 'Home', url: '/' },
           { name: 'Security', url: '/security' },
         ]}
       />
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Security, Compliance & Trust Center
-        </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-          Security is built into Colver&apos;s architectural foundation. We maintain strict compliance, hardened edge headers, and transparent disclosure practices.
-        </p>
-      </div>
 
-      {/* Security controls */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {securityPillars.map((pillar) => {
-            const Icon = pillar.icon
-            return (
-              <article key={pillar.title} className="p-6 sm:p-8 rounded-xl bg-card space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-emerald-400">
-                    <Icon className="w-5 h-5" aria-hidden="true" />
-                  </div>
-                  <span className="text-[13px] font-semibold text-emerald-400 bg-surface px-3 py-1 rounded-md">
-                    {pillar.status}
-                  </span>
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-bold text-foreground">
-                    {pillar.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </article>
-            )
-          })}
+      {/* Header */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl space-y-6">
+          <div className="flex items-center gap-2 text-base text-[#C8FF00] font-mono">
+            <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+            <span>A+ Security Rating · Zero CVE Exposure</span>
+          </div>
+
+          <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
+            Security, Compliance & Trust Architecture.
+          </h1>
+
+          <p className="text-base sm:text-xl text-[#BFC3C9] leading-relaxed max-w-3xl">
+            Security is built into Colver&apos;s architectural foundation. We maintain strict compliance, hardened edge headers, and transparent responsible disclosure practices.
+          </p>
         </div>
-      </div>
+      </section>
+
+      {/* Security Pillars: Swiss Editorial Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {securityPillars.map((pillar) => (
+            <article key={pillar.title} className="p-8 rounded-[2px] bg-[#101010] space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-mono font-semibold text-[#C8FF00] bg-[#181818] px-3 py-1 rounded-[2px]">
+                  {pillar.status}
+                </span>
+              </div>
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA]">
+                  {pillar.title}
+                </h2>
+                <p className="mt-3 text-base text-[#BFC3C9] leading-relaxed">
+                  {pillar.desc}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
       {/* Vulnerability Disclosure Policy */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 rounded-xl bg-surface flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <h3 className="text-xl font-bold text-foreground">Responsible Vulnerability Disclosure</h3>
-            <p className="text-base text-slate-300 leading-relaxed">
-              If you identify a potential security vulnerability within the Colver codebase or infrastructure, please notify our security response team immediately.
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-14 bg-[#121212] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="space-y-3 max-w-2xl">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#F4F1EA] tracking-tight">
+              Responsible Vulnerability Disclosure
+            </h2>
+            <p className="text-base sm:text-lg text-[#BFC3C9] leading-relaxed">
+              If you identify a potential security vulnerability within the Colver codebase or infrastructure, please notify our senior security response team immediately.
             </p>
           </div>
-          <a href="mailto:info@colver.in?subject=Security%20Vulnerability%20Report" className="shrink-0">
-            <Button variant="primary" size="lg">
-              Submit Vulnerability Report
-            </Button>
-          </a>
+          <div className="shrink-0">
+            <a href="mailto:security@colver.in?subject=Security%20Vulnerability%20Report">
+              <button
+                type="button"
+                className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+              >
+                <span>Submit Vulnerability Report</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -1,14 +1,13 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Clock, ArrowRight } from 'lucide-react'
-import Button from '@/components/ui/Button'
+import { ArrowRight } from '@/components/ui/Icons'
 import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Developer Guides, Tutorials & Walkthroughs | Colver',
+  title: 'Developer Guides & Architectural Walkthroughs | Colver',
   description:
-    'In-depth technical guides for Next.js 16 architectures, glassmorphism design systems, security headers, and edge performance optimization.',
+    'In-depth technical guides for Next.js 16 architectures, Swiss typography, security headers, and edge performance optimization.',
   alternates: {
     canonical: 'https://colver.in/guides',
   },
@@ -36,32 +35,25 @@ export const metadata: Metadata = {
       'Deep-dive technical tutorials written by systems engineers for product teams.',
     images: ['/og-image.jpg'],
   },
-  keywords: [
-    'Next.js 16 tutorial',
-    'web engineering guides',
-    'security headers walkthrough',
-    'glassmorphism design system tutorial',
-    'edge performance best practices',
-  ],
 }
 
 const guides = [
   {
-    title: 'Migrating from Legacy Frameworks to Colver',
+    title: 'Migrating from Legacy Frameworks to Colver App Router',
     description: 'Step-by-step instructions for porting existing React components and CSS into the Colver Next.js 16 App Router architecture.',
     category: 'Architecture',
     duration: '8 min read',
     level: 'Intermediate',
   },
   {
-    title: 'Implementing Refined Glassmorphism with Zero Layout Thrashing',
-    description: 'How to use backdrop-filter blur parameters, RGB token layers, and rim reflections while maintaining a constant 60 FPS.',
+    title: 'Implementing 3D Isometric Viewports with Zero Hydration Thrashing',
+    description: 'How to use pure Three.js running inside standard useEffect loops for silky smooth 60fps renders on Next.js 16 App Router.',
     category: 'Design Systems',
     duration: '6 min read',
     level: 'Advanced',
   },
   {
-    title: 'Configuring Hardened Security Headers and CSP',
+    title: 'Configuring Hardened Security Headers and Strict CSP',
     description: 'Audit and deploy strict Content Security Policies, HSTS, frame-ancestors, and permissions policies without breaking dev HMR.',
     category: 'Security',
     duration: '10 min read',
@@ -75,7 +67,7 @@ const guides = [
     level: 'Beginner',
   },
   {
-    title: 'Zero-Hydration-Mismatch Dark/Light Theme Switching',
+    title: 'Zero-Hydration-Mismatch Dark Theme Switching',
     description: 'Persisting theme tokens in localStorage with data attributes and CSS variables without flash-of-unstyled-content.',
     category: 'Frontend Engineering',
     duration: '7 min read',
@@ -92,50 +84,58 @@ const guides = [
 
 export default function GuidesPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-8 sm:py-16 space-y-20 md:space-y-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <BreadcrumbsJsonLd
         items={[
           { name: 'Home', url: '/' },
           { name: 'Guides', url: '/guides' },
         ]}
       />
+
       {/* Header */}
-      <div className="max-w-4xl mx-auto px-4 pt-4 sm:pt-8 text-center">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Developer Guides & Architectural Walkthroughs
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-base text-[#C8FF00] font-mono">
+          <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+          <span>Architectural Blueprints · Engineering Tutorials</span>
+        </div>
+
+        <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
+          Developer Guides & Architectural Walkthroughs.
         </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-          Deep-dive technical tutorials written by software engineers for modern product and operations teams.
+
+        <p className="text-base sm:text-xl text-[#BFC3C9] leading-relaxed max-w-3xl">
+          Deep-dive technical tutorials written by senior software engineers for modern product and operations teams.
         </p>
       </div>
 
-      {/* Guides index */}
-      <div className="max-w-4xl mx-auto px-4 space-y-6">
-        {guides.map((guide) => (
+      {/* Guides List */}
+      <div className="space-y-4">
+        {guides.map((guide, idx) => (
           <article
             key={guide.title}
-            className="p-6 sm:p-8 rounded-xl bg-card space-y-3 hover:bg-surface/80 transition-colors"
+            className={`p-6 sm:p-8 rounded-[2px] space-y-3 transition-all duration-200 hover:bg-[#141414] ${
+              idx % 2 === 0 ? 'bg-[#101010]' : 'bg-[#0d0d0d]'
+            }`}
           >
-            <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
-              <span className="font-semibold text-blue-400">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+              <span className="font-semibold text-[#C8FF00]">
                 {guide.category} · {guide.level}
               </span>
-              <span className="flex items-center gap-1.5 text-slate-400">
-                <Clock className="w-4 h-4 text-slate-500" />
-                <span>{guide.duration}</span>
+              <span className="text-[#8E929A]">
+                {guide.duration}
               </span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA]">
               {guide.title}
             </h2>
 
-            <p className="text-base text-slate-300 leading-relaxed">
+            <p className="text-base text-[#BFC3C9] leading-relaxed">
               {guide.description}
             </p>
 
             <div className="pt-2">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300">
+              <span className="inline-flex items-center gap-2 text-base font-semibold text-[#C8FF00] hover:text-[#b8ea00] cursor-pointer">
                 <span>Read guide</span>
                 <ArrowRight className="w-4 h-4" />
               </span>
@@ -145,16 +145,24 @@ export default function GuidesPage() {
       </div>
 
       {/* Community Banner */}
-      <div className="max-w-3xl mx-auto px-4 text-center pt-8 space-y-4">
-        <h3 className="text-xl font-bold text-foreground">Want to request a specific architectural guide?</h3>
-        <p className="text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-          Our engineering studio regularly publishes requested topics on database models, edge computing, and fullstack security.
-        </p>
-        <div className="pt-2">
+      <div className="p-8 sm:p-14 bg-[#121212] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="space-y-3 max-w-2xl">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#F4F1EA] tracking-tight">
+            Want to request a specific architectural guide?
+          </h2>
+          <p className="text-base sm:text-lg text-[#BFC3C9] leading-relaxed">
+            Our engineering studio regularly publishes requested topics on database modeling, edge computing, and fullstack security.
+          </p>
+        </div>
+        <div className="shrink-0">
           <Link href="/contact">
-            <Button variant="primary" size="md">
-              Submit Topic Request
-            </Button>
+            <button
+              type="button"
+              className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+            >
+              <span>Submit Topic Request</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </Link>
         </div>
       </div>

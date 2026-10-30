@@ -1,114 +1,134 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import {
-  CheckCircle2,
-} from '@/components/ui/Icons'
 
-const milestones = [
+const processStages = [
   {
-    phase: 'Phase 1 · Architecture Audit',
-    title: 'Discovery & Blueprint',
-    detail: 'We audit workflows, quantify data throughput, and produce formal architecture specifications.',
-    output: 'System Architecture Specification',
+    step: 'Phase 1',
+    phase: 'Discovery',
+    title: 'Workflow Audit & Specification',
+    detail: 'We audit business rules, quantify data throughput, and model system boundaries before writing a line of code.',
+    artifact: 'System Architecture Specification',
   },
   {
-    phase: 'Phase 2 · Schema Design',
-    title: 'Modeling & Prototype',
-    detail: 'We define database schemas, validation boundaries, and test interactive interface prototypes.',
-    output: 'Interactive UI Prototype & Schema Contracts',
+    step: 'Phase 2',
+    phase: 'Modeling',
+    title: 'Schema Design & UI Contracts',
+    detail: 'We define PostgreSQL schemas, strict Zod boundary contracts, and validate clickable interface prototypes with stakeholders.',
+    artifact: 'Verified Schemas & UI Contracts',
   },
   {
-    phase: 'Phase 3 · Test-Driven Build',
-    title: 'Iterative Engineering',
-    detail: 'We build modular, strongly-typed code backed by test-driven development and strict review gates.',
-    output: 'Production Codebase with 80%+ Test Coverage',
+    step: 'Phase 3',
+    phase: 'Engineering',
+    title: 'Iterative Sprints & CI Gates',
+    detail: 'Modular, strongly-typed Next.js code engineered under test-driven development with minimum 80% test coverage.',
+    artifact: 'Production Code & Automated Test Suites',
   },
   {
-    phase: 'Phase 4 · Edge Telemetry',
-    title: 'Deployment & Launch',
-    detail: 'We configure hardened Content Security Policies, rate limiting, and real-time monitoring.',
-    output: 'Production Launch & Telemetry Dashboard',
+    step: 'Phase 4',
+    phase: 'Deployment',
+    title: 'Zero-Downtime Edge Launch',
+    detail: 'Hardened Content Security Policy, rate limiting, and real-time monitoring deployed across global edge clusters.',
+    artifact: 'Production Release & Live Telemetry',
   },
 ]
 
 export default function HomeProcessSection() {
   return (
-    <section className="py-24">
+    <section className="py-24 relative bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="max-w-3xl mb-14"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-        >
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground leading-tight">
-            Disciplined delivery. Predictable milestones.
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            Eliminate guesswork. Our structured software delivery cadence pairs rapid prototyping with enterprise-grade software craftsmanship.
+        {/* Section Header */}
+        <div className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
+              Delivery Pipeline.
+            </h2>
+          </div>
+          <p className="text-base sm:text-lg text-[#BFC3C9] max-w-md leading-relaxed">
+            Eliminate guesswork. Our structured engineering cadence pairs rapid prototyping with enterprise-grade software craftsmanship.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Narrative Flow (Continuous Architectural Ledger instead of generic icon cards) */}
-        <div className="rounded-xl bg-card p-6 sm:p-10 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {milestones.map((item, idx) => (
-              <div key={item.phase} className="space-y-3">
-                <span className="text-[13px] font-semibold text-blue-400 block">
-                  {item.phase}
+        {/* Stepped Process List (Open Editorial Layout, zero boxed cards) */}
+        <div className="space-y-4 pt-4">
+          {processStages.map((stage) => (
+            <div
+              key={stage.step}
+              className="py-8 flex flex-col md:flex-row md:items-start justify-between gap-6 transition-transform duration-300 hover:translate-x-1 animate-entrance"
+            >
+              <div className="md:w-1/4 space-y-1">
+                <span className="text-sm font-bold text-[#C8FF00] block">
+                  {stage.step}
                 </span>
-                <h3 className="text-lg font-bold text-foreground tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  {item.detail}
-                </p>
-                <div className="pt-2">
-                  <span className="text-[13px] text-slate-300 block font-medium">
-                    Artifact: {item.output}
-                  </span>
-                </div>
+                <span className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA] block">
+                  {stage.phase}
+                </span>
               </div>
-            ))}
+
+              <div className="md:w-1/2 space-y-2">
+                <h3 className="font-display text-lg sm:text-xl font-bold text-[#F4F1EA]">
+                  {stage.title}
+                </h3>
+                <p className="text-base text-[#BFC3C9] leading-relaxed">
+                  {stage.detail}
+                </p>
+              </div>
+
+              <div className="md:w-1/4 text-sm md:text-right space-y-1">
+                <span className="text-sm text-[#8E929A] block">Verified Deliverable</span>
+                <span className="text-base font-semibold text-[#F4F1EA] block">
+                  {stage.artifact}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Verification Summary with Real Pipeline Telemetry Screenshot */}
+        <div className="mt-12 p-8 bg-[#121212] rounded-[2px] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-base">
+            <div className="flex items-center gap-2 text-[#F4F1EA] font-semibold">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C8FF00] animate-pulse" />
+              <span>Continuous Delivery & Verification Gate</span>
+            </div>
+            <span className="text-sm sm:text-base text-[#C8FF00] font-medium">
+              Automated Verification: All 21 App Routes Green
+            </span>
           </div>
 
-          {/* CI/CD & Delivery Telemetry Ledger Interface Fragment */}
-          <div
-            className="pt-6 border-t border-border/40 space-y-4"
-            data-ui="delivery-telemetry"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                <span className="text-sm font-semibold text-foreground">
-                  Continuous Delivery & Audit Gate
-                </span>
-              </div>
-              <span className="text-[13px] text-slate-300 font-medium">
-                Automated Verification: All 21 Routes Green
+          {/* Real Raster Pipeline Screenshot */}
+          <div className="relative aspect-[16/8] w-full rounded-[2px] overflow-hidden bg-[#0d0d0d]">
+            <img
+              src="/projects/pipeline.jpg"
+              alt="Automated CI/CD Verification Telemetry"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 text-base">
+            <div className="space-y-1 p-4 bg-[#0a0a0a] rounded-[2px]">
+              <span className="text-sm text-[#8E929A] block">
+                Type System
               </span>
+              <div className="text-lg font-bold text-[#F4F1EA]">TypeScript 5 Strict</div>
+              <div className="text-sm text-[#C8FF00]">0 Type Errors</div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 rounded-lg bg-surface">
-                <span className="text-[13px] text-slate-400 block">Type Safety</span>
-                <p className="text-base font-bold text-foreground mt-0.5">TypeScript 5 Strict</p>
-                <span className="text-[13px] text-emerald-400 font-medium">0 Type Errors</span>
-              </div>
-              <div className="p-4 rounded-lg bg-surface">
-                <span className="text-[13px] text-slate-400 block">Security Audit</span>
-                <p className="text-base font-bold text-foreground mt-0.5">Cloudflare Verified</p>
-                <span className="text-[13px] text-emerald-400 font-medium">0 Known CVEs</span>
-              </div>
-              <div className="p-4 rounded-lg bg-surface">
-                <span className="text-[13px] text-slate-400 block">Production Build</span>
-                <p className="text-base font-bold text-foreground mt-0.5">Next.js 16.4.3</p>
-                <span className="text-[13px] text-emerald-400 font-medium">Turbopack Optimized</span>
-              </div>
+            <div className="space-y-1 p-4 bg-[#0a0a0a] rounded-[2px]">
+              <span className="text-sm text-[#8E929A] block">
+                Compiler Engine
+              </span>
+              <div className="text-lg font-bold text-[#F4F1EA]">Next.js 16 App Router</div>
+              <div className="text-sm text-[#F4F1EA]">Sub-5s Production Build</div>
+            </div>
+
+            <div className="space-y-1 p-4 bg-[#0a0a0a] rounded-[2px]">
+              <span className="text-sm text-[#8E929A] block">
+                Security Headers
+              </span>
+              <div className="text-lg font-bold text-[#F4F1EA]">Hardened CSP & CORS</div>
+              <div className="text-sm text-[#C8FF00]">A+ Security Score</div>
             </div>
           </div>
         </div>

@@ -556,7 +556,22 @@ export const Palette = createIcon(
 
 export const Building = Building2
 
+export const Plus = createIcon(
+  <>
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </>
+)
+
+export const Minus = createIcon(
+  <>
+    <path d="M5 12h14" />
+  </>
+)
+
 const Icons = {
+  Plus,
+  Minus,
   ChevronDown,
   Boxes,
   Palette,

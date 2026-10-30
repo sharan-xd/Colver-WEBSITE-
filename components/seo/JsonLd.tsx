@@ -25,7 +25,7 @@ export function OrganizationJsonLd() {
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        email: 'info@colver.in',
+        email: 'contact@colver.in',
         contactType: 'customer support',
         availableLanguage: ['English', 'Hindi'],
       },

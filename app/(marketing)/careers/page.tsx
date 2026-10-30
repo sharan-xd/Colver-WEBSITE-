@@ -1,15 +1,13 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Briefcase, ArrowRight, CheckCircle2, Globe, Heart, Zap, Shield } from 'lucide-react'
-import Badge from '@/components/ui/Badge'
-import Button from '@/components/ui/Button'
+import { ArrowRight, ArrowUpRight } from '@/components/ui/Icons'
 import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Engineering Careers & Opportunities | Colver',
   description:
-    'Join Colver’s core engineering team. Build high-scale digital platforms, Next.js architectures, and AI workflows with a remote-first, high-autonomy team.',
+    'Join Colver’s core engineering team in Bengaluru and globally. Build high-scale digital platforms, Next.js architectures, and AI workflows.',
   alternates: {
     canonical: 'https://colver.in/careers',
   },
@@ -34,38 +32,27 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Careers at Colver — Engineering & Design Roles',
     description:
-      'Join Colver’s remote-first engineering team building high-scale web systems.',
+      'Join Colver’s engineering team building high-scale web systems.',
     images: ['/og-image.jpg'],
   },
-  keywords: [
-    'software engineering jobs',
-    'remote Next.js developer',
-    'frontend engineer roles',
-    'full stack performance engineer',
-    'Colver careers',
-  ],
 }
 
 const perks = [
   {
     title: 'High Autonomy & Deep Focus',
     desc: 'No endless sync meetings or status theater. We prioritize uninterrupted blocks for creative and technical flow.',
-    icon: Zap,
   },
   {
-    title: 'Fully Remote & Global First',
-    desc: 'Work from wherever you produce your best work. We hire based on exceptional craftsmanship, not postal codes.',
-    icon: Globe,
+    title: 'Bengaluru Hub & Remote Flexibility',
+    desc: 'Work from our Indiranagar studio or wherever you produce your best code. We evaluate output and craftsmanship, not seat time.',
   },
   {
     title: 'Competitive Compensation & Equity',
-    desc: 'Top-tier base compensation paired with real equity ownership in the platforms we architect.',
-    icon: Shield,
+    desc: 'Top-tier cash compensation paired with real equity and profit-sharing in the systems we architect.',
   },
   {
-    title: 'Learning & Equipment Budget',
-    desc: 'Top-spec hardware, ergonomic setups, conference stipends, and books to continually sharpen your craft.',
-    icon: Heart,
+    title: 'Top-Tier Hardware & Tooling',
+    desc: 'Maxed-out development workstations, 4K displays, and comprehensive book/conference stipends to sharpen your craft.',
   },
 ]
 
@@ -73,123 +60,148 @@ const openRoles = [
   {
     title: 'Senior Frontend Systems Architect',
     team: 'Platform Engineering',
-    location: 'Remote / Global',
+    location: 'Bengaluru / Remote',
     type: 'Full-time',
-    description: 'Lead our Next.js 16, React Three Fiber, and WebGL rendering infrastructure across global production client sites.',
+    description: 'Lead our Next.js 16, Three.js 3D isometric pipelines, and WebGL rendering infrastructure across production deployments.',
   },
   {
     title: 'Design Systems Lead (Figma + React)',
-    team: 'Design Craft',
-    location: 'Remote / Global',
+    team: 'Design Engineering',
+    location: 'Bengaluru / Remote',
     type: 'Full-time',
-    description: 'Architect accessible, high-polish component primitives, micro-interactions, and design tokens for the Colver platform.',
+    description: 'Architect accessible, high-polish component primitives, micro-interaction state machines, and design tokens.',
   },
   {
     title: 'Full-Stack Performance Engineer',
     team: 'Core Infrastructure',
-    location: 'Remote / Global',
+    location: 'Bengaluru / Remote',
     type: 'Full-time',
-    description: 'Optimize edge database caching, sub-50ms latency SLAs, and automated Core Web Vitals telemetry.',
+    description: 'Optimize edge database caching, sub-15ms PostgreSQL queries, and automated Core Web Vitals telemetry.',
   },
 ]
 
 export default function CareersPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-16">
+    <div className="py-8 sm:py-16 space-y-24 md:space-y-32">
       <BreadcrumbsJsonLd
         items={[
           { name: 'Home', url: '/' },
           { name: 'Careers', url: '/careers' },
         ]}
       />
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Build High-Scale Software with Colver
-        </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-          We keep our studio intentionally small, high-trust, and dedicated to exceptional engineering craftsmanship and performance standards.
-        </p>
-      </div>
 
-      {/* How the team works */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {perks.map((p) => {
-            const Icon = p.icon
-            return (
-              <div key={p.title} className="p-6 rounded-xl bg-card space-y-3">
-                <div className="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-blue-400">
-                  <Icon className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <h3 className="text-base font-bold text-foreground">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  {p.desc}
-                </p>
-              </div>
-            )
-          })}
+      {/* Hero Header */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl space-y-6">
+          <div className="flex items-center gap-2 text-base text-[#C8FF00] font-mono">
+            <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+            <span>High Autonomy · High Standards · Bengaluru Studio</span>
+          </div>
+
+          <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
+            Build High-Scale Systems with Colver.
+          </h1>
+
+          <p className="text-base sm:text-xl text-[#BFC3C9] leading-relaxed max-w-3xl">
+            We keep our studio intentionally compact, high-trust, and dedicated to exceptional engineering craftsmanship, sub-second performance, and clean architectural design.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Open Roles List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">Open Engineering Roles</h2>
-          <p className="text-sm text-slate-400 mt-1">Direct impact on high-scale production systems</p>
+      {/* Engineering Culture: Swiss Editorial Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {perks.map((p, idx) => (
+            <div
+              key={p.title}
+              className={`p-8 rounded-[2px] transition-all duration-200 ${
+                idx % 2 === 0 ? 'bg-[#101010]' : 'bg-[#0e0e0e]'
+              }`}
+            >
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA]">
+                {p.title}
+              </h2>
+              <p className="mt-3 text-base text-[#BFC3C9] leading-relaxed">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Open Roles: Editorial List */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="pb-4">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#F4F1EA] tracking-tight">
+            Open Engineering Roles.
+          </h2>
+          <p className="text-base text-[#BFC3C9] mt-2">
+            Direct ownership and impact on mission-critical client platforms.
+          </p>
         </div>
 
         <div className="space-y-4">
           {openRoles.map((role) => (
             <div
               key={role.title}
-              className="p-6 sm:p-8 rounded-xl bg-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+              className="p-6 sm:p-8 rounded-[2px] bg-[#101010] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 transition-all duration-200 hover:bg-[#141414]"
             >
               <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-3 text-[13px] text-slate-400">
-                  <span className="text-blue-400 font-semibold">{role.team}</span>
-                  <span>•</span>
+                <div className="flex flex-wrap items-center gap-3 text-sm text-[#8E929A]">
+                  <span className="text-[#C8FF00] font-semibold">{role.team}</span>
+                  <span>·</span>
                   <span>{role.location}</span>
-                  <span>•</span>
+                  <span>·</span>
                   <span>{role.type}</span>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA]">
                   {role.title}
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
+                <p className="text-base text-[#BFC3C9] leading-relaxed max-w-2xl">
                   {role.description}
                 </p>
               </div>
 
               <div className="shrink-0">
                 <Link href={`/contact?subject=${encodeURIComponent(`Application: ${role.title}`)}`}>
-                  <Button variant="primary" size="md" iconRight={<ArrowRight className="w-4 h-4" />}>
-                    Apply Now
-                  </Button>
+                  <button
+                    type="button"
+                    className="h-11 px-6 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base flex items-center gap-2 transition-all cursor-pointer"
+                  >
+                    <span>Apply for Role</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </Link>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Talent Network Callout */}
-      <div className="max-w-3xl mx-auto px-4 text-center pt-8 space-y-4">
-        <h3 className="text-xl font-bold text-foreground">Don&apos;t see an exact match?</h3>
-        <p className="text-base text-slate-300 leading-relaxed max-w-md mx-auto">
-          If you are an exceptional software engineer passionate about high-performance web systems, send your GitHub or work to us directly.
-        </p>
-        <a
-          href="mailto:contact@colver.in?subject=General%20Engineering%20Application"
-          className="inline-block pt-2"
-        >
-          <Button variant="secondary" size="md">
-            Email Engineering Studio
-          </Button>
-        </a>
-      </div>
+      {/* General Application Callout */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-14 bg-[#121212] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="max-w-2xl space-y-3">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl tracking-tight text-[#F4F1EA] leading-tight">
+              Don&apos;t see an exact match?
+            </h2>
+            <p className="text-base sm:text-lg text-[#BFC3C9] leading-relaxed">
+              If you are an exceptional systems engineer or designer passionate about sub-second web platforms, send your GitHub or portfolio directly to our engineering partners.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <a href="mailto:careers@colver.in?subject=Engineering%20Application">
+              <button
+                type="button"
+                className="h-12 px-7 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#F4F1EA] font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+              >
+                <span>Email Engineering Studio</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

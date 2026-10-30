@@ -1,132 +1,178 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Github, Twitter, MessageSquare, Linkedin, ArrowUpRight } from '@/components/ui/Icons'
+import { Github, Twitter, Linkedin, ArrowUpRight } from '@/components/ui/Icons'
 
-const footerSections = [
+const navColumns = [
   {
-    title: 'Services & Solutions',
+    title: 'Systems & Code',
     links: [
-      { label: 'Custom Software', href: '/services#custom-software' },
-      { label: 'Web Applications', href: '/services#web-applications' },
-      { label: 'E-Commerce Platforms', href: '/services#ecommerce-platforms' },
-      { label: 'Inventory & Operations', href: '/services#inventory-operations' },
-      { label: 'AI & Automation', href: '/services#ai-workflows' },
+      { label: 'Custom Architecture', href: '/services#custom-software' },
+      { label: 'High-Concurrency Web', href: '/services#web-applications' },
+      { label: 'Commerce Engines', href: '/services#ecommerce-platforms' },
+      { label: 'Operations & ERP', href: '/services#inventory-operations' },
+      { label: 'Selected Work', href: '/showcase' },
     ],
   },
   {
-    title: 'Platform & Work',
+    title: 'Telemetry & Docs',
     links: [
-      { label: 'Showcase', href: '/showcase' },
-      { label: 'Capabilities', href: '/features' },
-      { label: 'Documentation', href: '/docs' },
-      { label: 'Engineering Guides', href: '/guides' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'Architecture Docs', href: '/docs' },
+      { label: 'Production Guides', href: '/guides' },
+      { label: 'Engineering Blog', href: '/blog' },
+      { label: 'Pricing & Sprints', href: '/pricing' },
+      { label: 'System Changelog', href: '/changelog' },
     ],
   },
   {
-    title: 'Studio',
+    title: 'Studio & Trust',
     links: [
-      { label: 'About Colver', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Discuss Your Project', href: '/contact' },
-      { label: 'Client Support', href: '/support' },
-    ],
-  },
-  {
-    title: 'Trust & Standards',
-    links: [
+      { label: 'About Studio', href: '/about' },
       { label: 'Security & Trust', href: '/security' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Client Support', href: '/support' },
       { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
     ],
   },
-]
-
-const socialLinks = [
-  { label: 'GitHub', href: 'https://github.com/sharan-xd/Colver-WEBSITE-', icon: Github, external: true },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/colver-systems', icon: Linkedin, external: true },
-  { label: 'Twitter', href: 'https://x.com/colver_systems', icon: Twitter, external: true },
-  { label: 'Inquiries', href: '/contact', icon: MessageSquare, external: false },
 ]
 
 export default function Footer() {
+  const [istTime, setIstTime] = useState('')
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      setIstTime(
+        now.toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        }) + ' IST'
+      )
+    }
+    updateTime()
+    const timer = setInterval(updateTime, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <footer className="mt-32 bg-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-10 lg:gap-12">
-          {/* Brand Col */}
-          <div className="md:col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-2.5">
-              <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center shrink-0">
-                <span className="w-2.5 h-2.5 bg-white rounded-sm" />
-              </div>
-              <span className="font-bold text-lg tracking-tight text-foreground">Colver</span>
+    <footer className="w-full bg-[#050505] pt-20 pb-12 mt-28 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Monolithic Wordmark Header */}
+        <div className="pb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div>
+            <span className="text-sm text-[#C8FF00] font-semibold block mb-2">
+              Bengaluru Studio · 12.9716° N, 77.5946° E
+            </span>
+            <h2 className="font-display font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#F4F1EA] leading-none">
+              COLVER<span className="text-[#C8FF00]">.</span>
+            </h2>
+          </div>
+          <div className="flex flex-col items-start lg:items-end gap-2 text-sm text-[#BFC3C9]">
+            <div className="flex items-center gap-2 text-[#F4F1EA]">
+              <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+              <span>Studio Clock: {istTime || '12:00:00 IST'}</span>
+            </div>
+            <span>Production Latency: 14ms to Edge</span>
+            <Link
+              href="/contact"
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-black bg-[#C8FF00] hover:bg-[#b8ea00] px-4 py-2 rounded-[2px] transition-colors"
+            >
+              <span>Connect with an Architect</span>
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
 
-            <p className="text-base text-slate-300 max-w-sm leading-relaxed">
-              Software built around your business. We engineer tailored software systems, high-performance web applications, and intelligent digital workflows in Bengaluru, India.
+        {/* Swiss Grid Links */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 bg-[#080808] p-8 rounded-[2px]">
+          <div className="lg:col-span-5 space-y-4">
+            <span className="text-base font-bold text-[#F4F1EA] tracking-wide block">
+              Engineering Studio Specification
+            </span>
+            <p className="text-base text-[#BFC3C9] leading-relaxed max-w-sm">
+              Colver is a software architecture and product engineering studio based in Bengaluru. We replace fragmented tools with high-speed, custom business platforms, transaction pipelines, and autonomous workflows.
             </p>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-2 pt-2">
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    {...(social.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    aria-label={social.label}
-                    className="w-9 h-9 rounded-md bg-surface hover:bg-surface/80 flex items-center justify-center text-slate-400 hover:text-foreground transition-colors"
-                  >
-                    <Icon className="w-4 h-4" />
-                  </Link>
-                )
-              })}
+            <div className="pt-2 text-base text-[#BFC3C9] space-y-1">
+              <div>Inquiries: <a href="mailto:contact@colver.in" className="text-[#F4F1EA] hover:text-[#C8FF00] underline decoration-white/30">contact@colver.in</a></div>
+              <div>Studio: Indiranagar, Bengaluru, Karnataka 560038</div>
             </div>
           </div>
 
-          {/* Navigation Columns */}
-          {footerSections.map((section) => (
-            <div key={section.title} className="space-y-3">
-              <p className="text-sm font-semibold text-foreground">
-                {section.title}
-              </p>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
+          {navColumns.map((col) => (
+            <div key={col.title} className="lg:col-span-2 space-y-3">
+              <span className="text-sm font-bold text-[#F4F1EA] tracking-wide block">
+                {col.title}
+              </span>
+              <ul className="space-y-2.5">
+                {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-400 hover:text-foreground transition-colors inline-flex items-center gap-1 group"
+                      className="text-sm text-[#BFC3C9] hover:text-[#C8FF00] transition-colors block"
                     >
-                      <span>{link.label}</span>
-                      {link.href.startsWith('http') && (
-                        <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                      )}
+                      {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+
+          <div className="lg:col-span-1 space-y-3">
+            <span className="text-sm font-bold text-[#F4F1EA] tracking-wide block">
+              Network
+            </span>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="https://github.com/sharan-xd/Colver-WEBSITE-"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#BFC3C9] hover:text-[#C8FF00] transition-colors flex items-center gap-1.5"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/colver-systems"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#BFC3C9] hover:text-[#C8FF00] transition-colors flex items-center gap-1.5"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/colver_systems"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#BFC3C9] hover:text-[#C8FF00] transition-colors flex items-center gap-1.5"
+                >
+                  <Twitter className="w-4 h-4" />
+                  <span>X (Twitter)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-          <p>© {new Date().getFullYear()} Colver Systems. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2 text-foreground font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>Production Systems Operational</span>
-            </span>
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
-              Terms
-            </Link>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#8E929A]">
+          <div>
+            © {new Date().getFullYear()} Colver Systems. Proudly engineered in Bengaluru.
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-[#F4F1EA] transition-colors">Privacy Policy</Link>
+            <span>·</span>
+            <Link href="/terms" className="hover:text-[#F4F1EA] transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

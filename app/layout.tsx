@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "../styles/globals.css";
 import Providers from "./providers";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
@@ -10,10 +10,17 @@ const inter = Inter({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Colver - The future of digital creation",
-    template: "%s | Colver",
+    default: "COLVER — Architecture for Real-Time Operations",
+    template: "%s | COLVER",
   },
   manifest: "/manifest.json",
   icons: {
@@ -27,8 +34,16 @@ export const metadata: Metadata = {
     ],
   },
   description:
-    "AI-driven tools for modern creators. Build, collaborate, and ship faster with Colver.",
-  keywords: ["AI", "creation", "collaboration", "design", "development", "Next.js", "TypeScript"],
+    "Colver designs and engineers bespoke business platforms, high-concurrency web systems, and intelligent operational workflows for growing companies.",
+  keywords: [
+    "custom software development",
+    "software architecture",
+    "Next.js web systems",
+    "real-time data operations",
+    "AI workflow automation",
+    "Bengaluru software studio",
+    "TypeScript engineering",
+  ],
   authors: [{ name: "Colver Systems" }],
   creator: "Colver",
   metadataBase: new URL("https://colver.in"),
@@ -39,21 +54,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://colver.in",
-    siteName: "Colver",
-    title: "Colver - The future of digital creation",
-    description: "Tomorrow's Tech, Trusted Today. High-performance digital platforms and AI tooling.",
+    siteName: "COLVER",
+    title: "COLVER — Architecture for Real-Time Operations",
+    description: "Bespoke business systems, high-speed web apps, and intelligent operational workflows.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "COLVER — Software Architecture for Operations",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Colver - The future of digital creation",
-    description: "Tomorrow's Tech, Trusted Today. High-performance digital platforms and AI tooling.",
+    title: "COLVER — Architecture for Real-Time Operations",
+    description: "Bespoke business platforms and intelligent workflows built with engineering rigor.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -69,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${inter.className} ${inter.variable} relative bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary min-h-screen`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans relative bg-[#080808] text-[#F4F1EA] antialiased selection:bg-[#C8FF00] selection:text-black min-h-screen`}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,30 +1,18 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
-  Code2,
-  Layout,
-  ShoppingBag,
-  Boxes,
-  Cpu,
-  Network,
-  Palette,
-  ShieldCheck,
   ArrowRight,
+  ArrowUpRight,
   CheckCircle2,
-  Clock,
-  HelpCircle,
-  Sparkles,
-  Zap,
 } from '@/components/ui/Icons'
-import Badge from '@/components/ui/Badge'
-import Button from '@/components/ui/Button'
 import { ServicesJsonLd, BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Software Services & Engineering Capabilities | Colver',
   description:
-    'Custom software development, web applications, e-commerce platforms, inventory and operations management systems, and AI workflows tailored to business needs.',
+    'Custom software development, web applications, e-commerce platforms, operations systems, and AI workflows tailored to business needs.',
   alternates: {
     canonical: 'https://colver.in/services',
   },
@@ -52,253 +40,184 @@ export const metadata: Metadata = {
       'Custom software, web applications, e-commerce platforms, and AI workflows engineered for business scale.',
     images: ['/og-image.jpg'],
   },
-  keywords: [
-    'custom software development',
-    'web application engineering',
-    'ecommerce development India',
-    'operations management software',
-    'AI workflow automation',
-    'Next.js development',
-    'enterprise web architecture',
-  ],
 }
 
-interface ServiceOffering {
+interface ServiceSpec {
   id: string
   title: string
   category: string
   headline: string
-  icon: React.ComponentType<{ className?: string }>
   description: string
+  image: string
+  imageAlt: string
+  metrics: { label: string; value: string }[]
   problemsSolved: string[]
-  whoBenefits: string[]
-  keyDeliverables: string[]
-  technologies: string[]
+  deliverables: string[]
+  stack: string[]
 }
 
-const serviceOfferings: ServiceOffering[] = [
+const serviceSpecs: ServiceSpec[] = [
   {
-    id: 'custom-software',
-    title: 'Custom Software Development',
-    category: 'Core Systems',
-    headline: 'Bespoke systems built around your specific business logic and workflows.',
-    icon: Code2,
+    id: 'custom-erp',
+    title: 'Custom ERP & Core Operations',
+    category: 'Operational Core',
+    headline: 'Bespoke operational backbones replacing fragile spreadsheet silos.',
     description:
-      'We design and engineer tailored software systems that solve unique operational challenges, eliminate fragmented manual spreadsheets, and automate core business operations with precision.',
+      'Tailored internal tooling, multi-department approval engines, and role-based workflows built exactly around proprietary logistics and supply chains.',
+    image: '/projects/nexus.jpg',
+    imageAlt: 'Nexus ERP Production Console Interface',
+    metrics: [
+      { label: 'System throughput', value: '45k events/sec' },
+      { label: 'Sync latency', value: '18ms p99' },
+    ],
     problemsSolved: [
-      'Off-the-shelf software failing to match custom business processes',
-      'Fragmented data silos spread across disconnected tools and spreadsheets',
-      'High licensing fees for bloated commercial enterprise packages',
-      'Bottlenecks in internal data validation and multi-department approvals',
+      'Fragmented operational data scattered across spreadsheets',
+      'Multi-department approval bottlenecks and audit failures',
+      'Excessive per-seat licensing costs of legacy vendor packages',
     ],
-    whoBenefits: ['Growing Indian SMEs', 'Established Enterprises', 'High-volume Logistics & Operations'],
-    keyDeliverables: [
-      'Custom ERP & operational consoles',
-      'Multi-tenant administrative hubs',
-      'Role-based workflow engines',
-      'Automated batch processors & exporters',
+    deliverables: [
+      'Multi-tenant administrative operational console',
+      'Granular RBAC access controls & audit logging',
+      'Automated batch processors and real-time ledger export',
     ],
-    technologies: ['TypeScript', 'Next.js', 'Node.js / Express', 'PostgreSQL', 'Prisma', 'Docker'],
+    stack: ['TypeScript', 'Next.js', 'PostgreSQL', 'Prisma', 'Docker'],
   },
   {
-    id: 'web-applications',
-    title: 'Web Application Development',
-    category: 'Digital Products',
-    headline: 'Fast, reactive, and scalable web apps built with modern engineering standards.',
-    icon: Layout,
+    id: 'web-platforms',
+    title: 'High-Concurrency Web Systems',
+    category: 'Digital Platforms',
+    headline: 'Low-latency customer portals and mission-critical cloud dashboards.',
     description:
-      'Production-grade web applications engineered for speed, high concurrency, and intuitive usability. We specialize in dynamic customer portals, interactive SaaS products, and collaborative cloud dashboards.',
+      'Sub-second transactional applications engineered for high concurrent traffic, dynamic state synchronization, and zero-downtime reliability.',
+    image: '/projects/apex.jpg',
+    imageAlt: 'Apex Commerce Cloud Architecture Interface',
+    metrics: [
+      { label: 'Page load speed', value: '140ms LCP' },
+      { label: 'Uptime availability', value: '99.99%' },
+    ],
     problemsSolved: [
-      'Slow, bloated legacy web portals that frustrate end users',
-      'Poor mobile responsiveness causing lost customer engagement',
-      'High latency and server crashes during traffic spikes',
-      'Difficult-to-maintain spaghetti code inherited from past agencies',
+      'Legacy web portals crashing during peak promotional traffic',
+      'Sluggish interaction latency causing customer drop-off',
+      'High server infrastructure costs from unoptimized query cascades',
     ],
-    whoBenefits: ['SaaS Founders', 'Digital First Brands', 'Fintech & Edtech Platforms'],
-    keyDeliverables: [
-      'Single-page and server-rendered web portals',
-      'Real-time collaborative dashboards',
-      'Customer self-service consoles',
-      'High-conversion onboarding funnels',
+    deliverables: [
+      'Server-rendered Next.js web applications',
+      'Real-time WebSocket data synchronization channels',
+      'Optimized edge caching with sub-second API responses',
     ],
-    technologies: ['React 18/19', 'Next.js 16', 'Tailwind CSS', 'Redis', 'WebSockets', 'AWS / Vercel'],
+    stack: ['React', 'Next.js 16', 'Node.js', 'Redis', 'Tailwind CSS'],
   },
   {
-    id: 'ecommerce-platforms',
-    title: 'E-Commerce & Digital Commerce',
-    category: 'Commerce Solutions',
-    headline: 'High-conversion stores, B2B ordering portals, and custom checkout flows.',
-    icon: ShoppingBag,
+    id: 'transaction-rails',
+    title: 'Commerce & Transaction Rails',
+    category: 'Transaction Core',
+    headline: 'High-integrity payment pipelines with automated reconciliation.',
     description:
-      'Custom e-commerce platforms engineered for seamless checkout experiences, Indian payment rails (UPI, Razorpay, PayU), multi-currency transactions, and synchronized stock levels.',
+      'Unified payment gateway integrations, instantaneous UPI payment handling, automated GST tax receipting, and multi-warehouse inventory sync.',
+    image: '/projects/pulse.jpg',
+    imageAlt: 'Pulse Telemetry Transaction Monitoring Stream',
+    metrics: [
+      { label: 'UPI success rate', value: '99.85%' },
+      { label: 'Reconciliation', value: 'Real-time' },
+    ],
     problemsSolved: [
-      'High cart abandonment caused by friction in generic checkout forms',
-      'Inflexible catalog structures for bulk or tiered pricing rules',
-      'Payment failures and reconciliation discrepancies during peak sales',
-      'Disconnect between online store sales and physical warehouse inventories',
+      'Payment drop-offs caused by friction in standard checkout forms',
+      'Accounting discrepancies between bank webhooks and order states',
+      'Inventory over-selling across multi-channel retail storefronts',
     ],
-    whoBenefits: ['Direct-to-Consumer (D2C) Brands', 'B2B Wholesale Distributors', 'Omnichannel Retailers'],
-    keyDeliverables: [
-      'Headless digital storefronts',
-      'B2B wholesale order entry & tiered discounting',
-      'Instant UPI, card, and netbanking integrations',
-      'Automated tax, invoice, and GST compliance receipts',
+    deliverables: [
+      'Custom frictionless checkout flows with instant UPI rails',
+      'Automated invoice generation & GST-compliant receipting',
+      'Real-time multi-warehouse inventory reservation locks',
     ],
-    technologies: ['Next.js Commerce', 'Razorpay SDK', 'Stripe API', 'PostgreSQL', 'Tailwind CSS'],
-  },
-  {
-    id: 'inventory-operations',
-    title: 'Inventory & Operations Management',
-    category: 'Operations & Logistics',
-    headline: 'Real-time stock tracking, order fulfillment, and multi-location warehouses.',
-    icon: Boxes,
-    description:
-      'Comprehensive inventory systems designed to give Indian businesses complete visibility over stock movement, vendor purchase orders, warehouse transfers, dispatch logistics, and profit margins.',
-    problemsSolved: [
-      'Stockouts and lost sales due to delayed inventory audits',
-      'Inaccurate stock counts across multiple retail stores or godowns',
-      'Manual dispatch errors and slow barcode scanning workflows',
-      'Lack of visibility into real product margins and holding costs',
-    ],
-    whoBenefits: ['Manufacturing Units', 'Warehouse & Supply Chain Operators', 'Multi-outlet Retail Chains'],
-    keyDeliverables: [
-      'Multi-godown / multi-store stock ledger',
-      'Barcode and QR code scanning flows',
-      'Purchase order creation & vendor reconciliation',
-      'Automated low-stock threshold triggers and alerts',
-    ],
-    technologies: ['Node.js', 'PostgreSQL', 'Redis Queue', 'React Native / Mobile PWA', 'Next.js'],
+    stack: ['Razorpay SDK', 'Stripe API', 'PostgreSQL', 'Redis Queue'],
   },
   {
     id: 'ai-automation',
-    title: 'AI & Workflow Automation',
-    category: 'Intelligent Systems',
-    headline: 'Pragmatic AI integrations that eliminate repetitive manual labor.',
-    icon: Cpu,
+    title: 'AI Data Extraction & Automation',
+    category: 'Intelligent Automation',
+    headline: 'Pragmatic machine intelligence eliminating manual data entry.',
     description:
-      'We implement practical AI workflows that solve concrete business bottlenecks: extracting structured data from documents, smart customer assistance, automated notification pipelines, and intelligent search.',
+      'Deterministic document parsing pipelines converting unstructured supplier invoices, PDF receipts, and shipping manifests into validated database records.',
+    image: '/projects/aura.jpg',
+    imageAlt: 'Aura AI Cognitive Parsing Stream',
+    metrics: [
+      { label: 'OCR accuracy rate', value: '99.4%' },
+      { label: 'Processing time', value: '450ms / doc' },
+    ],
     problemsSolved: [
-      'Hours wasted on manual data entry from paper invoices and PDF receipts',
-      'Customer support teams overwhelmed by repetitive order status questions',
-      'Lack of actionable business insights from historical sales data',
-      'Fragmented notification loops between staff, vendors, and clients',
+      'Hundreds of manual employee hours lost parsing physical invoices',
+      'Human data entry mistakes causing inventory and accounting errors',
+      'Customer support teams bogged down by routine status tickets',
     ],
-    whoBenefits: ['Service Firms', 'Support Operations', 'Documentation-Heavy Enterprises'],
-    keyDeliverables: [
-      'OCR and PDF structured data extraction pipelines',
-      'Intelligent domain-specific AI support assistants',
-      'Automated email and WhatsApp notification workflows',
-      'Predictive reorder recommendations',
+    deliverables: [
+      'Deterministic OCR and document intelligence pipelines',
+      'Domain-tuned support automation with strict grounding bounds',
+      'Automated email and webhook dispatch workflows',
     ],
-    technologies: ['OpenAI / Anthropic APIs', 'Python / FastAPI', 'LangChain', 'pgvector', 'TypeScript'],
+    stack: ['Python', 'FastAPI', 'Claude API', 'pgvector', 'TypeScript'],
   },
   {
-    id: 'api-integrations',
-    title: 'API Engineering & Integrations',
-    category: 'Infrastructure',
-    headline: 'Connect your software ecosystem with secure, high-throughput APIs.',
-    icon: Network,
+    id: 'api-infrastructure',
+    title: 'Enterprise API & Gateway Mesh',
+    category: 'Integration Layer',
+    headline: 'Secure, typed communication layers connecting distributed services.',
     description:
-      'We build clean REST and GraphQL APIs, integrate third-party logistics and CRM services, and connect modern frontends with existing legacy databases safely without breaking core operations.',
+      'High-throughput REST and GraphQL gateways linking core ERP databases, logistics partner carriers, and third-party SaaS systems seamlessly.',
+    image: '/projects/pipeline.jpg',
+    imageAlt: 'Continuous Automated Verification Pipeline',
+    metrics: [
+      { label: 'Request throughput', value: '60,000 req/s' },
+      { label: 'Network error rate', value: '< 0.001%' },
+    ],
     problemsSolved: [
-      'Isolated software systems that cannot communicate with each other',
-      'Slow, unindexed database queries causing API timeouts',
-      'Security risks and lack of rate limiting on sensitive client endpoints',
-      'Difficulty connecting with government portals (e.g. GSTN, e-Way bills)',
+      'Siloed software applications incapable of secure communication',
+      'Unindexed legacy queries causing database locking and timeouts',
+      'Lack of granular rate limiting exposing systems to abuse',
     ],
-    whoBenefits: ['Fintech Startups', 'Logistics Aggregators', 'Companies Modernizing Legacy Tech'],
-    keyDeliverables: [
-      'High-throughput RESTful and GraphQL APIs',
-      'Logistics & shipping carrier API integrations (Shiprocket, Delhivery)',
-      'Payment gateway webhooks & reconciliation workers',
-      'Comprehensive OpenAPI / Swagger developer documentation',
+    deliverables: [
+      'High-throughput API gateway with token-bucket rate limiting',
+      'Carrier shipping logistics connectors (Shiprocket, Delhivery)',
+      'Typed OpenAPI contracts with automated client SDK generation',
     ],
-    technologies: ['Node.js', 'Express', 'FastAPI', 'Redis', 'PostgreSQL', 'Docker'],
-  },
-  {
-    id: 'ui-ux-design',
-    title: 'UI/UX Design & Product Engineering',
-    category: 'Product Design',
-    headline: 'Intuitive user experiences, accessible design systems, and rapid prototyping.',
-    icon: Palette,
-    description:
-      'User interfaces engineered with precision. We combine human-centered design principles with modern frontend implementation, ensuring every screen is intuitive, accessible, and high-converting.',
-    problemsSolved: [
-      'Complex internal tools that require hours of employee training',
-      'Cluttered user interfaces causing user mistakes and transaction drops',
-      'Inconsistent visual branding across various web properties',
-      'Accessibility shortcomings excluding mobile and keyboard users',
-    ],
-    whoBenefits: ['SaaS Products', 'Customer Facing Portals', 'Enterprise Software Teams'],
-    keyDeliverables: [
-      'Interactive Figma prototypes and user journey maps',
-      'Complete component libraries with design tokens',
-      'Light/Dark mode responsive typography & layout systems',
-      'WCAG AA accessible interface primitives',
-    ],
-    technologies: ['Figma', 'Tailwind CSS', 'Framer Motion', 'Radix Primitives', 'React'],
-  },
-  {
-    id: 'maintenance-support',
-    title: 'Maintenance, Security & Modernization',
-    category: 'Ongoing Support',
-    headline: 'Keep your digital systems secure, up to date, and running smoothly.',
-    icon: ShieldCheck,
-    description:
-      'Software is a living asset. We provide proactive monitoring, framework upgrades, security patching, database optimization, and on-call engineering support so you can focus on running your business.',
-    problemsSolved: [
-      'Outdated libraries and security vulnerabilities threatening business data',
-      'Slow performance and degraded speed as database size grows',
-      'Downtime during traffic spikes with no one available to diagnose the issue',
-      'Fear of touching legacy code due to lack of automated tests and documentation',
-    ],
-    whoBenefits: ['Established Businesses', 'Mission-Critical Portals', 'Post-Launch Products'],
-    keyDeliverables: [
-      'Proactive security patching and vulnerability audits',
-      'Database query optimization and index tuning',
-      'Automated backups, uptime monitoring, and SLA response',
-      'Continuous feature iterations and architectural enhancements',
-    ],
-    technologies: ['Datadog / Sentry', 'AWS CloudWatch', 'GitHub Actions CI/CD', 'Automated Backups'],
+    stack: ['Node.js', 'Express', 'Redis', 'PostgreSQL', 'Docker'],
   },
 ]
 
-const approachSteps = [
+const deliveryCadence = [
   {
-    number: '01',
-    title: 'Discovery & Requirement Analysis',
+    stage: '01',
+    phase: 'Architecture Blueprint',
+    duration: 'Week 1–2',
     description:
-      'We meet with your team to understand your core business model, operational bottlenecks, workflows, and success metrics. No technical jargon—just clear alignment on what needs to be solved.',
+      'Deep operational audit of workflows and bottlenecks. We architect schema contracts, state machines, and interface prototypes for full alignment before writing code.',
   },
   {
-    number: '02',
-    title: 'Architecture & UX Design',
+    stage: '02',
+    phase: 'Core Engine Sprint',
+    duration: 'Week 3–5',
     description:
-      'We architect the database schemas, select the optimal tech stack, map API contracts, and create interactive wireframes. You review and approve the blueprint before writing code.',
+      'Rapid engineering of the transactional database, core business logic, and API endpoints. Live staging previews updated on every commit with continuous test runs.',
   },
   {
-    number: '03',
-    title: 'Iterative Engineering & Milestones',
+    stage: '03',
+    phase: 'Interface & Integration',
+    duration: 'Week 6–7',
     description:
-      'We develop in sprint cycles, shipping demonstrable milestones on private staging URLs. You test features as they are built, ensuring the software matches your expectations at every step.',
+      'Frontend implementation with Swiss typography, sub-second client transitions, and secure integration with payment gateways, carriers, and hardware scanners.',
   },
   {
-    number: '04',
-    title: 'Quality Assurance & Security Audits',
+    stage: '04',
+    phase: 'Verification & Release',
+    duration: 'Week 8',
     description:
-      'Rigorous end-to-end testing, responsive cross-device verification, load testing, and security hardening (CSP, SQL injection prevention, rate limiting) before production deployment.',
-  },
-  {
-    number: '05',
-    title: 'Deployment, Staff Training & Support',
-    description:
-      'Zero-downtime production deployment, DNS configuration, SSL setup, and hands-on staff walkthroughs. We stay engaged with ongoing support and technical maintenance.',
+      'Stress testing, security hardening, and zero-downtime production deployment. Includes hands-on team onboarding and complete intellectual property transfer.',
   },
 ]
 
 export default function ServicesPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-16 md:space-y-24">
+    <div className="py-8 sm:py-16 space-y-24 md:space-y-36">
       <ServicesJsonLd />
       <BreadcrumbsJsonLd
         items={[
@@ -306,112 +225,154 @@ export default function ServicesPage() {
           { name: 'Services', url: '/services' },
         ]}
       />
-      {/* Hero Section */}
-      <section className="text-center max-w-4xl mx-auto px-4 pt-4 sm:pt-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-5 leading-tight text-foreground">
-          Software Systems Engineered Around Your Operations
-        </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-          From custom business management platforms to high-concurrency web applications,
-          we engineer reliable, production-ready software solving concrete operational bottlenecks.
-        </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <Link href="/contact">
-            <Button size="lg" variant="primary" iconRight={<ArrowRight className="w-4 h-4" />}>
-              Discuss Your Architecture
-            </Button>
-          </Link>
-          <Link href="/showcase">
-            <Button size="lg" variant="secondary">
-              Explore Case Studies
-            </Button>
-          </Link>
+      {/* Hero Section — Prominent Display Typography + Large Architecture Specimen */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6 animate-entrance">
+            <h1 className="font-display font-extrabold text-5xl sm:text-7xl lg:text-[84px] tracking-tight text-[#F4F1EA] leading-[0.98] uppercase">
+              Engineered Systems.
+            </h1>
+            <p className="text-lg sm:text-xl text-[#F4F1EA] font-medium leading-relaxed max-w-xl">
+              Bespoke operations software, transaction rails, and cloud architecture engineered for business scale.
+            </p>
+            <p className="text-base text-[#BFC3C9] leading-relaxed max-w-xl">
+              From tailored internal software to high-concurrency payment pipelines, we architect and ship production digital infrastructure eliminating your operational bottlenecks.
+            </p>
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Link href="/contact">
+                <button
+                  type="button"
+                  className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+                >
+                  <span>Discuss Your Architecture</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+              <Link href="/showcase">
+                <button
+                  type="button"
+                  className="h-12 px-6 rounded-[2px] bg-[#141414] hover:bg-[#1a1a1a] text-[#F4F1EA] font-semibold text-base tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer"
+                >
+                  <span>Explore Work</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 animate-entrance stagger-1">
+            <div className="relative aspect-[4/3] w-full rounded-[2px] overflow-hidden bg-[#101010]">
+              <Image
+                src="/projects/architecture.jpg"
+                alt="Colver Architecture Topology Blueprint"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-sm font-mono text-[#F4F1EA] px-3 py-2 bg-[#080808] rounded-[2px]">
+                <span className="text-[#C8FF00]">High-concurrency mesh topology</span>
+                <span>Verified 99.99%</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Services index */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Capabilities & Core Offerings
-          </h2>
-          <p className="text-base text-slate-300 mt-3 leading-relaxed">
-            Every solution is custom-engineered to match your operational workflows, scale with your growth, and integrate with your existing infrastructure.
+      {/* Capabilities Section — Open Editorial Layout with Real Raster Interface Fragments */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+          <div className="space-y-3 max-w-xl animate-entrance">
+            <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
+              Capabilities.
+            </h2>
+          </div>
+          <p className="text-base text-[#BFC3C9] max-w-md leading-relaxed animate-entrance stagger-1">
+            Every system is custom-engineered to eliminate operational bottlenecks, ensure absolute uptime, and provide 100% intellectual property ownership.
           </p>
         </div>
 
-        <div className="space-y-8">
-          {serviceOfferings.map((service) => {
+        <div className="space-y-24 md:space-y-32">
+          {serviceSpecs.map((service) => {
             return (
               <article
                 key={service.id}
                 id={service.id}
-                className="scroll-mt-28 p-6 sm:p-10 rounded-xl bg-card grid lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+                className="scroll-mt-28 grid lg:grid-cols-12 gap-8 lg:gap-14 items-start animate-entrance"
               >
-                <div className="lg:col-span-5 space-y-4">
-                  <span className="text-[13px] font-semibold text-blue-400 block">
-                    {service.category}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="text-base text-slate-200 font-medium">
-                    {service.headline}
-                  </p>
-                  <p className="text-sm text-slate-400 leading-relaxed">
+                {/* Narrative Specification Column */}
+                <div className="lg:col-span-6 space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#F4F1EA]">
+                      {service.title}
+                    </h3>
+                    <p className="text-base font-semibold text-[#C8FF00]">
+                      {service.headline}
+                    </p>
+                  </div>
+
+                  <p className="text-base text-[#BFC3C9] leading-relaxed">
                     {service.description}
                   </p>
+
+                  <div className="space-y-3 pt-2">
+                    <span className="text-sm font-semibold text-[#F4F1EA] block">
+                      Target Deliverables
+                    </span>
+                    <ul className="space-y-2 text-base text-[#F4F1EA]">
+                      {service.deliverables.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 leading-relaxed">
+                          <CheckCircle2 className="w-5 h-5 text-[#C8FF00] shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="pt-2 flex flex-wrap items-center gap-2 text-sm text-[#8E929A]">
+                    <span className="text-[#C8FF00] font-semibold">Tech stack:</span>
+                    {service.stack.map((tech) => (
+                      <span key={tech} className="px-2.5 py-1 bg-[#141414] text-[#BFC3C9] rounded-[2px]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
                   <div className="pt-2">
                     <Link
                       href={`/contact?service=${encodeURIComponent(service.title)}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                      className="inline-flex items-center gap-2 text-base font-semibold text-[#C8FF00] hover:text-[#b8ea00] transition-colors"
                     >
-                      <span>Consult on this architecture</span>
+                      <span>Architect this system</span>
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>
 
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="p-5 rounded-lg bg-surface space-y-3">
-                      <h4 className="text-[13px] font-semibold text-slate-300 uppercase tracking-wide">
-                        Problems Solved
-                      </h4>
-                      <ul className="space-y-2 text-sm text-slate-300">
-                        {service.problemsSolved.map((problem) => (
-                          <li key={problem} className="flex items-start gap-2 leading-relaxed">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 shrink-0" />
-                            <span>{problem}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="p-5 rounded-lg bg-surface space-y-3">
-                      <h4 className="text-[13px] font-semibold text-slate-300 uppercase tracking-wide">
-                        Key Deliverables
-                      </h4>
-                      <ul className="space-y-2 text-sm text-slate-300">
-                        {service.keyDeliverables.map((deliverable) => (
-                          <li key={deliverable} className="flex items-start gap-2 leading-relaxed">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                            <span className="font-medium text-foreground">{deliverable}</span>
-                          </li>
-                        ))}
-                      </ul>
+                {/* Visual Interface Column */}
+                <div className="lg:col-span-6 space-y-3">
+                  <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#101010]">
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/90 via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 px-3 py-1 bg-[#080808] rounded-[2px] text-sm font-medium text-[#C8FF00]">
+                      {service.category}
                     </div>
                   </div>
-
-                  <div className="p-4 rounded-lg bg-surface grid sm:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-[13px] text-slate-400 block font-medium">Target Stakeholders</span>
-                      <p className="text-sm text-slate-200 mt-1 font-medium">{service.whoBenefits.join(' · ')}</p>
-                    </div>
-                    <div>
-                      <span className="text-[13px] text-slate-400 block font-medium">Core Blueprint Stack</span>
-                      <p className="text-sm text-slate-200 mt-1 font-medium">{service.technologies.join(' · ')}</p>
-                    </div>
+                  <div className="grid grid-cols-2 gap-4 pt-1">
+                    {service.metrics.map((m) => (
+                      <div key={m.label} className="p-3.5 bg-[#101010] rounded-[2px]">
+                        <span className="text-sm text-[#8E929A] block font-medium">{m.label}</span>
+                        <span className="text-base font-bold text-[#F4F1EA] font-mono">{m.value}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </article>
@@ -420,57 +381,71 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* How We Approach Projects */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12">
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Structured Delivery Cadence
-          </h2>
-          <p className="text-base text-slate-300 mt-2">
-            Every business project is delivered through a transparent, disciplined engineering process.
+      {/* Delivery Cadence Section — Open Editorial Stepped Layout */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+          <div className="space-y-3 max-w-xl animate-entrance">
+            <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
+              Delivery Cadence.
+            </h2>
+          </div>
+          <p className="text-base text-[#BFC3C9] max-w-md leading-relaxed animate-entrance stagger-1">
+            Every business system ships in structured milestone cycles with demonstrable builds and transparent staging deployments.
           </p>
         </div>
 
-        <div className="rounded-xl bg-card p-6 sm:p-10 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {approachSteps.map((step, idx) => (
-              <div key={step.title} className="p-4 rounded-lg bg-surface space-y-2">
-                <span className="text-[13px] font-semibold text-blue-400 block">
-                  Milestone {idx + 1}
+        <div className="space-y-6 pt-2">
+          {deliveryCadence.map((step, idx) => (
+            <div
+              key={step.phase}
+              className={`py-8 flex flex-col md:flex-row md:items-start justify-between gap-6 transition-transform duration-300 hover:translate-x-1 animate-entrance stagger-${idx + 1}`}
+            >
+              <div className="md:w-1/4 space-y-1">
+                <span className="text-sm font-semibold text-[#C8FF00] block">
+                  Stage {step.stage} // {step.duration}
                 </span>
-                <h3 className="text-base font-bold text-foreground">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <span className="font-display text-2xl font-bold text-[#F4F1EA] block">
+                  {step.phase}
+                </span>
+              </div>
+              <div className="md:w-3/4 space-y-2">
+                <p className="text-base text-[#BFC3C9] leading-relaxed max-w-2xl">
                   {step.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Project inquiry */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-xl bg-card flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <div className="max-w-2xl space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-              Have a project in mind? Let&apos;s discuss your requirements.
+      {/* Closing CTA */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-entrance">
+        <div className="p-8 sm:p-14 rounded-[2px] bg-[#101010] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <div className="space-y-3 max-w-xl">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl tracking-tight text-[#F4F1EA] leading-tight">
+              Initiate Architecture.
             </h2>
-            <p className="text-base text-slate-300 leading-relaxed">
-              Whether you are modernizing an existing legacy platform, automating daily operational workflows, or building a new digital product from scratch, our senior software architects are ready to review your requirements.
+            <p className="text-base text-[#BFC3C9] leading-relaxed">
+              Schedule an engineering scoping consultation. We analyze your requirements and provide an actionable architecture plan within 48 hours.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 shrink-0">
+          <div className="flex flex-wrap items-center gap-4">
             <Link href="/contact">
-              <Button size="lg" variant="primary" iconRight={<ArrowRight className="w-4 h-4" />}>
-                Discuss Your Project
-              </Button>
+              <button
+                type="button"
+                className="h-12 px-8 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+              >
+                <span>Request Scoping Call</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </Link>
-            <Link href="/showcase">
-              <Button size="lg" variant="secondary">
-                Review Case Studies
-              </Button>
+            <Link href="/pricing">
+              <button
+                type="button"
+                className="h-12 px-6 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#F4F1EA] font-semibold text-base tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer"
+              >
+                <span>Review Sprint Rates</span>
+              </button>
             </Link>
           </div>
         </div>

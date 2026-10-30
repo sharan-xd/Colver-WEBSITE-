@@ -2,90 +2,98 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Layers,
-  Cpu,
-  ShieldCheck,
-} from '@/components/ui/Icons'
-import Button from '@/components/ui/Button'
-import ColverLiveConsole from '@/components/sections/HomeSections/ColverLiveConsole'
+import dynamic from 'next/dynamic'
+import { ArrowRight, Layers } from '@/components/ui/Icons'
+
+const IsometricChromeCanvas = dynamic(
+  () => import('@/components/motion/IsometricChromeCanvas'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full min-h-[420px] lg:min-h-[560px] flex items-center justify-center bg-[#121212] rounded-[2px]">
+        <div className="text-sm text-[#BFC3C9] flex items-center gap-2 font-medium">
+          <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+          Loading 3D Environment
+        </div>
+      </div>
+    ),
+  }
+)
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full pt-8 md:pt-16 pb-20 overflow-hidden">
+    <section className="relative w-full pt-8 md:pt-16 pb-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left: Confident Editorial Title and Statement */}
-          <motion.div
-            className="lg:col-span-6 space-y-6"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <h1 className="text-3xl sm:text-5xl lg:text-[50px] font-bold tracking-tight text-foreground leading-[1.08]">
-              Software Built for Real Operations
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          {/* Left Column: Direct Confident Typography rendered directly on frame 0 */}
+          <div className="lg:col-span-7 space-y-8">
+            {/* Headline: Under 2 lines across all breakpoints */}
+            <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[68px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance animate-entrance">
+              Software Built for Real Operations.
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-              Colver designs and engineers bespoke business systems, high-concurrency web applications, and intelligent operational workflows for growing companies.
+            {/* Supporting Statement */}
+            <p className="text-base sm:text-xl text-[#BFC3C9] max-w-xl leading-relaxed">
+              Colver designs and engineers bespoke business systems, high-concurrency web applications, and automated operational pipelines for growing companies.
             </p>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <Link href="/contact" className="inline-block">
-                <Button
-                  size="lg"
-                  variant="primary"
-                  className="w-full sm:w-auto"
-                  iconRight={<ArrowRight className="w-4 h-4" />}
+                <button
+                  type="button"
+                  className="w-full sm:w-auto h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
-                  Discuss Your Architecture
-                </Button>
+                  <span>Discuss Your Architecture</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </Link>
               <Link href="/showcase" className="inline-block">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="w-full sm:w-auto"
-                  iconRight={<Layers className="w-4 h-4" />}
+                <button
+                  type="button"
+                  className="w-full sm:w-auto h-12 px-6 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#F4F1EA] font-semibold text-base tracking-wide flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
-                  Explore Our Work
-                </Button>
+                  <Layers className="w-4 h-4 text-[#C8FF00]" />
+                  <span>Explore Selected Work</span>
+                </button>
               </Link>
             </div>
 
-            {/* Core Architectural Guarantees */}
-            <div className="pt-6 grid grid-cols-2 gap-6 text-sm">
-              <div className="space-y-1">
-                <span className="font-semibold text-foreground block">
-                  Custom Architecture
+            {/* Core Architectural Guarantees: Open Swiss Layout */}
+            <div className="pt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-base">
+              <div className="space-y-1.5">
+                <span className="font-display font-bold text-base text-[#F4F1EA] block">
+                  Bespoke Schema
                 </span>
-                <p className="text-sm text-slate-400 leading-normal">
-                  Bespoke data models built around your exact business rules.
+                <p className="text-base text-[#BFC3C9] leading-relaxed">
+                  Tailored relational data models mapped to your operational business rules.
                 </p>
               </div>
-              <div className="space-y-1">
-                <span className="font-semibold text-foreground block">
-                  Verified Performance
+
+              <div className="space-y-1.5">
+                <span className="font-display font-bold text-base text-[#F4F1EA] block">
+                  Verified Speed
                 </span>
-                <p className="text-sm text-slate-400 leading-normal">
-                  Sub-second response latencies and high-concurrency stability.
+                <p className="text-base text-[#BFC3C9] leading-relaxed">
+                  Sub-second edge transitions and sub-100ms interaction latency.
+                </p>
+              </div>
+
+              <div className="space-y-1.5">
+                <span className="font-display font-bold text-base text-[#F4F1EA] block">
+                  Hardened Security
+                </span>
+                <p className="text-base text-[#BFC3C9] leading-relaxed">
+                  Zero hardcoded secrets, strict CSP, and rate-limited API routes.
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right: The Colver Interactive Live System Console */}
-          <motion.div
-            className="lg:col-span-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-          >
-            <ColverLiveConsole />
-          </motion.div>
+          {/* Right Column: 3D Interactive Isometric Chrome Canvas */}
+          <div className="lg:col-span-5 h-full">
+            <IsometricChromeCanvas />
+          </div>
         </div>
       </div>
     </section>

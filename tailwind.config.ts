@@ -39,40 +39,72 @@ const config: Config = {
         warning: 'var(--warning)',
         destructive: 'var(--destructive)',
         surface: 'var(--surface)',
+        // Colver Experimental Brutalist Palette
+        obsidian: '#080808',
+        paper: '#F4F1EA',
+        lime: {
+          DEFAULT: '#C8FF00',
+          hover: '#b8ea00',
+        },
+        acid: {
+          DEFAULT: '#FF5A1F',
+          hover: '#e64e16',
+        },
+        electric: {
+          DEFAULT: '#405CFF',
+          hover: '#3149e0',
+        },
+        chrome: {
+          DEFAULT: '#BFC3C9',
+          light: '#E2E8F0',
+          dark: '#7E8694',
+        },
       },
       fontFamily: {
+        display: [
+          'var(--font-display)',
+          'Space Grotesk',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'sans-serif',
+        ],
+        mono: [
+          'var(--font-mono)',
+          'JetBrains Mono',
+          'ui-monospace',
+          'SFMono-Regular',
+          'monospace',
+        ],
         sans: [
           'var(--font-inter)',
           '-apple-system',
           'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
           'sans-serif',
         ],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'shimmer': 'shimmer 2.5s infinite linear',
-        'fade-in': 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        'scale-in': 'scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+        'glitch-subtle': 'glitch 4s infinite linear alternate-reverse',
+        'marquee': 'marquee 25s linear infinite',
+        'spin-slow': 'spin 20s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.96)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
+        glitch: {
+          '0%, 94%': { transform: 'translate(0, 0)' },
+          '95%': { transform: 'translate(-1.5px, 0.5px)' },
+          '96%': { transform: 'translate(1.5px, -0.5px)' },
+          '97%': { transform: 'translate(-0.5px, -1px)' },
+          '98%': { transform: 'translate(1px, 1px)' },
+          '100%': { transform: 'translate(0, 0)' },
         },
       },
       transitionTimingFunction: {

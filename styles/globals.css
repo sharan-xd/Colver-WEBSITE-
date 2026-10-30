@@ -2,100 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   DESIGN TOKENS & SYSTEM VARIABLES
-   The Colver Engineering Studio Design System
-   ============================================ */
+/* ==============================================================
+   COLVER BRUTALIST & EDITORIAL DESIGN SYSTEM
+   Art Direction: Swiss Typography · Geometric Forms · Three.js 3D
+   ============================================================== */
 
 :root {
-  /* Default: Dark Mode (Pure Obsidian Ground & Architectural Surfaces) */
-  --background: #080a0f;
-  --background-rgb: 8, 10, 15;
-  --foreground: #f8fafc;
-  --foreground-rgb: 248, 250, 252;
+  --background: #080808;
+  --background-rgb: 8, 8, 8;
+  --foreground: #F4F1EA;
+  --foreground-rgb: 244, 241, 234;
 
-  --card: #0f141f;
-  --card-rgb: 15, 20, 31;
-  --card-foreground: #f8fafc;
+  --card: #121212;
+  --card-rgb: 18, 18, 18;
+  --card-foreground: #F4F1EA;
 
-  --surface: #141b2a;
-  --surface-rgb: 20, 27, 42;
+  --surface: #181818;
+  --surface-rgb: 24, 24, 24;
 
-  /* Primary Accent: Precision Technical Cobalt */
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-foreground: #ffffff;
+  --primary: #C8FF00;
+  --primary-hover: #b8ea00;
+  --primary-foreground: #080808;
 
-  --secondary: #161f30;
-  --secondary-foreground: #cbd5e1;
+  --secondary: #222222;
+  --secondary-foreground: #F4F1EA;
 
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
+  --muted: #BFC3C9;
+  --muted-foreground: #8E929A;
 
-  --muted: #94a3b8;
-  --muted-foreground: #64748b;
+  --border: rgba(244, 241, 234, 0.1);
+  --border-subtle: rgba(244, 241, 234, 0.05);
 
-  --border: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-hover: rgba(255, 255, 255, 0.16);
-
-  /* Semantic feedback */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --destructive: #f43f5e;
-
-  /* Elevated surface tokens */
-  --panel-bg: #0d121c;
-  --panel-border: rgba(255, 255, 255, 0.08);
-
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-sm: 2px;
+  --radius-md: 4px;
 }
-
-/* Light Mode Overrides */
-.light {
-  --background: #f8fafc;
-  --background-rgb: 248, 250, 252;
-  --foreground: #090d16;
-  --foreground-rgb: 9, 13, 22;
-
-  --card: #ffffff;
-  --card-rgb: 255, 255, 255;
-  --card-foreground: #090d16;
-
-  --surface: #f1f5f9;
-  --surface-rgb: 241, 245, 249;
-
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-foreground: #ffffff;
-
-  --secondary: #e2e8f0;
-  --secondary-foreground: #334155;
-
-  --accent: #1d4ed8;
-  --accent-foreground: #ffffff;
-
-  --muted: #475569;
-  --muted-foreground: #64748b;
-
-  --border: rgba(15, 23, 42, 0.08);
-  --border-subtle: rgba(15, 23, 42, 0.04);
-  --border-hover: rgba(15, 23, 42, 0.18);
-
-  --success: #059669;
-  --warning: #d97706;
-  --destructive: #e11d48;
-
-  --panel-bg: #ffffff;
-  --panel-border: rgba(15, 23, 42, 0.08);
-}
-
-/* ============================================
-   BASE & RESET
-   ============================================ */
 
 * {
   box-sizing: border-box;
@@ -103,154 +43,128 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark light;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #080808;
+  color: #F4F1EA;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
   font-size: 1rem;
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
-/* Headings use deliberate typographic tracking and line height */
-h1, h2, h3, h4 {
-  color: var(--foreground);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+/* Motion Layer: Pure CSS hardware-accelerated animations */
+@keyframes colverEntrance {
+  0% {
+    opacity: 0.95;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes colverFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes colverPulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+}
+
+.animate-entrance {
+  animation: colverEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float-subtle {
+  animation: colverFloat 4s ease-in-out infinite;
+}
+
+.animate-glow-dot {
+  animation: colverPulseGlow 2s ease-in-out infinite;
+}
+
+/* Headings use Space Grotesk with tight letter spacing */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.035em;
+  color: #F4F1EA;
   text-wrap: balance;
 }
 
+/* Paragraphs in high-contrast readable body ink */
 p {
-  color: var(--muted);
+  color: #BFC3C9;
   font-size: 1rem;
   line-height: 1.65;
+  max-width: 65ch;
 }
 
-/* Specific interactive transition helper */
+/* Controlled RGB Glitch on key interactive links */
+.glitch-hover {
+  transition: transform 0.15s ease;
+}
+
+.glitch-hover:hover {
+  text-shadow: 
+    -1.5px -0.5px 0 #FF5A1F,
+    1.5px 0.5px 0 #405CFF,
+    0 0 4px #C8FF00;
+}
+
+/* Interactive transitions */
 a,
 button,
 input,
 textarea,
 select {
-  transition-property: color, background-color, border-color, opacity, transform;
+  transition-property: color, background-color, border-color, transform;
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Focus styles for keyboard accessibility */
+/* Accessible Keyboard Focus */
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid #C8FF00;
   outline-offset: 2px;
 }
 
-/* ============================================
-   SURFACES & ARCHITECTURAL PANELS
-   ============================================ */
-
-/* Clean, flat, authoritative architectural surfaces */
-.studio-panel {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-}
-
-.studio-panel-elevated {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-}
-
-.studio-nav {
-  background-color: rgba(8, 10, 15, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Input fields */
-.studio-input {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--foreground);
-  font-size: 0.9375rem;
-}
-
-.studio-input:focus {
-  border-color: var(--primary);
-  outline: none;
-}
-
-/* Solid typographic text without rainbow gradients */
-.text-statement {
-  color: var(--foreground);
-  font-weight: 700;
-}
-
-/* Legacy utility aliases mapped to the flat design system */
-.glass-panel {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-}
-
-.glass-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-}
-
-.glass-nav {
-  background-color: rgba(8, 10, 15, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-
-.glass-input {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--foreground);
-}
-
-.glass-input:focus {
-  border-color: var(--primary);
-  outline: none;
-}
-
-.text-gradient,
-.text-gradient-subtle {
-  color: var(--foreground);
-  -webkit-text-fill-color: initial;
-  background: none;
-}
-
-/* ============================================
-   CUSTOM SCROLLBAR
-   ============================================ */
-
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #080808;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
-  border-radius: 9999px;
+  background: rgba(191, 195, 201, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.35);
+  background: #C8FF00;
 }
 
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
-
+/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -2,55 +2,40 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { 
-  Terminal, 
-  Code2, 
-  ShieldCheck, 
-  ArrowRight, 
-  Search, 
-  Copy, 
-  Check, 
-  Sparkles 
-} from 'lucide-react'
-import Badge from '@/components/ui/Badge'
-import Button from '@/components/ui/Button'
+import { ArrowRight, Search, Copy, Check } from '@/components/ui/Icons'
 import { useToast } from '@/components/ui/Toast'
 
 const docSections = [
   {
-    title: 'Getting Started',
-    icon: Terminal,
+    title: 'Getting Started & Architecture',
     articles: [
-      { title: 'System Requirements & Setup', desc: 'Node.js 18+, Next.js 16 App Router configuration and environment variables.' },
-      { title: 'Project Directory Architecture', desc: 'Overview of layout, components, section layers, and theme tokens.' },
-      { title: 'Running Local Development', desc: 'Start the Turbopack dev server and test hot module reloading.' },
+      { title: 'System Requirements & Node.js Setup', desc: 'Node.js 18+, Next.js 16 App Router configuration and environment variables.' },
+      { title: 'Directory Architecture & Boundaries', desc: 'Overview of layout, components, section layers, and server/client boundary patterns.' },
+      { title: 'Running Local Development with Turbopack', desc: 'Fast hot-module replacement and instant route compilation in development.' },
     ],
   },
   {
-    title: 'Design System & Theming',
-    icon: Sparkles,
+    title: 'Design System & Architectural Tokens',
     articles: [
-      { title: 'Glassmorphism Design Tokens', desc: 'CSS variables for glass-panel, glass-card, and backdrop-filter blur parameters.' },
-      { title: 'Dark & Light Mode Persistence', desc: 'Using ThemeProvider and localStorage with zero hydration mismatch.' },
-      { title: 'Micro-Interactions & Animations', desc: 'Fluid transitions using Framer Motion springs and GSAP ScrollTrigger.' },
+      { title: 'Brutalist Swiss Design Tokens', desc: 'CSS variables for obsidian surfaces, high-contrast typography, and electric accents.' },
+      { title: 'Three.js 3D Isometric Viewports', desc: 'Lightweight canvas scenes running pure WebGL with zero React reconciler drag.' },
+      { title: 'Micro-Interactions & Hardware Acceleration', desc: 'Pure CSS keyframes and Framer Motion layout animations targeting 60fps.' },
     ],
   },
   {
-    title: 'Component Library',
-    icon: Code2,
+    title: 'Component Library & Primitives',
     articles: [
-      { title: 'Button, Input & Form Controls', desc: 'Accessible form elements with live validation, loading spinners, and focus rings.' },
-      { title: 'Command Palette (⌘K)', desc: 'Instant keyboard-driven navigation across all application routes and preferences.' },
-      { title: 'Persistent Responsive Sidebar', desc: 'Collapsible desktop navigation with automatic tooltip hover states.' },
+      { title: 'Button, Input & Form Controls', desc: 'Accessible form elements with live boundary validation and keyboard focus rings.' },
+      { title: 'Command Palette (⌘K)', desc: 'Instant keyboard-driven navigation across all application routes and system preferences.' },
+      { title: 'Monolithic Navigation & Mobile Drawer', desc: 'Full-screen mobile drawer with live IST studio clock and rapid destination search.' },
     ],
   },
   {
-    title: 'Security & Deployment',
-    icon: ShieldCheck,
+    title: 'Security & Edge Deployment',
     articles: [
       { title: 'Hardened HTTP Headers & CSP', desc: 'Content Security Policy, strict HSTS, Frame options, and Referrer protection.' },
-      { title: 'Static & Edge Generation', desc: 'Prerendering 19+ static routes with sub-millisecond edge response times.' },
-      { title: 'Audit Checklists & WCAG AA', desc: 'Accessibility compliance and Lighthouse performance tuning.' },
+      { title: 'Static & Edge Prerendering', desc: 'Prerendering 21 static routes with sub-10ms edge response times.' },
+      { title: 'Audit Checklists & WCAG AA Compliance', desc: 'Accessibility compliance, contrast validation, and Lighthouse performance tuning.' },
     ],
   },
 ]
@@ -63,7 +48,7 @@ export default function DocsClient() {
   const handleCopy = () => {
     navigator.clipboard.writeText('npm run dev')
     setCopied(true)
-    toast('Command copied', 'Run in your terminal to start developing.', 'info')
+    toast('Command copied', 'Run in your terminal to start local dev.', 'info')
     setTimeout(() => setCopied(false), 2000)
   }
 
@@ -78,100 +63,109 @@ export default function DocsClient() {
   })).filter((sec) => sec.articles.length > 0)
 
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-8 sm:py-16 space-y-20 md:space-y-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Technical Architecture & Documentation
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-base text-[#C8FF00] font-mono">
+          <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
+          <span>Technical Architecture & Developer Documentation</span>
+        </div>
+
+        <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] tracking-tight text-[#F4F1EA] leading-[1.04] text-balance">
+          System Documentation & Specifications.
         </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-          Comprehensive guides, system blueprints, and component specifications to help you build and scale with Colver.
+
+        <p className="text-base sm:text-xl text-[#BFC3C9] leading-relaxed max-w-3xl">
+          Comprehensive guides, system blueprints, component specifications, and deployment runbooks for engineers building with Colver.
         </p>
 
         {/* Search bar */}
-        <div className="mt-8 max-w-md mx-auto relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+        <div className="pt-2 max-w-xl relative">
+          <Search className="w-5 h-5 text-[#8E929A] absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search documentation articles..."
-            className="w-full h-11 pl-11 pr-4 text-sm rounded-lg bg-surface text-foreground placeholder:text-slate-400 border-none focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Search documentation articles and components..."
+            className="w-full h-12 pl-12 pr-4 text-base rounded-[2px] bg-[#101010] text-[#F4F1EA] placeholder-[#8E929A] border border-white/10 focus:outline-none focus:ring-1 focus:ring-[#C8FF00]"
           />
         </div>
       </div>
 
-      {/* Quickstart Command Card */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-5 rounded-xl bg-card flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <p className="text-[13px] font-semibold text-blue-400">Quick Launch</p>
-            <p className="text-sm text-foreground font-medium">Clone, install dependencies, and run local dev server</p>
-          </div>
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface font-mono text-[13px] text-foreground">
-            <span className="text-blue-400">$</span>
-            <span>npm run dev</span>
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="ml-2 p-1 text-slate-400 hover:text-foreground transition-colors cursor-pointer"
-              title="Copy command"
-            >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-            </button>
-          </div>
+      {/* Quickstart Command Banner */}
+      <div className="p-6 rounded-[2px] bg-[#101010] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <span className="text-sm font-semibold text-[#C8FF00] block">Local Quickstart</span>
+          <p className="text-base text-[#F4F1EA] font-semibold">Clone repository and launch Turbopack edge development server</p>
+        </div>
+        <div className="flex items-center gap-3 px-4 py-2.5 rounded-[2px] bg-[#080808] font-mono text-base text-[#F4F1EA]">
+          <span className="text-[#C8FF00]">$</span>
+          <span>npm run dev</span>
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="ml-3 text-[#8E929A] hover:text-[#C8FF00] transition-colors cursor-pointer"
+            title="Copy command"
+          >
+            {copied ? <Check className="w-4 h-4 text-[#C8FF00]" /> : <Copy className="w-4 h-4" />}
+          </button>
         </div>
       </div>
 
-      {/* Doc Sections Grid */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {filteredSections.map((section) => {
-          const Icon = section.icon
-          return (
-            <div key={section.title} className="p-6 sm:p-8 rounded-xl bg-card space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-blue-400">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">{section.title}</h2>
-              </div>
+      {/* Doc Sections */}
+      <div className="space-y-10">
+        {filteredSections.map((section) => (
+          <div key={section.title} className="p-8 rounded-[2px] bg-[#101010] space-y-6">
+            <h2 className="font-display text-2xl font-bold text-[#F4F1EA] tracking-tight">
+              {section.title}
+            </h2>
 
-              <div className="divide-y divide-border/20">
-                {section.articles.map((art) => (
-                  <div
-                    key={art.title}
-                    className="grid sm:grid-cols-[1fr_auto] gap-3 py-4 first:pt-2 last:pb-0 group"
-                  >
-                    <div>
-                      <h3 className="text-base font-semibold text-foreground group-hover:text-blue-400 transition-colors mb-1">
-                        {art.title}
-                      </h3>
-                      <p className="text-sm text-slate-400 leading-relaxed">
-                        {art.desc}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 text-[13px] text-blue-400 font-semibold self-center">
-                      <span>Read guide</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
+            <div className="divide-y divide-white/5">
+              {section.articles.map((art) => (
+                <div
+                  key={art.title}
+                  className="grid sm:grid-cols-[1fr_auto] gap-4 py-5 first:pt-2 last:pb-0 group"
+                >
+                  <div className="space-y-1">
+                    <h3 className="font-display text-lg font-bold text-[#F4F1EA] group-hover:text-[#C8FF00] transition-colors">
+                      {art.title}
+                    </h3>
+                    <p className="text-base text-[#BFC3C9] leading-relaxed">
+                      {art.desc}
+                    </p>
                   </div>
-                ))}
-              </div>
+
+                  <div className="flex items-center gap-1.5 text-base text-[#C8FF00] font-semibold self-center shrink-0">
+                    <span>Inspect</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              ))}
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
 
-      {/* Help footer */}
-      <div className="max-w-3xl mx-auto px-4 text-center pt-8 space-y-3">
-        <p className="text-base text-slate-300">
-          Can&apos;t find what you&apos;re looking for? Reach out to our core engineering maintainers.
-        </p>
-        <Link href="/contact">
-          <Button variant="primary" size="md">
-            Ask in Support Channel
-          </Button>
-        </Link>
+      {/* Engineering Support CTA */}
+      <div className="p-8 sm:p-14 bg-[#121212] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="space-y-3 max-w-2xl">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl tracking-tight text-[#F4F1EA] leading-tight">
+            Need custom architecture guidance?
+          </h2>
+          <p className="text-base sm:text-lg text-[#BFC3C9] leading-relaxed">
+            Our senior systems maintainers and architects are available for deep-dive technical reviews.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <Link href="/contact">
+            <button
+              type="button"
+              className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+            >
+              <span>Connect with Maintainers</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   )

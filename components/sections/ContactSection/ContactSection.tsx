@@ -2,21 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import type { FormEvent } from 'react'
-import { 
-  Mail, 
-  MapPin, 
-  Clock, 
-  CheckCircle2, 
-  ArrowRight, 
-  Send, 
-  ShieldCheck, 
-  FileCheck,
-} from '@/components/ui/Icons'
+import Image from 'next/image'
 import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import Textarea from '@/components/ui/Textarea'
-import Badge from '@/components/ui/Badge'
+import { 
+  ArrowRight, 
+  Send,
+  CheckCircle2,
+} from '@/components/ui/Icons'
 import { useToast } from '@/components/ui/Toast'
 
 type ContactFormState = {
@@ -31,22 +23,43 @@ type ContactFormState = {
 type FormErrors = Partial<Record<keyof ContactFormState, string>>
 
 const serviceOptions = [
-  'Custom Software Development',
-  'Web Application Development',
-  'E-Commerce & Digital Commerce',
-  'Inventory & Operations Management',
-  'AI & Workflow Automation',
+  'Custom Business Systems & ERPs',
+  'High-Concurrency Web Applications',
+  'E-Commerce & Transaction Rails',
+  'Inventory & Multi-Warehouse Tracking',
+  'AI Workflows & Structured Extraction',
   'API Engineering & Integrations',
-  'UI/UX Design & Product Engineering',
-  'Maintenance, Support & Modernization',
-  'Other / General Technical Inquiry',
+  'UI/UX Design Systems & Tokens',
+  'Ongoing Maintenance & Architecture SLA',
+  'General Technical Inquiry',
 ]
 
 const timelineOptions = [
-  'Flexible / Exploring Options',
+  'Immediate (< 1 Month)',
   '1 to 3 Months',
   '3 to 6 Months',
-  'Urgent (< 1 Month)',
+  'Exploring Architecture Options',
+]
+
+const productionSpecimens = [
+  {
+    name: 'Nexus ERP Console',
+    image: '/projects/nexus.jpg',
+    metric: '45k events/sec',
+    detail: 'Pessimistic stock locking & multi-warehouse ledger',
+  },
+  {
+    name: 'Apex Transaction Core',
+    image: '/projects/apex.jpg',
+    metric: 'Sub-90ms Finality',
+    detail: 'Automated GST invoice generation & instant UPI',
+  },
+  {
+    name: 'Pulse Telemetry Stream',
+    image: '/projects/pulse.jpg',
+    metric: 'Sub-50ms Refresh',
+    detail: 'Real-time WebSocket connection pool monitoring',
+  },
 ]
 
 export default function ContactSection() {
@@ -69,9 +82,12 @@ export default function ContactSection() {
     try {
       if (typeof window !== 'undefined') {
         const params = new URLSearchParams(window.location.search)
-        const paramService = params.get('service')
-        if (paramService && serviceOptions.includes(paramService)) {
-          setFormData((prev) => ({ ...prev, serviceType: paramService }))
+        const paramService = params.get('service') || params.get('project') || params.get('sprint')
+        if (paramService) {
+          const match = serviceOptions.find((opt) => opt.toLowerCase().includes(paramService.toLowerCase()))
+          if (match) {
+            setFormData((prev) => ({ ...prev, serviceType: match }))
+          }
         }
       }
     } catch {
@@ -124,7 +140,7 @@ export default function ContactSection() {
       setIsSubmitted(true)
       toast(
         'Inquiry received!',
-        data.message || 'Thank you for reaching out. A senior software engineer will review your specifications and contact you shortly.',
+        data.message || 'Thank you for detailing your specifications. A senior systems architect will review your parameters and respond within 24 hours.',
         'success'
       )
     } catch (err: unknown) {
@@ -149,40 +165,90 @@ export default function ContactSection() {
   }
 
   return (
-    <div className="py-6 sm:py-10 space-y-14">
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
-          Let&apos;s Build Software That Powers Your Operations
-        </h1>
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-          Tell us about your technical goals, operational bottlenecks, or product roadmap.
-          Our engineering team will assess your specifications and provide a clear architectural proposal.
-        </p>
-      </div>
+    <div className="py-8 sm:py-16 space-y-24 md:space-y-36">
+      {/* Hero Section — Prominent Display Typography + Architecture Preview Specimen */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6 animate-entrance">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#141414] rounded-[2px] text-sm font-mono text-[#C8FF00]">
+              <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-glow-dot" />
+              <span>Direct Architect Intake // 24-Hour SLA Response</span>
+            </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
-          {/* Inquiry Form Column */}
-          <div className="lg:col-span-7">
-            <div className="p-6 sm:p-10 rounded-xl bg-card">
+            <h1 className="font-display font-extrabold text-5xl sm:text-7xl lg:text-[84px] tracking-tight text-[#F4F1EA] leading-[0.98] uppercase">
+              Start Architecture.
+            </h1>
+
+            <p className="text-lg sm:text-xl text-[#F4F1EA] font-medium leading-relaxed max-w-xl">
+              Tell us about your operational bottlenecks, product specifications, or transaction throughput demands.
+            </p>
+
+            <p className="text-base text-[#BFC3C9] leading-relaxed max-w-xl">
+              Our senior engineering architects will assess your technical parameters and respond with an actionable architecture blueprint within 24 hours.
+            </p>
+
+            <div className="pt-2">
+              <a href="#contact-form">
+                <button
+                  type="button"
+                  className="h-12 px-7 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+                >
+                  <span>Begin Intake Specification</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 animate-entrance stagger-1">
+            <div className="relative aspect-[4/3] w-full rounded-[2px] overflow-hidden bg-[#101010]">
+              <Image
+                src="/projects/architecture.jpg"
+                alt="Colver Architecture Intake Blueprint"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-sm font-mono text-[#F4F1EA] px-3 py-2 bg-[#080808] rounded-[2px]">
+                <span className="text-[#C8FF00]">INTAKE PROTOCOL</span>
+                <span>DIRECT ENGINEER REVIEW</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Intake Form & Studio Information */}
+      <section id="contact-form" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Intake Form */}
+          <div className="lg:col-span-7 animate-entrance stagger-1">
+            <div className="p-8 sm:p-12 bg-[#101010] rounded-[2px]">
               {isSubmitted ? (
-                <div className="py-12 text-center space-y-5 animate-fade-in">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="py-12 text-center space-y-6">
+                  <div className="w-16 h-16 rounded-[2px] bg-[#181818] text-[#C8FF00] flex items-center justify-center mx-auto text-2xl font-bold">
+                    <CheckCircle2 className="w-8 h-8 text-[#C8FF00]" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-foreground">Inquiry Received</h3>
-                    <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                      Thank you for detailing your project. We have logged your request. Our engineering team will review your requirements and respond within one business day.
+                  <div className="space-y-3">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F4F1EA]">
+                      Inquiry Received & Logged
+                    </h3>
+                    <p className="text-base text-[#BFC3C9] max-w-md mx-auto leading-relaxed">
+                      Thank you for detailing your specifications. A senior systems architect is reviewing your technical requirements and will respond within 24 hours.
                     </p>
                   </div>
-                  <Button variant="secondary" onClick={handleReset} className="mt-4">
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="h-11 px-6 rounded-[2px] bg-[#181818] hover:bg-[#222222] text-[#F4F1EA] text-base font-medium transition-colors cursor-pointer"
+                  >
                     Submit Another Inquiry
-                  </Button>
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   {/* Anti-spam honeypot */}
                   <div className="hidden" aria-hidden="true">
                     <input
@@ -194,177 +260,250 @@ export default function ContactSection() {
                       autoComplete="off"
                     />
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Input
-                      label="Your Full Name"
-                      placeholder="e.g. Ramesh Kumar"
-                      value={formData.name}
-                      error={errors.name}
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-[#F4F1EA]">
+                        Your Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Ramesh Kumar"
+                        value={formData.name}
+                        onChange={(e) => {
+                          setFormData((p) => ({ ...p, name: e.target.value }))
+                          if (errors.name) setErrors((p) => ({ ...p, name: undefined }))
+                        }}
+                        className={`w-full h-12 px-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] placeholder-[#8E929A] transition-colors focus:outline-none focus:ring-1 focus:ring-[#C8FF00] ${
+                          errors.name ? 'border border-red-500' : 'border border-white/10'
+                        }`}
+                        required
+                      />
+                      {errors.name && (
+                        <p className="text-sm text-red-400">{errors.name}</p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-[#F4F1EA]">
+                        Organization / Business Name
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Bharat Logistics Ltd."
+                        value={formData.organization}
+                        onChange={(e) => {
+                          setFormData((p) => ({ ...p, organization: e.target.value }))
+                        }}
+                        className="w-full h-12 px-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] placeholder-[#8E929A] border border-white/10 transition-colors focus:outline-none focus:ring-1 focus:ring-[#C8FF00]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-[#F4F1EA]">
+                      Work Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="ramesh@company.in"
+                      value={formData.email}
                       onChange={(e) => {
-                        setFormData((p) => ({ ...p, name: e.target.value }))
-                        if (errors.name) setErrors((p) => ({ ...p, name: undefined }))
+                        setFormData((p) => ({ ...p, email: e.target.value }))
+                        if (errors.email) setErrors((p) => ({ ...p, email: undefined }))
                       }}
+                      className={`w-full h-12 px-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] placeholder-[#8E929A] transition-colors focus:outline-none focus:ring-1 focus:ring-[#C8FF00] ${
+                        errors.email ? 'border border-red-500' : 'border border-white/10'
+                      }`}
                       required
                     />
-                    <Input
-                      label="Organization / Business Name"
-                      placeholder="e.g. Bharat Logistics Ltd. (Optional)"
-                      value={formData.organization}
+                    {errors.email && (
+                      <p className="text-sm text-red-400">{errors.email}</p>
+                    )}
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-[#F4F1EA]">
+                        Primary Project Focus
+                      </label>
+                      <select
+                        value={formData.serviceType}
+                        onChange={(e) => setFormData((p) => ({ ...p, serviceType: e.target.value }))}
+                        className="w-full h-12 px-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] border border-white/10 focus:outline-none focus:ring-1 focus:ring-[#C8FF00] cursor-pointer"
+                      >
+                        {serviceOptions.map((opt) => (
+                          <option key={opt} value={opt} className="bg-[#121212] text-[#F4F1EA]">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-[#F4F1EA]">
+                        Desired Timeline
+                      </label>
+                      <select
+                        value={formData.timeline}
+                        onChange={(e) => setFormData((p) => ({ ...p, timeline: e.target.value }))}
+                        className="w-full h-12 px-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] border border-white/10 focus:outline-none focus:ring-1 focus:ring-[#C8FF00] cursor-pointer"
+                      >
+                        {timelineOptions.map((opt) => (
+                          <option key={opt} value={opt} className="bg-[#121212] text-[#F4F1EA]">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-[#F4F1EA]">
+                      Project Specifications & Operational Bottlenecks *
+                    </label>
+                    <textarea
+                      rows={5}
+                      placeholder="Describe your workflows, key features, existing database or tools, and desired operational outcome..."
+                      value={formData.message}
                       onChange={(e) => {
-                        setFormData((p) => ({ ...p, organization: e.target.value }))
+                        setFormData((p) => ({ ...p, message: e.target.value }))
+                        if (errors.message) setErrors((p) => ({ ...p, message: undefined }))
                       }}
+                      className={`w-full p-4 rounded-[2px] bg-[#0a0a0a] text-base text-[#F4F1EA] placeholder-[#8E929A] transition-colors focus:outline-none focus:ring-1 focus:ring-[#C8FF00] ${
+                        errors.message ? 'border border-red-500' : 'border border-white/10'
+                      }`}
+                      required
                     />
+                    {errors.message && (
+                      <p className="text-sm text-red-400">{errors.message}</p>
+                    )}
                   </div>
-
-                  <Input
-                    label="Work Email Address"
-                    type="email"
-                    placeholder="ramesh@company.in"
-                    value={formData.email}
-                    error={errors.email}
-                    onChange={(e) => {
-                      setFormData((p) => ({ ...p, email: e.target.value }))
-                      if (errors.email) setErrors((p) => ({ ...p, email: undefined }))
-                    }}
-                    required
-                  />
-
-                  {/* Project Type Dropdown */}
-                  <div className="space-y-1.5 text-left">
-                    <label className="block text-sm font-semibold text-foreground">
-                      Primary Service / Project Type
-                    </label>
-                    <select
-                      value={formData.serviceType}
-                      onChange={(e) => setFormData((p) => ({ ...p, serviceType: e.target.value }))}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none transition-all cursor-pointer"
-                    >
-                      {serviceOptions.map((opt) => (
-                        <option key={opt} value={opt} className="bg-card text-foreground">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Estimated Timeline Dropdown */}
-                  <div className="space-y-1.5 text-left">
-                    <label className="block text-sm font-semibold text-foreground">
-                      Target Launch / Desired Timeline
-                    </label>
-                    <select
-                      value={formData.timeline}
-                      onChange={(e) => setFormData((p) => ({ ...p, timeline: e.target.value }))}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none transition-all cursor-pointer"
-                    >
-                      {timelineOptions.map((opt) => (
-                        <option key={opt} value={opt} className="bg-card text-foreground">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <Textarea
-                    label="Project Specifications & Requirements"
-                    rows={5}
-                    placeholder="Describe your operational workflows, key features, existing tech stack, and goals..."
-                    value={formData.message}
-                    error={errors.message}
-                    onChange={(e) => {
-                      setFormData((p) => ({ ...p, message: e.target.value }))
-                      if (errors.message) setErrors((p) => ({ ...p, message: undefined }))
-                    }}
-                    required
-                  />
 
                   <div className="pt-2">
-                    <Button
+                    <button
                       type="submit"
-                      variant="primary"
-                      size="lg"
-                      isLoading={isLoading}
-                      className="w-full"
-                      iconRight={<Send className="w-4 h-4" />}
+                      disabled={isLoading}
+                      className="w-full h-12 px-8 rounded-[2px] bg-[#C8FF00] hover:bg-[#b8ea00] text-black font-semibold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all cursor-pointer disabled:opacity-50"
                     >
-                      {isLoading ? 'Sending Inquiry...' : 'Submit Project Inquiry'}
-                    </Button>
+                      <span>{isLoading ? 'Transmitting Specifications...' : 'Submit Specifications for Audit'}</span>
+                      <Send className="w-4 h-4" />
+                    </button>
                   </div>
 
-                  <p className="text-[13px] text-slate-400 text-center pt-1 font-medium">
-                    Confidentiality guaranteed. All project inquiries are protected under non-disclosure.
+                  <p className="text-sm text-[#8E929A] text-center pt-1">
+                    Strict non-disclosure guaranteed. All inquiries handled directly by senior engineering architects.
                   </p>
                 </form>
               )}
             </div>
           </div>
 
-          {/* Contact Details & SLA Info Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-xl bg-card space-y-6">
-              <h3 className="text-base font-bold text-foreground">
-                Direct Engineering Channels
-              </h3>
+          {/* Right Column: Studio Specs & Visual Specimens */}
+          <div className="lg:col-span-5 space-y-6 animate-entrance stagger-2">
+            <div className="p-8 bg-[#101010] rounded-[2px] space-y-6">
+              <h2 className="font-display font-bold text-xl sm:text-2xl text-[#F4F1EA]">
+                Studio Intake Specifications
+              </h2>
 
               <div className="space-y-4">
-                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
-                  <Mail className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="text-[13px] font-semibold text-slate-400">Direct Email Inquiries</p>
-                    <a
-                      href="mailto:contact@colver.in"
-                      className="text-base font-bold text-foreground hover:text-blue-400 transition-colors mt-0.5 inline-block"
-                    >
-                      contact@colver.in
-                    </a>
-                    <p className="text-[13px] text-slate-400 mt-0.5">Response SLA: Within 1 business day</p>
-                  </div>
+                <div className="p-5 bg-[#141414] rounded-[2px] space-y-1">
+                  <span className="text-sm font-semibold text-[#8E929A] block">Direct Inquiries</span>
+                  <a
+                    href="mailto:contact@colver.in"
+                    className="font-display font-bold text-lg text-[#F4F1EA] hover:text-[#C8FF00] transition-colors block"
+                  >
+                    contact@colver.in
+                  </a>
+                  <span className="text-sm text-[#C8FF00] block mt-1">Guaranteed SLA: Response within 24 hours</span>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
-                  <MapPin className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="text-[13px] font-semibold text-slate-400">Engineering Studio</p>
-                    <p className="text-base font-bold text-foreground mt-0.5">Bengaluru, Karnataka, India</p>
-                    <p className="text-[13px] text-slate-400 mt-0.5">Serving clients across India and globally</p>
+                <div className="p-5 bg-[#141414] rounded-[2px] space-y-1">
+                  <span className="text-sm font-semibold text-[#8E929A] block">Studio Location</span>
+                  <div className="font-display font-bold text-lg text-[#F4F1EA]">
+                    Bengaluru, Karnataka, India
                   </div>
+                  <span className="text-sm text-[#BFC3C9] block">Indiranagar 560038 · 12.9716° N, 77.5946° E</span>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
-                  <Clock className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="text-[13px] font-semibold text-slate-400">Engineering Office Hours</p>
-                    <p className="text-base font-bold text-foreground mt-0.5">Monday – Friday: 9:30 AM – 6:30 PM IST</p>
-                    <p className="text-[13px] text-slate-400 mt-0.5">Emergency SLA support for production deployments</p>
+                <div className="p-5 bg-[#141414] rounded-[2px] space-y-1">
+                  <span className="text-sm font-semibold text-[#8E929A] block">Operating Cadence</span>
+                  <div className="font-display font-bold text-lg text-[#F4F1EA]">
+                    Monday – Friday: 09:30 – 18:30 IST
                   </div>
+                  <span className="text-sm text-[#BFC3C9] block">Emergency 24/7 SLA for mission-critical systems</span>
                 </div>
               </div>
             </div>
 
-            {/* Related links */}
-            <div className="p-6 sm:p-8 rounded-xl bg-surface space-y-3">
-              <div className="flex items-center gap-2 text-[13px] font-semibold text-blue-400">
-                <FileCheck className="w-4 h-4" />
-                <span>Explore Capabilities & Work</span>
+            {/* Visual Interface Fragment Specimen */}
+            <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#101010]">
+              <Image
+                src="/projects/pipeline.jpg"
+                alt="Automated CI/CD Delivery Pipeline Specimen"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/90 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 px-3 py-1 bg-[#080808] rounded-[2px] text-sm font-mono text-[#C8FF00]">
+                TELEMETRY // VERIFIED DEPLOYMENT MESH
               </div>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Want to learn more about the kinds of platforms we engineer and our technical specifications?
+            </div>
+
+            <div className="p-6 bg-[#101010] rounded-[2px] space-y-2">
+              <span className="text-sm font-semibold text-[#C8FF00] block">Prefer to Review Code First?</span>
+              <p className="text-base text-[#BFC3C9] leading-relaxed">
+                Inspect our live production releases, latency benchmarks, and architectural tokens.
               </p>
-              <div className="pt-1 flex items-center gap-4">
-                <Link href="/services" className="text-sm font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
-                  <span>Explore Services</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-                <span className="text-slate-500">|</span>
-                <Link href="/showcase" className="text-sm font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
-                  <span>View Case Studies</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+              <div className="pt-2">
+                <Link
+                  href="/showcase"
+                  className="inline-flex items-center gap-2 text-base font-semibold text-[#F4F1EA] hover:text-[#C8FF00] transition-colors"
+                >
+                  <span>Explore Showcase & Case Studies</span>
+                  <ArrowRight className="w-4 h-4 text-[#C8FF00]" />
                 </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Production Footprint Specimen Row */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 animate-entrance stagger-3">
+        <div className="space-y-2">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#F4F1EA] tracking-tight">
+            Production Footprint.
+          </h2>
+          <p className="text-base text-[#BFC3C9]">
+            Architectures engineered and actively supported by Colver across South Asia edge nodes.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {productionSpecimens.map((spec) => (
+            <div key={spec.name} className="space-y-3 bg-[#101010] p-4 rounded-[2px]">
+              <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#0a0a0a]">
+                <Image
+                  src={spec.image}
+                  alt={spec.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+                <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#080808] rounded-[2px] text-xs font-mono text-[#C8FF00]">
+                  {spec.metric}
+                </div>
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-base text-[#F4F1EA]">{spec.name}</h3>
+                <p className="text-sm text-[#8E929A] mt-0.5">{spec.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
