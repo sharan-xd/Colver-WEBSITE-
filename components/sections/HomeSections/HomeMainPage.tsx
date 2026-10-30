@@ -7,6 +7,7 @@ import HomeSelectedWork from '@/components/sections/HomeSections/HomeSelectedWor
 import HomeCapabilities from '@/components/sections/HomeSections/HomeCapabilities'
 import HomeProcessSection from '@/components/sections/HomeSections/HomeProcessSection'
 import HomeWCUSection from '@/components/sections/HomeSections/HomeWCUSection'
+import HomeFAQSection from '@/components/sections/HomeSections/HomeFAQSection'
 import HomeCTASection from '@/components/sections/HomeSections/HomeCTASection'
 
 export default function HomePage() {
@@ -30,7 +31,10 @@ export default function HomePage() {
       {/* 6. Why Colver: Comparative Ledger & Engineering Standard */}
       <HomeWCUSection />
 
-      {/* 7. Visually Striking Closing CTA */}
+      {/* 7. AEO / GEO Architecture Q&A Section */}
+      <HomeFAQSection />
+
+      {/* 8. Visually Striking Closing CTA */}
       <HomeCTASection />
     </div>
   )

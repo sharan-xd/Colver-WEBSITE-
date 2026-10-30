@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "../styles/globals.css";
 import Providers from "./providers";
-import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
+import { OrganizationJsonLd, WebSiteJsonLd, ProfessionalServiceJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ 
@@ -85,6 +85,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <OrganizationJsonLd />
         <WebSiteJsonLd />
+        <ProfessionalServiceJsonLd />
+        <FaqJsonLd />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans relative bg-[#080808] text-[#F4F1EA] antialiased selection:bg-[#C8FF00] selection:text-black min-h-screen`}>
         <Providers>{children}</Providers>

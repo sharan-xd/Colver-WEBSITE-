@@ -1,27 +1,43 @@
-# Colver Systems
+# COLVER Systems
+> Architecture for Real-Time Operations. Bespoke business software, high-concurrency web systems, digital commerce rails, and deterministic AI extraction workflows.
 
-> The Future of Digital Creation. High-performance digital platforms, intelligent workflows, and modern web engineering.
+## Overview
+Colver is an independent software architecture and product engineering studio based in Bengaluru, Karnataka, India. We partner with Indian enterprises, SMEs, and high-growth digital brands to design, engineer, and deploy high-performance custom software systems that replace rigid off-the-shelf SaaS packages and fragmented spreadsheets.
 
-Colver (https://colver.in) engineers custom software systems, scalable web applications, modern digital commerce platforms, multi-godown operations platforms, and AI-driven workflow automations.
+- Location: Indiranagar, Bengaluru, Karnataka 560038, India
+- Coordinates: 12.9716° N, 77.5946° E
+- Founded: 2024
+- Primary Website: https://colver.in
+- Inquiries & Support: contact@colver.in
 
-## Core Services
+## Core Engineering Capabilities
+1. Custom Business Systems & ERPs: Tailored multi-warehouse inventory ledgers, pessimistic stock reservation, role-based approval workflows, and immutable audit logs.
+2. High-Concurrency Web Platforms: Server-rendered Next.js 16 architectures, sub-100ms interaction latency, real-time WebSocket state synchronization, and zero Cumulative Layout Shift (CLS).
+3. E-Commerce & Transaction Rails: Unified Indian payment gateway integrations (Razorpay UPI, Cashfree, PayU, Stripe), automated GST-compliant tax invoices, and idempotent payment reconciliation.
+4. AI Document Intelligence & Automation: Deterministic OCR and cognitive parsing converting unstructured supplier invoices, PDF bills, and manifests into validated relational database records.
+5. Enterprise API & Gateway Mesh: High-throughput typed REST and GraphQL gateways with token-bucket rate limiting and logistics carrier integrations (Shiprocket, Delhivery).
 
-- [Custom Software Development](https://colver.in/services): Enterprise backend APIs, microservices, cloud edge architectures, and scalable full-stack applications.
-- [Web Application Development](https://colver.in/services): Sub-second load times, Next.js App Router, React 18/19, TypeScript, and fluid GSAP/Framer micro-interactions.
-- [E-Commerce & Digital Commerce](https://colver.in/services): Custom commerce engines, Indian payment rails (UPI, Razorpay, PayU), multi-currency checkout, and real-time stock sync.
-- [Inventory & Operations Management](https://colver.in/services): Multi-warehouse inventory tracking, automated document data extraction pipelines, and ERP workflows.
-- [AI & Workflow Automation](https://colver.in/services): Context-aware LLM agents, OCR structured document extraction, and internal operational tooling.
+## Architectural Guarantees & Philosophy
+- 100% Intellectual Property Ownership: Clients receive full copyright, unminified source code, Docker configs, and database migration scripts upon project completion. Zero proprietary lock-in and zero monthly seat taxes.
+- Immutability & Functional Integrity: Unidirectional data flow, pure transformations across boundaries, and deterministic state transitions.
+- Security at the Boundary: Strict Zod validation schemas, Content Security Policy (CSP) headers, least-privilege database roles, and zero hardcoded secrets.
+- Performance: Sub-second edge transitions, sub-15ms database queries, and sub-100ms INP.
 
-## Key Resources & Documentation
+## Deployed Flagship Production Systems
+- Nexus Workflow Engine: Multi-warehouse operational canvas supporting 14 distribution hubs with pessimistic locking and sub-40ms edge synchronization.
+- Apex Transaction Core: High-throughput checkout engine handling 40,000 requests/minute with automated GST tax invoicing and sub-180ms UPI authorization.
+- Pulse Observability Portal: Enterprise telemetry streaming ClickHouse metrics and Core Web Vitals across South Asia edge nodes.
+- Aura Architectural Tokens: Universal design system with accessible ARIA state machines and zero runtime bundle overhead.
 
-- [Documentation](https://colver.in/docs): Technical architecture, API integration contracts, and system capabilities.
-- [Guides](https://colver.in/guides): Step-by-step implementation tutorials, keyboard shortcut palette, and performance patterns.
-- [Product Showcase](https://colver.in/showcase): Interactive gallery of platforms and digital products engineered by Colver.
-- [Engineering Blog](https://colver.in/blog): Research and technical insights on Core Web Vitals, sub-50ms latency, and optimistic UI updates.
-- [Security & Trust Center](https://colver.in/security): Hardened HTTP edge security, Content Security Policy, HSTS preload, and vulnerability disclosure.
-- [Contact Engineering](https://colver.in/contact): Submit project requirements for engineering review. Email: info@colver.in.
+## Pricing & Sprint Models
+- 2-Week Architecture Blueprint Sprint: Full operational audit, database schema design, and interactive UI contract prototypes.
+- 6-Week Release Core: Full-stack production MVP shipped on private staging with automated CI/CD and security hardening.
+- Dedicated Engineering Retainer: Continuous high-velocity feature iterations, database query tuning, and 24/7 SLA uptime monitoring.
 
-## Technical Specifications
-- Base Framework: Next.js 16 (App Router), React 18, TypeScript 5, Tailwind CSS
-- Graphics & Interaction: Three.js, React Three Fiber, GSAP ScrollTrigger, Framer Motion
-- Edge Security: Strict Content-Security-Policy, HSTS (max-age 31536000), Permissions-Policy
+## Documentation & Links
+- Services: https://colver.in/services
+- Production Showcase: https://colver.in/showcase
+- Sprint Rates: https://colver.in/pricing
+- Bengaluru Studio Manifesto: https://colver.in/about
+- Architecture Documentation: https://colver.in/docs
+- Contact & Scoping: https://colver.in/contact
