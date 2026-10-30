@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from '@/components/ui/Icons'
+import MotionReveal, { StaggerContainer, StaggerItem } from '@/components/ui/MotionReveal'
 
 const capabilities = [
   {
@@ -52,8 +53,8 @@ export default function HomeWWDSection() {
   return (
     <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Editorial Section Header: Clean headline without artificial eyebrow */}
-        <div className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        {/* Editorial Section Header with Gentle Scroll Entrance */}
+        <MotionReveal variant="fadeUp" className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-xl">
             <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Software Built for Scale.
@@ -62,47 +63,48 @@ export default function HomeWWDSection() {
           <p className="text-base sm:text-lg text-[#BFC3C9] max-w-md leading-relaxed">
             We reject bloated off-the-shelf templates. Every system is purpose-built to solve your specific operational bottlenecks.
           </p>
-        </div>
+        </MotionReveal>
 
         {/* Editorial Layout: Subtle Tone Separation */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-8 items-start">
-          {/* Left Column: Service Index */}
-          <div className="lg:col-span-6 space-y-4">
+          {/* Left Column: Service Index with Staggered Entrance */}
+          <StaggerContainer staggerDelay={0.07} className="lg:col-span-6 space-y-4">
             {capabilities.map((item, idx) => {
               const isActive = selectedIdx === idx
               return (
-                <button
-                  key={item.title}
-                  type="button"
-                  onClick={() => setSelectedIdx(idx)}
-                  className={`
-                    w-full text-left p-6 transition-all duration-150 rounded-[2px] cursor-pointer block animate-entrance
-                    ${
-                      isActive
-                        ? 'bg-[#181818] text-[#F4F1EA]'
-                        : 'bg-transparent text-[#BFC3C9] hover:bg-[#141414] hover:text-[#F4F1EA]'
-                    }
-                  `}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#F4F1EA]">
-                      {item.title}
-                    </h3>
-                    <span className="text-sm sm:text-base text-[#C8FF00] font-medium shrink-0">
-                      {item.metric}
-                    </span>
-                  </div>
+                <StaggerItem key={item.title}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedIdx(idx)}
+                    className={`
+                      w-full text-left p-6 transition-all duration-200 rounded-[2px] cursor-pointer block
+                      ${
+                        isActive
+                          ? 'bg-[#181818] text-[#F4F1EA] border-l-2 border-[#C8FF00]'
+                          : 'bg-transparent text-[#BFC3C9] hover:bg-[#141414] hover:text-[#F4F1EA]'
+                      }
+                    `}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#F4F1EA]">
+                        {item.title}
+                      </h3>
+                      <span className="text-sm sm:text-base text-[#C8FF00] font-medium shrink-0">
+                        {item.metric}
+                      </span>
+                    </div>
 
-                  <p className="mt-3 text-base text-[#BFC3C9] leading-relaxed">
-                    {item.headline}
-                  </p>
-                </button>
+                    <p className="mt-3 text-base text-[#BFC3C9] leading-relaxed">
+                      {item.headline}
+                    </p>
+                  </button>
+                </StaggerItem>
               )
             })}
-          </div>
+          </StaggerContainer>
 
           {/* Right Column: Architectural Specification View */}
-          <div className="lg:col-span-6 sticky top-28">
+          <MotionReveal variant="fadeUp" delay={0.15} className="lg:col-span-6 sticky top-28">
             <div className="p-8 bg-[#141414] rounded-[2px] space-y-6">
               <div className="flex items-center justify-between pb-4 text-base">
                 <span className="text-[#F4F1EA] font-bold">
@@ -170,7 +172,7 @@ export default function HomeWWDSection() {
                 </Link>
               </div>
             </div>
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </section>

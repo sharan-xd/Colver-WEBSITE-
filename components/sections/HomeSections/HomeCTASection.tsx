@@ -3,12 +3,13 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowRight, Mail } from '@/components/ui/Icons'
+import MotionReveal from '@/components/ui/MotionReveal'
 
 export default function HomeCTASection() {
   return (
     <section className="py-24 relative bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#121212] p-8 sm:p-14 lg:p-16 rounded-[2px] space-y-8">
+        <MotionReveal variant="scaleUp" duration={0.55} className="bg-[#121212] p-8 sm:p-14 lg:p-16 rounded-[2px] space-y-8">
           {/* Headline: Under 2 lines at all viewports */}
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-[#F4F1EA] leading-[1.08] max-w-3xl text-balance">
             Ready to Architect Your System?
@@ -51,7 +52,7 @@ export default function HomeCTASection() {
               Bengaluru Studio · Indiranagar 560038
             </div>
           </div>
-        </div>
+        </MotionReveal>
       </div>
     </section>
   )

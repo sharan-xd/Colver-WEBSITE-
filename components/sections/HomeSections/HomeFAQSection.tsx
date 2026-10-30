@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from '@/components/ui/Icons'
+import MotionReveal, { StaggerContainer, StaggerItem } from '@/components/ui/MotionReveal'
 
 const faqs = [
   {
@@ -48,25 +49,25 @@ export default function HomeFAQSection() {
     <section className="py-24 relative bg-[#080808]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
-          <div className="space-y-2 max-w-xl animate-entrance">
+        <MotionReveal variant="fadeUp" className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+          <div className="space-y-2 max-w-xl">
             <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Architectural Inquiries.
             </h2>
           </div>
-          <p className="text-base text-[#BFC3C9] max-w-md leading-relaxed animate-entrance stagger-1">
+          <p className="text-base text-[#BFC3C9] max-w-md leading-relaxed">
             Direct, factual specifications regarding our engineering stack, delivery timelines, pricing models, and intellectual property ownership.
           </p>
-        </div>
+        </MotionReveal>
 
-        {/* Editorial Q&A Stream (Open editorial layout, zero card grids) */}
-        <div className="space-y-4">
+        {/* Editorial Q&A Stream */}
+        <StaggerContainer staggerDelay={0.06} className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
-              <div
+              <StaggerItem
                 key={faq.question}
-                className="p-6 bg-[#0c0c0c] hover:bg-[#111111] transition-colors rounded-[2px] animate-entrance"
+                className="p-6 bg-[#0c0c0c] hover:bg-[#111111] transition-colors rounded-[2px]"
               >
                 <button
                   type="button"
@@ -89,10 +90,10 @@ export default function HomeFAQSection() {
                     </p>
                   </div>
                 )}
-              </div>
+              </StaggerItem>
             )
           })}
-        </div>
+        </StaggerContainer>
 
         {/* Supporting action trigger */}
         <div className="pt-4 flex items-center justify-between flex-wrap gap-4 text-sm text-[#8E929A]">

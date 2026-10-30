@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowRight } from '@/components/ui/Icons'
+import MotionReveal, { StaggerContainer, StaggerItem } from '@/components/ui/MotionReveal'
 
 const comparisons = [
   {
@@ -32,7 +33,7 @@ export default function HomeWCUSection() {
     <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <MotionReveal variant="fadeUp" className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-xl">
             <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Engineered for Longevity.
@@ -41,7 +42,7 @@ export default function HomeWCUSection() {
           <p className="text-base text-[#BFC3C9] max-w-md leading-relaxed">
             We build software designed to scale with your business—technically, operationally, and commercially.
           </p>
-        </div>
+        </MotionReveal>
 
         {/* Stark Editorial Comparison Table */}
         <div className="space-y-3 pt-4">
@@ -52,12 +53,12 @@ export default function HomeWCUSection() {
             <div className="md:col-span-5 mt-2 md:mt-0 text-[#C8FF00]">Colver Production Engineering</div>
           </div>
 
-          {/* Table Rows */}
-          <div className="space-y-1">
+          {/* Table Rows with Staggered Entrance */}
+          <StaggerContainer staggerDelay={0.06} className="space-y-1">
             {comparisons.map((row, idx) => (
-              <div
+              <StaggerItem
                 key={row.criterion}
-                className={`grid grid-cols-1 md:grid-cols-12 p-6 rounded-[2px] gap-3 sm:gap-4 items-start hover:bg-[#141414] transition-all duration-200 animate-entrance ${
+                className={`grid grid-cols-1 md:grid-cols-12 p-6 rounded-[2px] gap-3 sm:gap-4 items-start hover:bg-[#141414] transition-all duration-200 ${
                   idx % 2 === 0 ? 'bg-[#0f0f0f]' : 'bg-transparent'
                 }`}
               >
@@ -70,13 +71,13 @@ export default function HomeWCUSection() {
                 <div className="md:col-span-5 text-base text-[#F4F1EA] font-medium leading-relaxed">
                   {row.colver}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
 
         {/* Studio Manifesto Callout */}
-        <div className="mt-12 p-8 bg-[#141414] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <MotionReveal variant="scaleUp" delay={0.15} className="mt-12 p-8 bg-[#141414] rounded-[2px] flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <p className="font-display font-bold text-xl sm:text-2xl text-[#F4F1EA] tracking-tight">
               We never ship code we would not run our own business on.
@@ -94,7 +95,7 @@ export default function HomeWCUSection() {
               <ArrowRight className="w-4 h-4" />
             </button>
           </Link>
-        </div>
+        </MotionReveal>
       </div>
     </section>
   )

@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, ArrowRight } from '@/components/ui/Icons'
+import MotionReveal, { StaggerContainer, StaggerItem } from '@/components/ui/MotionReveal'
 
 const projects = [
   {
@@ -57,8 +58,8 @@ export default function HomeSelectedWork() {
   return (
     <section className="py-24 relative bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        {/* Section Header with Scroll Entrance */}
+        <MotionReveal variant="fadeUp" className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Selected Systems.
@@ -71,12 +72,12 @@ export default function HomeSelectedWork() {
             <span>View all production releases</span>
             <ArrowRight className="w-4 h-4 text-[#C8FF00]" />
           </Link>
-        </div>
+        </MotionReveal>
 
-        {/* Editorial Project Stream: 4 Real Raster Specimen Layouts */}
+        {/* Editorial Project Stream: 4 Real Raster Specimen Layouts with Assembly Motion */}
         <div className="space-y-16 pt-4">
           {/* Project 1: Nexus (Large Feature Split) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#101010] p-6 sm:p-10 rounded-[2px] transition-transform duration-300 hover:translate-y-[-2px] animate-entrance">
+          <MotionReveal variant="scaleUp" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#101010] p-6 sm:p-10 rounded-[2px] transition-transform duration-300 hover:translate-y-[-2px]">
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-2">
                 <h3 className="font-display font-bold text-2xl sm:text-4xl text-[#F4F1EA] tracking-tight">
@@ -133,12 +134,12 @@ export default function HomeSelectedWork() {
                 />
               </div>
             </div>
-          </div>
+          </MotionReveal>
 
-          {/* Projects 2 & 3: Side-by-Side Dual Feature (Apex & Pulse) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Projects 2 & 3: Side-by-Side Dual Feature (Apex & Pulse) with Staggered Scroll Entrance */}
+          <StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Project 2: Apex */}
-            <div className="bg-[#101010] p-6 sm:p-8 rounded-[2px] space-y-6 flex flex-col justify-between transition-transform duration-300 hover:translate-y-[-2px] animate-entrance">
+            <StaggerItem className="bg-[#101010] p-6 sm:p-8 rounded-[2px] space-y-6 flex flex-col justify-between transition-transform duration-300 hover:translate-y-[-2px]">
               <div className="space-y-4">
                 <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#0d0d0d]">
                   <img
@@ -174,10 +175,10 @@ export default function HomeSelectedWork() {
                   ))}
                 </div>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Project 3: Pulse */}
-            <div className="bg-[#101010] p-6 sm:p-8 rounded-[2px] space-y-6 flex flex-col justify-between transition-transform duration-300 hover:translate-y-[-2px] animate-entrance">
+            <StaggerItem className="bg-[#101010] p-6 sm:p-8 rounded-[2px] space-y-6 flex flex-col justify-between transition-transform duration-300 hover:translate-y-[-2px]">
               <div className="space-y-4">
                 <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#0d0d0d]">
                   <img
@@ -213,11 +214,11 @@ export default function HomeSelectedWork() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
 
-          {/* Project 4: Aura Tokens (Full Width Feature) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#101010] p-6 sm:p-10 rounded-[2px] transition-transform duration-300 hover:translate-y-[-2px] animate-entrance">
+          {/* Project 4: Aura Tokens (Full Width Feature with Subtle Scale Entrance) */}
+          <MotionReveal variant="scaleUp" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#101010] p-6 sm:p-10 rounded-[2px] transition-transform duration-300 hover:translate-y-[-2px]">
             <div className="lg:col-span-7">
               <div className="relative aspect-[16/10] w-full rounded-[2px] overflow-hidden bg-[#0d0d0d]">
                 <img
@@ -262,7 +263,7 @@ export default function HomeSelectedWork() {
                 ))}
               </div>
             </div>
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </section>

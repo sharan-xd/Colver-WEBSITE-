@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from '@/components/ui/Icons'
+import MotionReveal, { StaggerContainer, StaggerItem } from '@/components/ui/MotionReveal'
 
 const capabilitiesList = [
   {
@@ -50,8 +51,8 @@ export default function HomeCapabilities() {
   return (
     <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        {/* Section Header with Subtle Scroll Entrance */}
+        <MotionReveal variant="fadeUp" className="pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Architecture & Depth.
@@ -60,16 +61,16 @@ export default function HomeCapabilities() {
           <p className="text-base sm:text-lg text-[#BFC3C9] max-w-md leading-relaxed">
             Expand our technical capabilities to inspect our architectural practices, runtime targets, and engineering guarantees.
           </p>
-        </div>
+        </MotionReveal>
 
-        {/* Typographic Swiss Matrix (Unboxed open layout, zero repetitive cards) */}
-        <div className="space-y-4 pt-4">
+        {/* Typographic Swiss Matrix with Staggered Scroll Assembly */}
+        <StaggerContainer staggerDelay={0.08} className="space-y-4 pt-4">
           {capabilitiesList.map((item, idx) => {
             const isExpanded = expandedIndex === idx
             return (
-              <div
+              <StaggerItem
                 key={item.title}
-                className={`transition-all duration-200 p-6 sm:p-8 rounded-[2px] animate-entrance ${
+                className={`transition-all duration-200 p-6 sm:p-8 rounded-[2px] ${
                   isExpanded ? 'bg-[#141414]' : 'bg-transparent hover:bg-[#101010]'
                 }`}
               >
@@ -139,10 +140,10 @@ export default function HomeCapabilities() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </StaggerItem>
             )
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   )
