@@ -1,0 +1,27 @@
+# Colver Systems
+
+> The Future of Digital Creation. High-performance digital platforms, intelligent workflows, and modern web engineering.
+
+Colver (https://colver.in) engineers custom software systems, scalable web applications, modern digital commerce platforms, multi-godown operations platforms, and AI-driven workflow automations.
+
+## Core Services
+
+- [Custom Software Development](https://colver.in/services): Enterprise backend APIs, microservices, cloud edge architectures, and scalable full-stack applications.
+- [Web Application Development](https://colver.in/services): Sub-second load times, Next.js App Router, React 18/19, TypeScript, and fluid GSAP/Framer micro-interactions.
+- [E-Commerce & Digital Commerce](https://colver.in/services): Custom commerce engines, Indian payment rails (UPI, Razorpay, PayU), multi-currency checkout, and real-time stock sync.
+- [Inventory & Operations Management](https://colver.in/services): Multi-warehouse inventory tracking, automated document data extraction pipelines, and ERP workflows.
+- [AI & Workflow Automation](https://colver.in/services): Context-aware LLM agents, OCR structured document extraction, and internal operational tooling.
+
+## Key Resources & Documentation
+
+- [Documentation](https://colver.in/docs): Technical architecture, API integration contracts, and system capabilities.
+- [Guides](https://colver.in/guides): Step-by-step implementation tutorials, keyboard shortcut palette, and performance patterns.
+- [Product Showcase](https://colver.in/showcase): Interactive gallery of platforms and digital products engineered by Colver.
+- [Engineering Blog](https://colver.in/blog): Research and technical insights on Core Web Vitals, sub-50ms latency, and optimistic UI updates.
+- [Security & Trust Center](https://colver.in/security): Hardened HTTP edge security, Content Security Policy, HSTS preload, and vulnerability disclosure.
+- [Contact Engineering](https://colver.in/contact): Submit project requirements for engineering review. Email: info@colver.in.
+
+## Technical Specifications
+- Base Framework: Next.js 16 (App Router), React 18, TypeScript 5, Tailwind CSS
+- Graphics & Interaction: Three.js, React Three Fiber, GSAP ScrollTrigger, Framer Motion
+- Edge Security: Strict Content-Security-Policy, HSTS (max-age 31536000), Permissions-Policy

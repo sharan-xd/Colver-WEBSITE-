@@ -19,11 +19,48 @@ import {
 } from '@/components/ui/Icons'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
+import { ServicesJsonLd, BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Software Services & Engineering Capabilities | Colver',
   description:
     'Custom software development, web applications, e-commerce platforms, inventory and operations management systems, and AI workflows tailored to business needs.',
+  alternates: {
+    canonical: 'https://colver.in/services',
+  },
+  openGraph: {
+    title: 'Software Engineering Services & Capabilities | Colver',
+    description:
+      'Custom software development, high-performance web apps, e-commerce platforms, operations systems, and AI workflows.',
+    url: 'https://colver.in/services',
+    siteName: 'Colver',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Colver Software Engineering Services',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Software Engineering Services & Capabilities | Colver',
+    description:
+      'Custom software, web applications, e-commerce platforms, and AI workflows engineered for business scale.',
+    images: ['/og-image.jpg'],
+  },
+  keywords: [
+    'custom software development',
+    'web application engineering',
+    'ecommerce development India',
+    'operations management software',
+    'AI workflow automation',
+    'Next.js development',
+    'enterprise web architecture',
+  ],
 }
 
 interface ServiceOffering {
@@ -262,209 +299,179 @@ const approachSteps = [
 export default function ServicesPage() {
   return (
     <div className="py-6 sm:py-10 space-y-16 md:space-y-24">
+      <ServicesJsonLd />
+      <BreadcrumbsJsonLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Services', url: '/services' },
+        ]}
+      />
       {/* Hero Section */}
-      <section className="text-center max-w-4xl mx-auto px-4">
-        <Badge variant="info" dot className="mb-4">
-          Tailored Engineering Services
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-          Software engineered around
-          <span className="text-gradient block mt-1">your business requirements</span>
+      <section className="text-center max-w-4xl mx-auto px-4 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-5 leading-tight text-foreground">
+          Software Systems Engineered Around Your Operations
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed max-w-2xl mx-auto">
-          From custom business management platforms to high-conversion web applications,
-          we build reliable, production-ready software that solves concrete business challenges.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          From custom business management platforms to high-concurrency web applications,
+          we engineer reliable, production-ready software solving concrete operational bottlenecks.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           <Link href="/contact">
             <Button size="lg" variant="primary" iconRight={<ArrowRight className="w-4 h-4" />}>
-              Discuss Your Project
+              Discuss Your Architecture
             </Button>
           </Link>
           <Link href="/showcase">
-            <Button size="lg" variant="secondary" className="glass-panel">
-              Explore Our Work
+            <Button size="lg" variant="secondary">
+              Explore Case Studies
             </Button>
           </Link>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            What We Build
+      {/* Services index */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mb-12">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
+            Capabilities & Core Offerings
           </h2>
-          <p className="text-sm sm:text-base text-muted mt-2">
-            Every solution is custom-engineered to match your operational workflows, scale with your growth, and integrate with your existing tools.
+          <p className="text-base text-slate-300 mt-3 leading-relaxed">
+            Every solution is custom-engineered to match your operational workflows, scale with your growth, and integrate with your existing infrastructure.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-8">
           {serviceOfferings.map((service) => {
-            const Icon = service.icon
             return (
-              <div
+              <article
                 key={service.id}
                 id={service.id}
-                className="
-                  p-6 sm:p-8 rounded-3xl glass-card border border-border/70
-                  hover:border-primary/40 transition-all duration-200 flex flex-col justify-between
-                "
+                className="scroll-mt-28 p-6 sm:p-10 rounded-xl bg-card grid lg:grid-cols-12 gap-8 lg:gap-12 items-start"
               >
-                <div>
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between gap-3 mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted px-3 py-1 rounded-full bg-surface border border-border">
-                      {service.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-2">
+                <div className="lg:col-span-5 space-y-4">
+                  <span className="text-[13px] font-semibold text-blue-400 block">
+                    {service.category}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                     {service.title}
                   </h3>
-                  <p className="text-sm font-medium text-primary mb-4">
+                  <p className="text-base text-slate-200 font-medium">
                     {service.headline}
                   </p>
-                  <p className="text-xs sm:text-sm text-muted leading-relaxed mb-6">
+                  <p className="text-sm text-slate-400 leading-relaxed">
                     {service.description}
                   </p>
-
-                  {/* Problems Solved */}
-                  <div className="mb-6 space-y-2">
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
-                      Problems This Solves:
-                    </h4>
-                    <ul className="space-y-1.5">
-                      {service.problemsSolved.map((prob, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-muted">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                          <span>{prob}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Who Benefits */}
-                  <div className="mb-6">
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                      Designed For:
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {service.whoBenefits.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-surface/80 border border-border/60 text-muted"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="mb-6">
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                      Core Stack:
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {service.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface/50 border border-border text-foreground/80"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="pt-2">
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(service.title)}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                      <span>Consult on this architecture</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
 
-                {/* Card CTA */}
-                <div className="pt-4 border-t border-border/50 flex items-center justify-between">
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
-                  >
-                    <span>Inquire About {service.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                <div className="lg:col-span-7 space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="p-5 rounded-lg bg-surface space-y-3">
+                      <h4 className="text-[13px] font-semibold text-slate-300 uppercase tracking-wide">
+                        Problems Solved
+                      </h4>
+                      <ul className="space-y-2 text-sm text-slate-300">
+                        {service.problemsSolved.map((problem) => (
+                          <li key={problem} className="flex items-start gap-2 leading-relaxed">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 shrink-0" />
+                            <span>{problem}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="p-5 rounded-lg bg-surface space-y-3">
+                      <h4 className="text-[13px] font-semibold text-slate-300 uppercase tracking-wide">
+                        Key Deliverables
+                      </h4>
+                      <ul className="space-y-2 text-sm text-slate-300">
+                        {service.keyDeliverables.map((deliverable) => (
+                          <li key={deliverable} className="flex items-start gap-2 leading-relaxed">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                            <span className="font-medium text-foreground">{deliverable}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-lg bg-surface grid sm:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-[13px] text-slate-400 block font-medium">Target Stakeholders</span>
+                      <p className="text-sm text-slate-200 mt-1 font-medium">{service.whoBenefits.join(' · ')}</p>
+                    </div>
+                    <div>
+                      <span className="text-[13px] text-slate-400 block font-medium">Core Blueprint Stack</span>
+                      <p className="text-sm text-slate-200 mt-1 font-medium">{service.technologies.join(' · ')}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </article>
             )
           })}
         </div>
       </section>
 
       {/* How We Approach Projects */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <Badge variant="purple" dot className="mb-3">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-12">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
             Structured Delivery Cadence
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            How We Approach Projects
           </h2>
-          <p className="text-sm sm:text-base text-muted mt-2">
+          <p className="text-base text-slate-300 mt-2">
             Every business project is delivered through a transparent, disciplined engineering process.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {approachSteps.map((step) => (
-            <div
-              key={step.number}
-              className="p-5 sm:p-6 rounded-2xl glass-panel border border-border flex flex-col justify-between h-full"
-            >
-              <div>
-                <span className="text-xs font-mono font-bold text-primary px-2.5 py-1 rounded-lg bg-primary/10 border border-primary/20 inline-block mb-4">
-                  STAGE {step.number}
+        <div className="rounded-xl bg-card p-6 sm:p-10 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {approachSteps.map((step, idx) => (
+              <div key={step.title} className="p-4 rounded-lg bg-surface space-y-2">
+                <span className="text-[13px] font-semibold text-blue-400 block">
+                  Milestone {idx + 1}
                 </span>
-                <h3 className="text-base font-bold text-foreground mb-2 leading-snug">
+                <h3 className="text-base font-bold text-foreground">
                   {step.title}
                 </h3>
-                <p className="text-xs text-muted leading-relaxed">
+                <p className="text-sm text-slate-400 leading-relaxed">
                   {step.description}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Prominent Project Inquiry Callout */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-border shadow-2xl relative overflow-hidden bg-gradient-to-br from-primary/10 via-surface/80 to-surface/40 text-center">
-          <div className="max-w-2xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-semibold text-primary">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Project Consultation</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+      {/* Project inquiry */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-12 rounded-xl bg-card flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="max-w-2xl space-y-3">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
               Have a project in mind? Let&apos;s discuss your requirements.
             </h2>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
+            <p className="text-base text-slate-300 leading-relaxed">
               Whether you are modernizing an existing legacy platform, automating daily operational workflows, or building a new digital product from scratch, our senior software architects are ready to review your requirements.
             </p>
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button size="lg" variant="primary" className="w-full sm:w-auto shadow-lg shadow-primary/20" iconRight={<ArrowRight className="w-4 h-4" />}>
-                  Discuss Your Project
-                </Button>
-              </Link>
-              <Link href="/showcase" className="w-full sm:w-auto">
-                <Button size="lg" variant="secondary" className="w-full sm:w-auto glass-panel">
-                  Review Case Studies
-                </Button>
-              </Link>
-            </div>
-            <p className="text-xs text-muted pt-2">
-              Fast response • Confidential consultation • Detailed technical proposal
-            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
+            <Link href="/contact">
+              <Button size="lg" variant="primary" iconRight={<ArrowRight className="w-4 h-4" />}>
+                Discuss Your Project
+              </Button>
+            </Link>
+            <Link href="/showcase">
+              <Button size="lg" variant="secondary">
+                Review Case Studies
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,30 +1,54 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FileCheck, ShieldAlert, Award, ArrowRight } from 'lucide-react'
 import Badge from '@/components/ui/Badge'
+import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
-export const metadata = {
-  title: 'Terms of Service | Colver',
-  description: 'Terms of service and commercial software delivery conditions for Colver',
+export const metadata: Metadata = {
+  title: 'Terms of Service & Delivery Conditions | Colver',
+  description:
+    'Commercial terms, software licensing, client warranties, and engagement terms for Colver Systems.',
+  alternates: {
+    canonical: 'https://colver.in/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service & Delivery Conditions | Colver',
+    description: 'Commercial software delivery agreements and engagement terms for Colver.',
+    url: 'https://colver.in/terms',
+    siteName: 'Colver',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Colver Terms of Service' }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service & Delivery Conditions | Colver',
+    description: 'Commercial software delivery agreements and engagement terms for Colver.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export default function TermsPage() {
   return (
     <div className="py-6 sm:py-10 space-y-12 max-w-4xl mx-auto px-4">
+      <BreadcrumbsJsonLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Terms of Service', url: '/terms' },
+        ]}
+      />
       {/* Header */}
-      <div className="text-center space-y-4">
-        <Badge variant="default" dot>
-          Legal & Commercial Agreement
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-          Terms of Service
+      <div className="text-center space-y-3 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          Terms of Service & Delivery Conditions
         </h1>
-        <p className="text-xs sm:text-sm text-muted font-mono">
+        <p className="text-sm text-slate-400">
           Last revised: October 2026 • Effective immediately
         </p>
       </div>
 
-      <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-border/70 space-y-8 text-sm text-muted leading-relaxed">
+      <div className="p-8 sm:p-12 rounded-xl bg-card space-y-8 text-base text-slate-300 leading-relaxed">
         <section className="space-y-3">
           <h2 className="text-lg font-bold text-foreground">1. Acceptance of Terms</h2>
           <p>

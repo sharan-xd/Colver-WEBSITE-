@@ -1,12 +1,48 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LifeBuoy, MessageSquare, Mail, Terminal, ArrowRight, CheckCircle2, Clock } from 'lucide-react'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
+import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
-export const metadata = {
-  title: 'Support Hub | Colver',
-  description: 'Technical support, ticketing, community discord, and SLA incident reporting for Colver',
+export const metadata: Metadata = {
+  title: 'Support Hub & SLA Incident Management | Colver',
+  description:
+    'Need technical assistance? Access Colver’s developer support desk, enterprise SLAs, documentation guides, and incident reporting.',
+  alternates: {
+    canonical: 'https://colver.in/support',
+  },
+  openGraph: {
+    title: 'Support Hub & SLA Incident Management | Colver',
+    description:
+      'Direct developer assistance, enterprise 1-hour response SLAs, and system status telemetry.',
+    url: 'https://colver.in/support',
+    siteName: 'Colver',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Colver Support Hub',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Support Hub & SLA Incident Management | Colver',
+    description:
+      'Direct developer assistance and enterprise response SLAs from the engineers who built the system.',
+    images: ['/og-image.jpg'],
+  },
+  keywords: [
+    'Colver technical support',
+    'enterprise SLA support',
+    'developer help desk',
+    'software incident management',
+  ],
 }
 
 const channels = [
@@ -39,77 +75,73 @@ const channels = [
 export default function SupportPage() {
   return (
     <div className="py-6 sm:py-10 space-y-14">
+      <BreadcrumbsJsonLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Support', url: '/support' },
+        ]}
+      />
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <Badge variant="info" dot className="mb-4">
-          Assistance & Reliability
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Colver Support Hub
+      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
+          Production Support & SLA Incident Management
         </h1>
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Get direct help from the engineers who built the system. We resolve issues with speed, clarity, and precision.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Get direct help from the engineers who built your systems. We resolve operational challenges with speed, clarity, and precision.
         </p>
 
         {/* Status Pill */}
-        <div className="mt-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-border text-xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-semibold text-foreground">All Core Edge Services Operational</span>
+        <div className="mt-6 inline-flex items-center gap-2 text-sm text-slate-300">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-semibold text-foreground">All core edge services operational</span>
         </div>
       </div>
 
-      {/* Channels Grid */}
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-5">
+      {/* Support channels */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {channels.map((ch) => {
             const Icon = ch.icon
             return (
-              <div
-                key={ch.title}
-                className="p-6 sm:p-7 rounded-3xl glass-card border border-border/60 hover:border-primary/40 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+              <article key={ch.title} className="p-6 sm:p-8 rounded-xl bg-card space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-blue-400">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-surface border border-border text-muted">
+                    <span className="text-[13px] font-semibold text-blue-400 bg-surface px-2.5 py-1 rounded">
                       {ch.badge}
                     </span>
                   </div>
-
-                  <h2 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors mb-2">
+                  <h2 className="text-lg font-bold text-foreground">
                     {ch.title}
                   </h2>
-
-                  <p className="text-xs sm:text-sm text-muted leading-relaxed">
+                  <p className="text-sm text-slate-400 leading-relaxed">
                     {ch.description}
                   </p>
                 </div>
-
-                <div className="mt-8 pt-4 border-t border-border/40">
-                  <Link href={ch.href} className="block w-full">
-                    <Button variant="secondary" size="sm" className="w-full glass-panel" iconRight={<ArrowRight className="w-3.5 h-3.5" />}>
-                      {ch.cta}
-                    </Button>
+                <div className="pt-2">
+                  <Link href={ch.href} className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300">
+                    <span>{ch.cta}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </div>
+              </article>
             )
           })}
         </div>
       </div>
 
       {/* Incident Protocol */}
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="p-8 rounded-3xl glass-panel border border-border text-center space-y-3">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-10 rounded-xl bg-surface text-center space-y-3">
           <h3 className="text-xl font-bold text-foreground">Emergency Production Incidents</h3>
-          <p className="text-xs sm:text-sm text-muted max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
             If you are experiencing critical downtime on an active client deployment, email{' '}
-            <a href="mailto:info@colver.in?subject=URGENT:%20Production%20Incident" className="text-primary font-semibold hover:underline">
-              info@colver.in
+            <a href="mailto:contact@colver.in?subject=URGENT:%20Production%20Incident" className="text-blue-400 font-semibold hover:underline">
+              contact@colver.in
             </a>{' '}
-            with &ldquo;URGENT&rdquo; in the subject line for automatic engineer paging.
+            with &ldquo;URGENT&rdquo; in the subject line for immediate engineer paging.
           </p>
         </div>
       </div>

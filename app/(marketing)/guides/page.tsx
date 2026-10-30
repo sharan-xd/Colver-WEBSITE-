@@ -1,12 +1,48 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Compass, Clock, ArrowRight, Sparkles, Terminal, Code2 } from 'lucide-react'
-import Badge from '@/components/ui/Badge'
+import { Clock, ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import { BreadcrumbsJsonLd } from '@/components/seo/JsonLd'
 
-export const metadata = {
-  title: 'Guides | Colver',
-  description: 'In-depth tutorials and architectural walkthroughs for Colver',
+export const metadata: Metadata = {
+  title: 'Developer Guides, Tutorials & Walkthroughs | Colver',
+  description:
+    'In-depth technical guides for Next.js 16 architectures, glassmorphism design systems, security headers, and edge performance optimization.',
+  alternates: {
+    canonical: 'https://colver.in/guides',
+  },
+  openGraph: {
+    title: 'Developer Guides & Architectural Walkthroughs | Colver',
+    description:
+      'Step-by-step engineering tutorials on performance, design tokens, security headers, and edge deployment.',
+    url: 'https://colver.in/guides',
+    siteName: 'Colver',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Colver Guides & Tutorials',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Developer Guides & Architectural Walkthroughs | Colver',
+    description:
+      'Deep-dive technical tutorials written by systems engineers for product teams.',
+    images: ['/og-image.jpg'],
+  },
+  keywords: [
+    'Next.js 16 tutorial',
+    'web engineering guides',
+    'security headers walkthrough',
+    'glassmorphism design system tutorial',
+    'edge performance best practices',
+  ],
 }
 
 const guides = [
@@ -57,72 +93,69 @@ const guides = [
 export default function GuidesPage() {
   return (
     <div className="py-6 sm:py-10 space-y-12">
+      <BreadcrumbsJsonLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Guides', url: '/guides' },
+        ]}
+      />
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <Badge variant="info" dot className="mb-4">
-          Tutorials & Walkthroughs
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Colver Developer Guides
+      <div className="max-w-4xl mx-auto px-4 pt-4 sm:pt-8 text-center">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
+          Developer Guides & Architectural Walkthroughs
         </h1>
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Deep-dive technical tutorials written by systems engineers for product teams.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          Deep-dive technical tutorials written by software engineers for modern product and operations teams.
         </p>
       </div>
 
-      {/* Guides Grid */}
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-5">
-          {guides.map((guide) => (
-            <div
-              key={guide.title}
-              className="p-6 sm:p-7 rounded-2xl glass-card border border-border/60 hover:border-primary/40 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-surface border border-border text-muted">
-                    {guide.category}
-                  </span>
-                  <div className="flex items-center gap-1.5 text-xs text-muted">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{guide.duration}</span>
-                  </div>
-                </div>
-
-                <h2 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors mb-2">
-                  {guide.title}
-                </h2>
-
-                <p className="text-xs sm:text-sm text-muted leading-relaxed">
-                  {guide.description}
-                </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
-                <span className="text-muted font-mono">{guide.level}</span>
-                <span className="text-primary font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Read Walkthrough <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
+      {/* Guides index */}
+      <div className="max-w-4xl mx-auto px-4 space-y-6">
+        {guides.map((guide) => (
+          <article
+            key={guide.title}
+            className="p-6 sm:p-8 rounded-xl bg-card space-y-3 hover:bg-surface/80 transition-colors"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
+              <span className="font-semibold text-blue-400">
+                {guide.category} · {guide.level}
+              </span>
+              <span className="flex items-center gap-1.5 text-slate-400">
+                <Clock className="w-4 h-4 text-slate-500" />
+                <span>{guide.duration}</span>
+              </span>
             </div>
-          ))}
-        </div>
+
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+              {guide.title}
+            </h2>
+
+            <p className="text-base text-slate-300 leading-relaxed">
+              {guide.description}
+            </p>
+
+            <div className="pt-2">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300">
+                <span>Read guide</span>
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
+          </article>
+        ))}
       </div>
 
       {/* Community Banner */}
-      <div className="max-w-4xl mx-auto px-4 text-center">
-        <div className="p-8 rounded-3xl glass-panel border border-border space-y-4">
-          <h3 className="text-xl font-bold text-foreground">Want to request a specific architectural guide?</h3>
-          <p className="text-sm text-muted max-w-xl mx-auto">
-            Our documentation team regularly publishes requested topics on state management, WebGL rendering, and fullstack security.
-          </p>
-          <div className="pt-2">
-            <Link href="/contact">
-              <Button variant="secondary" size="md" className="glass-panel">
-                Submit Topic Request
-              </Button>
-            </Link>
-          </div>
+      <div className="max-w-3xl mx-auto px-4 text-center pt-8 space-y-4">
+        <h3 className="text-xl font-bold text-foreground">Want to request a specific architectural guide?</h3>
+        <p className="text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
+          Our engineering studio regularly publishes requested topics on database models, edge computing, and fullstack security.
+        </p>
+        <div className="pt-2">
+          <Link href="/contact">
+            <Button variant="primary" size="md">
+              Submit Topic Request
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

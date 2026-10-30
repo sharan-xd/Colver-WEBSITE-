@@ -9,7 +9,7 @@ import HomeIndustriesSection from '@/components/sections/HomeSections/HomeIndust
 
 export default function HomePage() {
   return (
-    <div className="relative space-y-12 md:space-y-20">
+    <div className="relative">
       <HeroSection />
       <HomeWWDSection />
       <HomeProcessSection />

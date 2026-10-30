@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { 
   Target, 
   Eye, 
@@ -45,57 +44,47 @@ export default function AboutSection() {
   return (
     <div className="py-6 sm:py-10 space-y-16">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <Badge variant="purple" dot className="mb-4">
-          Company & Positioning
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Built to eliminate
-          <span className="text-gradient block mt-1">workflow friction</span>
+      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
+          Built to Eliminate Workflow Friction
         </h1>
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Colver exists to help engineering and design teams move from concept to shipped production
-          with less noise, fewer fragmented tools, and sustained momentum.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Colver exists to help ambitious engineering and operations teams move from concept to shipped production
+          with less noise, zero tooling sprawl, and sustained operational velocity.
         </p>
       </div>
 
-      {/* Mission & Vision Grid */}
-      <div className="max-w-5xl mx-auto px-4">
+      {/* Mission & vision */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-7 sm:p-9 rounded-3xl glass-card border border-border/60 space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
-              <Target className="w-6 h-6" />
+          <div className="p-8 rounded-xl bg-card space-y-4">
+            <div className="flex items-center gap-3 text-blue-400">
+              <Target className="w-5 h-5" aria-hidden="true" />
+              <h2 className="text-xs font-semibold uppercase tracking-[0.16em]">Our mission</h2>
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Our Mission</h2>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
-              To empower modern engineering teams to ship high-polish, scalable web software
-              faster — without sacrificing stability, accessibility, or code elegance.
+            <p className="text-lg sm:text-xl text-foreground leading-relaxed">
+              To empower modern engineering teams to ship high-polish, scalable web software faster — without sacrificing stability, accessibility, or code elegance.
             </p>
           </div>
 
-          <div className="p-7 sm:p-9 rounded-3xl glass-card border border-border/60 space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 text-accent flex items-center justify-center">
-              <Eye className="w-6 h-6" />
+          <div className="p-8 rounded-xl bg-card space-y-4">
+            <div className="flex items-center gap-3 text-blue-400">
+              <Eye className="w-5 h-5" aria-hidden="true" />
+              <h2 className="text-xs font-semibold uppercase tracking-[0.16em]">Our vision</h2>
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Our Vision</h2>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
-              A future where software creators spend zero time wrangling fragmented devtools
-              and 100% of their creative energy designing meaningful outcomes that delight users.
+            <p className="text-lg sm:text-xl text-foreground leading-relaxed">
+              A future where software creators spend zero time wrangling fragmented devtools and 100% of their creative energy designing meaningful outcomes that delight users.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Why We Built Colver Banner */}
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-border text-center space-y-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
-            The Philosophy
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-            Why we built Colver
-          </h2>
-          <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+      {/* Why we built Colver */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 rounded-xl bg-surface space-y-3">
+          <span className="text-[13px] uppercase tracking-[0.16em] text-blue-400 font-semibold block">The philosophy</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Why we built Colver</h2>
+          <p className="text-base text-slate-300 max-w-3xl leading-relaxed">
             Teams don&apos;t fail because they lack ambition; they stall because their workflows get noisy.
             Context switching between five incompatible SaaS dashboards kills creative flow.
             Colver unifies architectural foundations, AI-driven automation, and live previews into a calm, deterministic workspace.
@@ -104,29 +93,30 @@ export default function AboutSection() {
       </div>
 
       {/* Core Values Grid */}
-      <div className="max-w-5xl mx-auto px-4 space-y-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-            What we value
+          <h2 className="text-2xl sm:text-4xl font-bold text-foreground">
+            What We Value
           </h2>
-          <p className="text-sm text-muted">
+          <p className="text-base text-slate-300">
             These principles guide every architectural decision and product release.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {values.map((v) => {
             const Icon = v.icon
             return (
-              <div
-                key={v.title}
-                className="p-6 sm:p-7 rounded-2xl glass-card border border-border/60 space-y-3"
-              >
-                <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-primary">
+              <div key={v.title} className="p-6 rounded-xl bg-card space-y-3">
+                <div className="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-blue-400">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground">{v.title}</h3>
-                <p className="text-xs sm:text-sm text-muted leading-relaxed">{v.desc}</p>
+                <h3 className="text-lg font-bold text-foreground">
+                  {v.title}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {v.desc}
+                </p>
               </div>
             )
           })}
@@ -134,14 +124,14 @@ export default function AboutSection() {
       </div>
 
       {/* Trust & Enterprise Badges */}
-      <div className="max-w-5xl mx-auto px-4 pt-8 border-t border-border/40 text-center space-y-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 text-center space-y-6">
+        <p className="text-[13px] font-semibold uppercase tracking-wider text-slate-400">
           Engineered to standards trusted across industry leaders
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-60">
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
           {['Linear Standards', 'Vercel Edge', 'Stripe Payments', 'TypeScript', 'Tailwind 3.4'].map(
             (item) => (
-              <span key={item} className="text-sm sm:text-base font-bold text-foreground font-mono">
+              <span key={item} className="text-sm sm:text-base font-bold text-slate-200">
                 {item}
               </span>
             )
@@ -156,7 +146,7 @@ export default function AboutSection() {
             </Button>
           </Link>
           <Link href="/contact" className="w-full sm:w-auto">
-            <Button size="lg" variant="secondary" className="glass-panel">
+            <Button size="lg" variant="secondary">
               Contact Engineering
             </Button>
           </Link>

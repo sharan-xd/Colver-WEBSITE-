@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Providers from "./providers";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -31,6 +32,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Colver Systems" }],
   creator: "Colver",
   metadataBase: new URL("https://colver.in"),
+  alternates: {
+    canonical: "https://colver.in",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,7 +65,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <head />
+      <head>
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
+      </head>
       <body className={`${inter.className} ${inter.variable} relative bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary min-h-screen`}>
         <Providers>{children}</Providers>
       </body>

@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold uppercase tracking-wider text-muted">
+          <label htmlFor={inputId} className="block text-[13px] font-semibold text-slate-300">
             {label}
           </label>
         )}
@@ -26,9 +26,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={Boolean(error)}
             aria-describedby={error ? `${inputId}-error` : undefined}
             className={`
-              w-full h-11 px-4 text-sm rounded-xl
-              bg-surface/70 border text-foreground placeholder:text-muted/60
-              border-border focus:border-primary focus:ring-2 focus:ring-primary/20
+              w-full h-11 px-4 text-sm rounded-lg
+              bg-surface border text-foreground placeholder:text-slate-400
+              border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20
               disabled:opacity-50 disabled:cursor-not-allowed
               transition-all duration-150 outline-none
               ${error ? 'border-destructive focus:border-destructive focus:ring-destructive/20' : ''}
@@ -38,11 +38,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
         </div>
         {error ? (
-          <p id={`${inputId}-error`} className="text-xs text-destructive animate-fade-in font-medium">
+          <p id={`${inputId}-error`} className="text-[13px] text-destructive animate-fade-in font-medium">
             {error}
           </p>
         ) : helperText ? (
-          <p className="text-xs text-muted">{helperText}</p>
+          <p className="text-[13px] text-slate-400">{helperText}</p>
         ) : null}
       </div>
     )

@@ -2,129 +2,119 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import Section, { FadeInView, StaggerContainer, StaggerItem } from '@/components/Section'
-import { Zap, Cpu, Sparkles, ShieldCheck, MessageSquareCode, Check } from 'lucide-react'
+import {
+  Zap,
+  Cpu,
+  Sparkles,
+  ShieldCheck,
+  CheckCircle2,
+} from '@/components/ui/Icons'
 
-const valuePoints = [
+const comparisons = [
   {
-    title: 'Performance-First Engineering',
-    desc: 'Sub-second initial loads, zero layout thrashing, and GPU-optimized micro-interactions built into every view.',
-    icon: Zap,
-    metric: '<100ms INP',
+    criterion: 'Architecture',
+    agency: 'Bloated third-party themes, messy spaghetti scripts, unvalidated inputs',
+    colver: 'Custom Next.js App Router, strict TypeScript, modular components',
   },
   {
-    title: 'Clean, Maintainable Architecture',
-    desc: 'TypeScript-first modular codebases designed for effortless handover, strict typing, and multi-year maintainability.',
-    icon: Cpu,
-    metric: '100% Type-Safe',
+    criterion: 'Performance',
+    agency: 'Sluggish multi-second page loads, heavy layout shifts, unoptimized bundles',
+    colver: 'Sub-second edge transitions, minimal DOM thrash, sub-100ms INP',
   },
   {
-    title: 'Technical SEO & Edge Delivery',
-    desc: 'Structured JSON-LD schema, dynamic open graph generation, and global CDN edge routing for organic discovery.',
-    icon: Sparkles,
-    metric: '100 Lighthouse',
+    criterion: 'Security',
+    agency: 'Default permissive headers, hardcoded credentials, unshielded endpoints',
+    colver: 'Cloudflare audited, strict Content Security Policy, rate-limited APIs',
   },
   {
-    title: 'Enterprise Security by Default',
-    desc: 'Hardened HTTP headers, strict Content Security Policies, rate limiting, and automated dependency protection.',
-    icon: ShieldCheck,
-    metric: 'A+ Security Score',
-  },
-  {
-    title: 'Radical Delivery Transparency',
-    desc: 'Direct engineering Slack/Discord channels, real-time preview deployments, and continuous progress milestones.',
-    icon: MessageSquareCode,
-    metric: 'Daily Previews',
+    criterion: 'Handoff',
+    agency: 'Dumped zip archive with zero documentation or ongoing engineering support',
+    colver: 'Full schema documentation, clean Git history, automated test suites',
   },
 ]
 
 export default function HomeWhyChooseSection() {
   return (
-    <Section padding="medium">
-      {/* Header */}
-      <div className="text-center mb-14">
-        <FadeInView delay={0.1}>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-semibold text-primary uppercase tracking-wider mb-4">
-            Advantage
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Built like an enterprise product,
-            <span className="text-gradient block mt-1">not an agency handoff</span>
+    <section className="py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          className="max-w-3xl mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground leading-tight">
+            Engineered for longevity.
           </h2>
-        </FadeInView>
-
-        <FadeInView delay={0.2}>
-          <p className="text-sm sm:text-base md:text-lg text-muted max-w-2xl mx-auto leading-relaxed">
-            We architect systems designed to scale with your business — technically, operationally, and commercially.
+          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+            We build software designed to scale with your business—technically, operationally, and commercially.
           </p>
-        </FadeInView>
-      </div>
+        </motion.div>
 
-      {/* Feature cards grid */}
-      <div className="max-w-7xl mx-auto">
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" staggerDelay={0.08}>
-          {valuePoints.map((item) => {
-            const Icon = item.icon
-            return (
-              <StaggerItem key={item.title}>
-                <motion.div
-                  className="
-                    p-6 sm:p-7 rounded-2xl glass-card border border-border/60
-                    hover:border-primary/40 transition-all duration-200 h-full flex flex-col justify-between
-                  "
-                  whileHover={{ y: -4 }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-md bg-surface border border-border text-emerald-400">
-                        {item.metric}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold mb-2.5 tracking-tight text-foreground">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-muted leading-relaxed text-xs sm:text-sm">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-border/40 flex items-center gap-2 text-xs text-muted">
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span>Included in core specification</span>
-                  </div>
-                </motion.div>
-              </StaggerItem>
-            )
-          })}
-
-          {/* Callout Card */}
-          <StaggerItem>
-            <div className="p-6 sm:p-7 rounded-2xl glass-panel border border-primary/30 h-full flex flex-col justify-between bg-gradient-to-br from-primary/10 via-accent/5 to-transparent">
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold">
-                  Quality Philosophy
-                </span>
-                <h3 className="text-xl font-bold mt-2 mb-3 text-foreground">
-                  Zero compromise on engineering standards.
-                </h3>
-                <p className="text-xs sm:text-sm text-muted leading-relaxed">
-                  We don&apos;t cut corners with bloated templates. Everything is custom-engineered with clean Next.js App Router architectures and measured against real web vitals.
-                </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs font-semibold text-primary">
-                <span>Verified Standards</span>
-                <span className="text-muted font-mono">SOC2 / WCAG AA</span>
-              </div>
+        {/* Comparative Ledger Table */}
+        <motion.div
+          className="rounded-xl bg-card overflow-hidden"
+          data-ui="audit-telemetry"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 p-6 sm:p-8 bg-surface">
+            <div className="md:col-span-3 text-sm font-bold text-foreground">
+              Engineering Criterion
             </div>
-          </StaggerItem>
-        </StaggerContainer>
+            <div className="md:col-span-4 text-sm font-semibold text-slate-400 mt-2 md:mt-0">
+              Typical Agency Delivery
+            </div>
+            <div className="md:col-span-5 text-sm font-bold text-blue-400 mt-2 md:mt-0">
+              Colver Production Engineering
+            </div>
+          </div>
+
+          <div className="divide-y divide-border/20">
+            {comparisons.map((item, idx) => (
+              <div
+                key={item.criterion}
+                className="grid grid-cols-1 md:grid-cols-12 p-6 sm:p-8 gap-3 sm:gap-4 items-start"
+              >
+                <div className="md:col-span-3 text-base font-bold text-foreground">
+                  {item.criterion}
+                </div>
+                <div className="md:col-span-4 text-sm text-slate-400 leading-relaxed">
+                  {item.agency}
+                </div>
+                <div className="md:col-span-5 text-sm text-slate-100 font-medium leading-relaxed">
+                  {item.colver}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Quality Manifesto Callout */}
+        <motion.div
+          className="mt-12 p-8 rounded-xl bg-surface flex flex-col md:flex-row md:items-center justify-between gap-6"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+        >
+          <div className="max-w-2xl space-y-2">
+            <h3 className="text-xl font-bold text-foreground tracking-tight">
+              Zero compromise on engineering standards.
+            </h3>
+            <p className="text-base text-slate-300 leading-relaxed">
+              We do not cut corners with bloated templates. Everything is custom-engineered with clean Next.js App Router architectures and measured against real web performance metrics.
+            </p>
+          </div>
+          <div className="shrink-0 text-sm font-semibold text-white bg-primary px-4 py-2 rounded-md">
+            WCAG AA & OWASP Standards
+          </div>
+        </motion.div>
       </div>
-    </Section>
+    </section>
   )
 }

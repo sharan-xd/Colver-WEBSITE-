@@ -27,22 +27,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const sizeClasses = {
-      sm: 'h-8 px-3 text-xs gap-1.5 rounded-lg',
-      md: 'h-10 px-4 text-sm gap-2 rounded-xl',
-      lg: 'h-12 px-6 text-base gap-2.5 rounded-xl',
+      sm: 'h-9 px-3.5 text-xs gap-1.5 rounded-md font-medium',
+      md: 'h-11 px-5 text-sm gap-2 rounded-lg font-medium',
+      lg: 'h-12 px-6 text-base gap-2.5 rounded-lg font-semibold',
     }
 
     const variantClasses = {
       primary:
-        'bg-primary text-white hover:bg-primary-hover shadow-sm active:scale-[0.98]',
+        'bg-primary text-white hover:bg-primary-hover active:bg-primary-hover focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
       secondary:
-        'bg-surface hover:bg-surface/80 text-foreground border border-border active:scale-[0.98]',
+        'bg-surface hover:bg-surface/80 text-foreground border border-border focus-visible:ring-2 focus-visible:ring-primary',
       ghost:
-        'hover:bg-surface/60 text-muted hover:text-foreground active:scale-[0.98]',
+        'hover:bg-surface text-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary',
       outline:
-        'border border-border hover:border-primary/50 text-foreground hover:bg-surface/50 active:scale-[0.98]',
+        'border border-border hover:border-primary text-foreground hover:bg-surface/60 focus-visible:ring-2 focus-visible:ring-primary',
       destructive:
-        'bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20 active:scale-[0.98]',
+        'bg-destructive/15 text-destructive border border-destructive/30 hover:bg-destructive/25',
     }
 
     return (
@@ -51,10 +51,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         disabled={disabled || isLoading}
         className={`
-          inline-flex items-center justify-center font-medium select-none
-          focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+          inline-flex items-center justify-center select-none
           disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed
-          transition-all duration-150 cursor-pointer
+          transition-colors duration-150 cursor-pointer
           ${sizeClasses[size]}
           ${variantClasses[variant]}
           ${className}

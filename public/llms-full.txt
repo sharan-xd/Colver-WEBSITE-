@@ -1,0 +1,50 @@
+# Colver Systems — Comprehensive Context & Platform Knowledge
+
+## Overview
+Colver Systems (Colver) is a modern technology and software engineering consultancy that delivers high-performance digital platforms, bespoke software, modern web applications, and enterprise automations.
+
+Website: https://colver.in
+Primary Contact: info@colver.in
+
+## Detailed Services Breakdown
+
+### 1. Custom Web Applications
+- Sub-second initial page loads and zero layout thrashing (CLS <= 0.05).
+- Server-side prerendering and edge hydration using Next.js App Router and TypeScript.
+- Resilient client state management and fluid micro-interactions with GSAP and Framer Motion.
+
+### 2. Digital Commerce & Payment Infrastructure
+- Specialized integrations for Indian digital commerce: UPI (Unified Payments Interface), Razorpay, PayU, Stripe.
+- Multi-currency transaction processing with automated tax calculation.
+- Live multi-location inventory synchronization and checkout fraud detection.
+
+### 3. Inventory & Operations Management
+- Real-time multi-godown stock management, batch tracking, and expiry tracking.
+- Automated OCR and PDF document extraction for invoices, delivery challans, and receipts.
+- Role-based operational access control (RBAC) and audit trails.
+
+### 4. AI & Workflow Automation
+- Retrieval-Augmented Generation (RAG) and domain-specific knowledge pipelines.
+- Intelligent triage agents for customer inquiries and internal support tickets.
+- Automated API integrations across legacy ERPs, databases, and third-party SaaS tools.
+
+## Architectural Security
+- Zero-dependency vulnerability posture (audited with Cloudflare Security Audit methodology).
+- Strict Content-Security-Policy (CSP) headers blocking unauthorized third-party scripts and cross-site exfiltration.
+- Enforced HSTS (HTTP Strict Transport Security) with max-age=31536000 and preload.
+- Edge origin protection and rate-limited API endpoints.
+
+## Navigation Directory
+- Home: https://colver.in/
+- Services: https://colver.in/services
+- Showcase: https://colver.in/showcase
+- Features: https://colver.in/features
+- Docs: https://colver.in/docs
+- Guides: https://colver.in/guides
+- Blog: https://colver.in/blog
+- Careers: https://colver.in/careers
+- Contact: https://colver.in/contact
+- Security: https://colver.in/security
+- Support: https://colver.in/support
+- Privacy Policy: https://colver.in/privacy
+- Terms of Service: https://colver.in/terms

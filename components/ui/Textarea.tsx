@@ -15,7 +15,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={textareaId} className="block text-xs font-semibold uppercase tracking-wider text-muted">
+          <label htmlFor={textareaId} className="block text-[13px] font-semibold text-slate-300">
             {label}
           </label>
         )}
@@ -27,9 +27,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             aria-invalid={Boolean(error)}
             aria-describedby={error ? `${textareaId}-error` : undefined}
             className={`
-              w-full p-4 text-sm rounded-xl resize-none
-              bg-surface/70 border text-foreground placeholder:text-muted/60
-              border-border focus:border-primary focus:ring-2 focus:ring-primary/20
+              w-full p-4 text-sm rounded-lg resize-none
+              bg-surface border text-foreground placeholder:text-slate-400
+              border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20
               disabled:opacity-50 disabled:cursor-not-allowed
               transition-all duration-150 outline-none
               ${error ? 'border-destructive focus:border-destructive focus:ring-destructive/20' : ''}
@@ -39,11 +39,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
         </div>
         {error ? (
-          <p id={`${textareaId}-error`} className="text-xs text-destructive animate-fade-in font-medium">
+          <p id={`${textareaId}-error`} className="text-[13px] text-destructive animate-fade-in font-medium">
             {error}
           </p>
         ) : helperText ? (
-          <p className="text-xs text-muted">{helperText}</p>
+          <p className="text-[13px] text-slate-400">{helperText}</p>
         ) : null}
       </div>
     )

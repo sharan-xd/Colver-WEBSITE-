@@ -2,17 +2,17 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Zap, Github, Twitter, MessageSquare, Linkedin, ArrowUpRight } from '@/components/ui/Icons'
+import { Github, Twitter, MessageSquare, Linkedin, ArrowUpRight } from '@/components/ui/Icons'
 
 const footerSections = [
   {
     title: 'Services & Solutions',
     links: [
-      { label: 'Custom Software', href: '/services' },
-      { label: 'Web Applications', href: '/services' },
-      { label: 'E-Commerce Platforms', href: '/services' },
-      { label: 'Inventory & Operations', href: '/services' },
-      { label: 'AI & Automation', href: '/services' },
+      { label: 'Custom Software', href: '/services#custom-software' },
+      { label: 'Web Applications', href: '/services#web-applications' },
+      { label: 'E-Commerce Platforms', href: '/services#ecommerce-platforms' },
+      { label: 'Inventory & Operations', href: '/services#inventory-operations' },
+      { label: 'AI & Automation', href: '/services#ai-workflows' },
     ],
   },
   {
@@ -26,7 +26,7 @@ const footerSections = [
     ],
   },
   {
-    title: 'Company',
+    title: 'Studio',
     links: [
       { label: 'About Colver', href: '/about' },
       { label: 'Careers', href: '/careers' },
@@ -35,7 +35,7 @@ const footerSections = [
     ],
   },
   {
-    title: 'Trust & Legal',
+    title: 'Trust & Standards',
     links: [
       { label: 'Security & Trust', href: '/security' },
       { label: 'Privacy Policy', href: '/privacy' },
@@ -53,23 +53,23 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-border/60 bg-surface/30 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12">
+    <footer className="mt-32 bg-card">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-10 lg:gap-12">
           {/* Brand Col */}
-          <div className="col-span-2 space-y-4">
+          <div className="md:col-span-2 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary via-indigo-600 to-accent flex items-center justify-center shrink-0 shadow-sm">
-                <Zap className="w-4 h-4 text-white" />
+              <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center shrink-0">
+                <span className="w-2.5 h-2.5 bg-white rounded-sm" />
               </div>
               <span className="font-bold text-lg tracking-tight text-foreground">Colver</span>
             </Link>
 
-            <p className="text-sm text-muted max-w-sm leading-relaxed">
-              Software built around your business. We engineer tailored software systems, high-performance web applications, and intelligent digital workflows.
+            <p className="text-base text-slate-300 max-w-sm leading-relaxed">
+              Software built around your business. We engineer tailored software systems, high-performance web applications, and intelligent digital workflows in Bengaluru, India.
             </p>
 
-            {/* Social & Contact Links */}
+            {/* Social Links */}
             <div className="flex items-center gap-2 pt-2">
               {socialLinks.map((social) => {
                 const Icon = social.icon
@@ -79,7 +79,7 @@ export default function Footer() {
                     href={social.href}
                     {...(social.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     aria-label={social.label}
-                    className="w-9 h-9 rounded-xl bg-surface/60 hover:bg-surface border border-border/60 hover:border-primary/40 flex items-center justify-center text-muted hover:text-foreground transition-all duration-150"
+                    className="w-9 h-9 rounded-md bg-surface hover:bg-surface/80 flex items-center justify-center text-slate-400 hover:text-foreground transition-colors"
                   >
                     <Icon className="w-4 h-4" />
                   </Link>
@@ -91,7 +91,7 @@ export default function Footer() {
           {/* Navigation Columns */}
           {footerSections.map((section) => (
             <div key={section.title} className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+              <p className="text-sm font-semibold text-foreground">
                 {section.title}
               </p>
               <ul className="space-y-2">
@@ -99,11 +99,11 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted hover:text-foreground transition-colors duration-150 inline-flex items-center gap-1 group"
+                      className="text-sm text-slate-400 hover:text-foreground transition-colors inline-flex items-center gap-1 group"
                     >
                       <span>{link.label}</span>
                       {link.href.startsWith('http') && (
-                        <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
                       )}
                     </Link>
                   </li>
@@ -114,11 +114,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
+        <div className="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
           <p>© {new Date().getFullYear()} Colver Systems. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-flex items-center gap-2 text-foreground font-medium">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Production Systems Operational</span>
             </span>
             <Link href="/privacy" className="hover:text-foreground transition-colors">

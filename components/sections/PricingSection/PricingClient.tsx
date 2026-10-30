@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { CheckCircle2, ArrowRight, HelpCircle, Sparkles } from 'lucide-react'
+import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import Badge from '@/components/ui/Badge'
 import { useToast } from '@/components/ui/Toast'
@@ -217,15 +217,17 @@ export default function PricingClient() {
 
       {/* Enterprise Custom Scope Callout */}
       <div className="max-w-4xl mx-auto px-4">
-        <div className="p-8 sm:p-10 rounded-3xl glass-panel border border-border text-center space-y-4">
-          <Badge variant="info">Need tailored enterprise architecture?</Badge>
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-            Have custom compliance or multi-tenant requirements?
-          </h2>
-          <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
-            Our architectural team works directly with engineering leads to scope custom delivery milestones, security questionnaires, and SLA terms.
-          </p>
-          <div className="pt-2">
+        <div className="border-y border-border/50 py-7 sm:py-8 grid md:grid-cols-[1fr_auto] gap-5 md:gap-10 items-center">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.15em] text-primary font-semibold">Need tailored enterprise architecture?</p>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-foreground">
+              Have custom compliance or multi-tenant requirements?
+            </h2>
+            <p className="text-sm text-muted max-w-2xl leading-relaxed">
+              Our architectural team works directly with engineering leads to scope custom delivery milestones, security questionnaires, and SLA terms.
+            </p>
+          </div>
+          <div>
             <Link href="/contact?type=enterprise">
               <Button variant="primary" size="lg" iconRight={<ArrowRight className="w-4 h-4" />}>
                 Schedule Technical Discovery
@@ -237,17 +239,17 @@ export default function PricingClient() {
 
       {/* FAQs */}
       <div className="max-w-3xl mx-auto px-4 space-y-4">
-        <h3 className="text-xl font-bold text-foreground text-center mb-6">
+        <h3 className="text-xl font-semibold text-foreground mb-5">
           Frequently Answered Questions
         </h3>
-        <div className="grid gap-3">
-          {faqs.map((faq) => (
-            <div key={faq.q} className="p-5 rounded-2xl glass-card border border-border/60">
-              <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2">
-                <HelpCircle className="w-4 h-4 text-primary shrink-0" />
-                <span>{faq.q}</span>
+        <div className="border-y border-border/60">
+          {faqs.map((faq, index) => (
+            <div key={faq.q} className="grid grid-cols-[2.5rem_minmax(0,1fr)] sm:grid-cols-[3.5rem_0.9fr_1.1fr] gap-x-4 gap-y-2 py-5 border-b last:border-b-0 border-border/50">
+              <span className="text-sm font-mono text-muted/70">Q{index + 1}</span>
+              <h4 className="text-sm font-semibold text-foreground">
+                {faq.q}
               </h4>
-              <p className="text-xs sm:text-sm text-muted leading-relaxed pl-6">
+              <p className="col-start-2 sm:col-start-auto text-sm text-muted leading-relaxed">
                 {faq.a}
               </p>
             </div>

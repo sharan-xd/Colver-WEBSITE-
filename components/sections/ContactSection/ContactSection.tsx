@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import type { FormEvent } from 'react'
-import { motion } from 'framer-motion'
 import { 
   Mail, 
   MapPin, 
@@ -11,9 +10,7 @@ import {
   ArrowRight, 
   Send, 
   ShieldCheck, 
-  HelpCircle,
   FileCheck,
-  Building
 } from '@/components/ui/Icons'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
@@ -154,37 +151,33 @@ export default function ContactSection() {
   return (
     <div className="py-6 sm:py-10 space-y-14">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <Badge variant="info" dot className="mb-4">
-          Project Inquiry & Consultation
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Let&apos;s build software that
-          <span className="text-gradient block mt-1">powers your business</span>
+      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
+          Let&apos;s Build Software That Powers Your Operations
         </h1>
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Tell us about your technical goals, operational challenges, or product roadmap.
-          Our engineering team will assess your requirements and provide a clear plan.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Tell us about your technical goals, operational bottlenecks, or product roadmap.
+          Our engineering team will assess your specifications and provide a clear architectural proposal.
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
           {/* Inquiry Form Column */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-10 rounded-3xl glass-panel border border-border shadow-xl">
+            <div className="p-6 sm:p-10 rounded-xl bg-card">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-5 animate-fade-in">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold text-foreground">Inquiry Received</h3>
-                    <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
-                      Thank you for detailing your project. We have logged your request under reference #{Math.floor(100000 + Math.random() * 900000)}. Our engineering team will review your requirements and respond within one business day.
+                    <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                      Thank you for detailing your project. We have logged your request. Our engineering team will review your requirements and respond within one business day.
                     </p>
                   </div>
-                  <Button variant="secondary" onClick={handleReset} className="glass-panel mt-4">
+                  <Button variant="secondary" onClick={handleReset} className="mt-4">
                     Submit Another Inquiry
                   </Button>
                 </div>
@@ -238,13 +231,13 @@ export default function ContactSection() {
 
                   {/* Project Type Dropdown */}
                   <div className="space-y-1.5 text-left">
-                    <label className="block text-xs font-semibold text-foreground">
+                    <label className="block text-sm font-semibold text-foreground">
                       Primary Service / Project Type
                     </label>
                     <select
                       value={formData.serviceType}
                       onChange={(e) => setFormData((p) => ({ ...p, serviceType: e.target.value }))}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-surface/70 border border-border/80 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none transition-all cursor-pointer"
                     >
                       {serviceOptions.map((opt) => (
                         <option key={opt} value={opt} className="bg-card text-foreground">
@@ -256,13 +249,13 @@ export default function ContactSection() {
 
                   {/* Estimated Timeline Dropdown */}
                   <div className="space-y-1.5 text-left">
-                    <label className="block text-xs font-semibold text-foreground">
+                    <label className="block text-sm font-semibold text-foreground">
                       Target Launch / Desired Timeline
                     </label>
                     <select
                       value={formData.timeline}
                       onChange={(e) => setFormData((p) => ({ ...p, timeline: e.target.value }))}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-surface/70 border border-border/80 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none transition-all cursor-pointer"
                     >
                       {timelineOptions.map((opt) => (
                         <option key={opt} value={opt} className="bg-card text-foreground">
@@ -291,14 +284,14 @@ export default function ContactSection() {
                       variant="primary"
                       size="lg"
                       isLoading={isLoading}
-                      className="w-full shadow-lg shadow-primary/20"
+                      className="w-full"
                       iconRight={<Send className="w-4 h-4" />}
                     >
                       {isLoading ? 'Sending Inquiry...' : 'Submit Project Inquiry'}
                     </Button>
                   </div>
 
-                  <p className="text-[11px] text-muted text-center pt-1">
+                  <p className="text-[13px] text-slate-400 text-center pt-1 font-medium">
                     Confidentiality guaranteed. All project inquiries are protected under non-disclosure.
                   </p>
                 </form>
@@ -307,68 +300,63 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Details & SLA Info Column */}
-          <div className="lg:col-span-5 space-y-5">
-            {/* Direct Channel Cards */}
-            <div className="p-6 sm:p-7 rounded-3xl glass-card border border-border space-y-6">
-              <h3 className="text-base font-bold text-foreground uppercase tracking-wider text-xs">
+          <div className="lg:col-span-5 space-y-6">
+            <div className="p-6 sm:p-8 rounded-xl bg-card space-y-6">
+              <h3 className="text-base font-bold text-foreground">
                 Direct Engineering Channels
               </h3>
 
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5" />
+              <div className="space-y-4">
+                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
+                  <Mail className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-[13px] font-semibold text-slate-400">Direct Email Inquiries</p>
+                    <a
+                      href="mailto:contact@colver.in"
+                      className="text-base font-bold text-foreground hover:text-blue-400 transition-colors mt-0.5 inline-block"
+                    >
+                      contact@colver.in
+                    </a>
+                    <p className="text-[13px] text-slate-400 mt-0.5">Response SLA: Within 1 business day</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted">Direct Email Inquiries</p>
-                  <a
-                    href="mailto:contact@colver.in"
-                    className="text-sm font-bold text-foreground hover:text-primary transition-colors mt-0.5 inline-block"
-                  >
-                    contact@colver.in
-                  </a>
-                  <p className="text-xs text-muted mt-0.5">Response SLA: Within 1 business day</p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" />
+                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
+                  <MapPin className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-[13px] font-semibold text-slate-400">Engineering Studio</p>
+                    <p className="text-base font-bold text-foreground mt-0.5">Bengaluru, Karnataka, India</p>
+                    <p className="text-[13px] text-slate-400 mt-0.5">Serving clients across India and globally</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted">Engineering Hub</p>
-                  <p className="text-sm font-bold text-foreground mt-0.5">Bangalore, Karnataka, India</p>
-                  <p className="text-xs text-muted mt-0.5">Serving clients across India and globally</p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted">Development Office Hours</p>
-                  <p className="text-sm font-bold text-foreground mt-0.5">Monday – Friday: 9:30 AM – 6:30 PM IST</p>
-                  <p className="text-xs text-muted mt-0.5">Emergency SLA support for production deployments</p>
+                <div className="flex items-start gap-3.5 p-4 rounded-lg bg-surface">
+                  <Clock className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-[13px] font-semibold text-slate-400">Engineering Office Hours</p>
+                    <p className="text-base font-bold text-foreground mt-0.5">Monday – Friday: 9:30 AM – 6:30 PM IST</p>
+                    <p className="text-[13px] text-slate-400 mt-0.5">Emergency SLA support for production deployments</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Links Card */}
-            <div className="p-6 rounded-3xl glass-panel border border-border space-y-3 bg-gradient-to-br from-surface/40 to-transparent">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+            {/* Related links */}
+            <div className="p-6 sm:p-8 rounded-xl bg-surface space-y-3">
+              <div className="flex items-center gap-2 text-[13px] font-semibold text-blue-400">
                 <FileCheck className="w-4 h-4" />
                 <span>Explore Capabilities & Work</span>
               </div>
-              <p className="text-xs sm:text-sm text-muted leading-relaxed">
-                Want to learn more about the kinds of platforms we build and our engineering standards?
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Want to learn more about the kinds of platforms we engineer and our technical specifications?
               </p>
-              <div className="pt-1 flex flex-col sm:flex-row gap-2">
-                <Link href="/services" className="text-xs font-semibold text-primary hover:underline flex items-center gap-1">
+              <div className="pt-1 flex items-center gap-4">
+                <Link href="/services" className="text-sm font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
                   <span>Explore Services</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-                <span className="hidden sm:inline text-muted/40">|</span>
-                <Link href="/showcase" className="text-xs font-semibold text-primary hover:underline flex items-center gap-1">
+                <span className="text-slate-500">|</span>
+                <Link href="/showcase" className="text-sm font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
                   <span>View Case Studies</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

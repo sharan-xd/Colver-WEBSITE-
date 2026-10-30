@@ -60,65 +60,54 @@ export default function ShowcaseSection() {
   return (
     <div className="py-6 sm:py-10 space-y-16">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <Badge variant="info" dot className="mb-4">
-          Client & Ecosystem Deployments
-        </Badge>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Engineered with Colver.
-          <span className="text-gradient block mt-1">Proven in production.</span>
+      <div className="text-center max-w-3xl mx-auto px-4 pt-4 sm:pt-8">
+        <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-bold tracking-tight mb-4 leading-tight text-foreground">
+          Engineered with Colver. Proven in Production.
         </h1>
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Discover high-performance web applications, headless commerce platforms, and AI systems shipped using Colver architecture.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Explore high-performance business applications, transactional commerce platforms, and intelligent workflows shipped using Colver architecture.
         </p>
       </div>
 
       {/* Main Interactive Showcase Console */}
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="rounded-3xl glass-panel border border-border overflow-hidden shadow-2xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-xl bg-card overflow-hidden">
           {/* Top Bar with Project Switcher */}
-          <div className="p-3 sm:p-4 bg-surface/70 border-b border-border/60 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-1.5 overflow-x-auto py-1">
+          <div className="p-4 bg-surface flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2 overflow-x-auto">
               {projects.map((p, idx) => (
                 <button
                   key={p.title}
                   type="button"
                   onClick={() => setActiveProjectIndex(idx)}
-                  className={`
-                    px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer
-                    ${
-                      activeProjectIndex === idx
-                        ? 'bg-primary text-white shadow-sm'
-                        : 'text-muted hover:text-foreground hover:bg-surface/60'
-                    }
-                  `}
+                  className={`px-3.5 py-1.5 rounded-md text-sm font-medium transition-colors cursor-pointer ${activeProjectIndex === idx ? 'bg-card text-foreground font-semibold' : 'text-slate-400 hover:text-foreground'}`}
                 >
                   {p.title.split(' ')[0]}
                 </button>
               ))}
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-muted">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Production Live Preview</span>
             </div>
           </div>
 
           {/* Interactive Showcase Preview Panel */}
-          <div className="p-6 sm:p-10 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="p-6 sm:p-10 grid lg:grid-cols-2 gap-10 items-center">
             {/* Left: Project Details */}
             <div className="space-y-6">
               <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Badge variant="purple">{currentProject.category}</Badge>
-                  <span className="text-xs font-mono text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                <div className="flex items-center gap-3">
+                  <span className="text-[13px] font-semibold text-blue-400">{currentProject.category}</span>
+                  <span className="text-[13px] text-emerald-400 font-semibold">
                     {currentProject.metrics}
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
                   {currentProject.title}
                 </h2>
-                <p className="text-sm sm:text-base text-muted leading-relaxed">
+                <p className="text-base text-slate-300 leading-relaxed">
                   {currentProject.description}
                 </p>
               </div>
@@ -130,7 +119,7 @@ export default function ShowcaseSection() {
                   'Automated security headers & CSP enforcement',
                   'Lighthouse 100 Performance & SEO verified',
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-xs sm:text-sm text-foreground">
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-foreground">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -142,7 +131,7 @@ export default function ShowcaseSection() {
                 {currentProject.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-mono px-2.5 py-1 rounded-lg bg-surface border border-border text-muted"
+                    className="px-2.5 py-1 rounded bg-surface text-[13px] font-medium text-slate-300"
                   >
                     {tag}
                   </span>
@@ -157,55 +146,53 @@ export default function ShowcaseSection() {
                   </Button>
                 </Link>
                 <Link href="/features">
-                  <Button variant="secondary" className="glass-panel">
+                  <Button variant="secondary">
                     Architecture Specs
                   </Button>
                 </Link>
               </div>
             </div>
 
-            {/* Right: Simulated macOS Glass Viewport */}
-            <div className="rounded-2xl glass-panel border border-border/80 overflow-hidden shadow-xl bg-card/60">
+            {/* Right: Simulated System Viewport */}
+            <div className="rounded-xl bg-surface overflow-hidden">
               {/* Window Titlebar */}
-              <div className="h-9 px-4 bg-surface/90 border-b border-border/60 flex items-center justify-between text-xs text-muted font-mono">
+              <div className="h-10 px-4 bg-surface/80 flex items-center justify-between text-sm text-slate-300">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
                 </div>
-                <span>{currentProject.activeTab}</span>
-                <Terminal className="w-3.5 h-3.5" />
+                <span className="font-medium text-foreground">{currentProject.activeTab}</span>
+                <span className="text-[13px] text-slate-400">Production</span>
               </div>
 
               {/* Interactive Window Visuals */}
               <div className="p-6 space-y-4">
-                {/* Simulated UI components */}
-                <div className="flex items-center justify-between p-3 rounded-xl bg-surface/70 border border-border/60">
+                <div className="flex items-center justify-between py-3 rounded-lg bg-card px-4">
                   <div className="flex items-center gap-2.5">
-                    <Activity className="w-4 h-4 text-primary" />
-                    <span className="text-xs font-medium text-foreground">Edge Response Time</span>
+                    <Activity className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm font-medium text-foreground">Edge Response Time</span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-emerald-400">28 ms</span>
+                  <span className="text-sm font-bold text-emerald-400">28 ms</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 rounded-xl bg-surface/50 border border-border/40">
-                    <p className="text-[11px] text-muted uppercase font-mono">Core Web Vital</p>
+                  <div className="p-4 rounded-lg bg-card">
+                    <p className="text-[13px] text-slate-400 font-medium">Core Web Vital</p>
                     <p className="text-base font-bold text-foreground mt-1">LCP: 0.64s</p>
-                    <p className="text-[10px] text-emerald-400 mt-0.5">Top 1% Percentile</p>
+                    <p className="text-[13px] text-emerald-400 font-medium mt-0.5">Top 1% Percentile</p>
                   </div>
-                  <div className="p-3 rounded-xl bg-surface/50 border border-border/40">
-                    <p className="text-[11px] text-muted uppercase font-mono">Security Grade</p>
+                  <div className="p-4 rounded-lg bg-card">
+                    <p className="text-[13px] text-slate-400 font-medium">Security Grade</p>
                     <p className="text-base font-bold text-foreground mt-1">A+ Rating</p>
-                    <p className="text-[10px] text-emerald-400 mt-0.5">Zero CVE Warnings</p>
+                    <p className="text-[13px] text-emerald-400 font-medium mt-0.5">Zero CVE Warnings</p>
                   </div>
                 </div>
 
-                {/* Simulated Code/Log Block */}
-                <div className="p-3.5 rounded-xl bg-black/40 border border-border/60 font-mono text-[11px] space-y-1.5 text-muted leading-relaxed">
+                <div className="p-4 rounded-lg bg-card text-[13px] space-y-1.5 text-slate-300 leading-relaxed font-mono">
                   <p className="text-emerald-400">✓ Compiled client bundle (68.4 kB total)</p>
                   <p className="text-blue-400">→ Route hydrated with zero layout shifts</p>
-                  <p className="text-muted/80">⚡ 100% test coverage across 42 integration suites</p>
+                  <p className="text-slate-400">⚡ 100% test coverage across 42 integration suites</p>
                 </div>
               </div>
             </div>
@@ -214,41 +201,30 @@ export default function ShowcaseSection() {
       </div>
 
       {/* Grid of All Showcase Projects */}
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6">
-          Explore Production Architectures
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+          Selected Production Architectures
         </h2>
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="space-y-4">
           {projects.map((proj, idx) => (
-            <div
+            <button
               key={proj.title}
+              type="button"
               onClick={() => setActiveProjectIndex(idx)}
-              className={`
-                p-6 rounded-2xl glass-card border cursor-pointer transition-all duration-200
-                ${
-                  activeProjectIndex === idx
-                    ? 'border-primary ring-1 ring-primary/30 bg-primary/[0.04]'
-                    : 'border-border/60 hover:border-border'
-                }
-              `}
+              aria-pressed={activeProjectIndex === idx}
+              className={`w-full text-left p-6 rounded-xl bg-card transition-colors cursor-pointer grid grid-cols-1 md:grid-cols-12 gap-4 items-center ${activeProjectIndex === idx ? 'ring-1 ring-primary' : 'hover:bg-surface/80'}`}
             >
-              <div className="flex items-center justify-between mb-3">
-                <Badge variant={activeProjectIndex === idx ? 'purple' : 'default'}>
-                  {proj.category}
-                </Badge>
-                <span className="text-xs font-mono text-emerald-400 font-semibold">
-                  {proj.metrics}
-                </span>
+              <div className="md:col-span-4">
+                <span className="text-[13px] font-semibold text-blue-400 block">{proj.category}</span>
+                <h3 className="mt-1 text-lg font-bold text-foreground">{proj.title}</h3>
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-1.5">{proj.title}</h3>
-              <p className="text-xs sm:text-sm text-muted leading-relaxed mb-4">
+              <p className="md:col-span-6 text-sm text-slate-300 leading-relaxed">
                 {proj.description}
               </p>
-              <div className="flex items-center justify-between text-xs font-semibold text-primary">
-                <span>Select for live view</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+              <div className="md:col-span-2 text-left md:text-right">
+                <span className="text-sm font-bold text-emerald-400">{proj.metrics}</span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

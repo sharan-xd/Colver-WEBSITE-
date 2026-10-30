@@ -228,11 +228,11 @@ export function CommandPalette({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="relative w-full max-w-xl glass-panel rounded-2xl shadow-2xl overflow-hidden border border-border z-10 flex flex-col max-h-[75vh]"
+            className="relative w-full max-w-xl bg-card rounded-xl shadow-2xl overflow-hidden border border-border/40 z-10 flex flex-col max-h-[75vh]"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center px-4 py-3.5 border-b border-border gap-3">
-              <Search className="w-5 h-5 text-muted shrink-0" />
+            <div className="flex items-center px-4 py-3.5 border-b border-border/40 gap-3">
+              <Search className="w-5 h-5 text-slate-400 shrink-0" />
               <input
                 ref={inputRef}
                 value={query}
@@ -241,12 +241,12 @@ export function CommandPalette({
                   setSelectedIndex(0)
                 }}
                 placeholder="Search pages, documentation, actions..."
-                className="w-full bg-transparent text-sm text-foreground placeholder:text-muted focus:outline-none"
+                className="w-full bg-transparent text-sm text-foreground placeholder:text-slate-400 focus:outline-none"
               />
               <button
                 type="button"
                 onClick={onClose}
-                className="p-1 rounded-md text-muted hover:text-foreground hover:bg-surface/50"
+                className="p-1 rounded-md text-slate-400 hover:text-foreground hover:bg-surface"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -255,7 +255,7 @@ export function CommandPalette({
             {/* Results List */}
             <div className="overflow-y-auto p-2 space-y-1">
               {filteredItems.length === 0 ? (
-                <div className="py-12 text-center text-sm text-muted">
+                <div className="py-12 text-center text-sm text-slate-400">
                   No matching results for &ldquo;{query}&rdquo;
                 </div>
               ) : (
@@ -270,29 +270,29 @@ export function CommandPalette({
                       onClick={item.action}
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`
-                        w-full flex items-center justify-between p-3 rounded-xl text-left
+                        w-full flex items-center justify-between p-3 rounded-lg text-left
                         transition-all duration-150 cursor-pointer
-                        ${isSelected ? 'bg-primary/10 border border-primary/20 text-foreground' : 'text-muted hover:bg-surface/50 border border-transparent'}
+                        ${isSelected ? 'bg-surface text-foreground font-semibold' : 'text-slate-400 hover:bg-surface/50'}
                       `}
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div
                           className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                            isSelected ? 'bg-primary text-white' : 'bg-surface text-muted'
+                            isSelected ? 'bg-primary text-white' : 'bg-surface text-slate-400'
                           }`}
                         >
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
-                          <p className={`text-sm font-medium ${isSelected ? 'text-foreground' : 'text-foreground'}`}>
+                          <p className="text-sm font-semibold text-foreground">
                             {item.label}
                           </p>
-                          <p className="text-xs text-muted truncate">{item.description}</p>
+                          <p className="text-[13px] text-slate-400 truncate">{item.description}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-[10px] uppercase font-semibold tracking-wider px-2 py-0.5 rounded-full bg-surface border border-border text-muted">
+                        <span className="text-[13px] font-medium px-2 py-0.5 rounded bg-surface text-slate-400">
                           {item.category}
                         </span>
                         {isSelected && <ArrowRight className="w-4 h-4 text-primary" />}
@@ -304,7 +304,7 @@ export function CommandPalette({
             </div>
 
             {/* Footer helper */}
-            <div className="px-4 py-2.5 border-t border-border bg-surface/30 flex items-center justify-between text-[11px] text-muted">
+            <div className="px-4 py-2.5 border-t border-border/40 bg-surface/50 flex items-center justify-between text-[13px] text-slate-400">
               <span>Navigate with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">↑</kbd> <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">↓</kbd></span>
               <span>Select with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">Enter</kbd></span>
               <span>Close with <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border">Esc</kbd></span>

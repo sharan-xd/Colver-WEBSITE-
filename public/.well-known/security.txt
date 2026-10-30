@@ -1,0 +1,6 @@
+Contact: mailto:info@colver.in
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://colver.in/.well-known/security.txt
+Policy: https://colver.in/security
+Acknowledgments: https://colver.in/security

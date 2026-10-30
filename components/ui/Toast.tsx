@@ -55,7 +55,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
               transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-              className="pointer-events-auto p-4 rounded-xl glass-panel border border-border shadow-2xl flex items-start gap-3 relative overflow-hidden"
+              className="pointer-events-auto p-4 rounded-xl bg-card border border-border/40 shadow-2xl flex items-start gap-3 relative overflow-hidden"
             >
               <div className="shrink-0 mt-0.5">
                 {item.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
@@ -66,7 +66,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               <div className="flex-1 min-w-0 pr-6">
                 <p className="text-sm font-semibold text-foreground tracking-tight">{item.title}</p>
                 {item.description && (
-                  <p className="text-xs text-muted mt-0.5 leading-relaxed">{item.description}</p>
+                  <p className="text-[13px] text-slate-300 mt-0.5 leading-relaxed">{item.description}</p>
                 )}
               </div>
 

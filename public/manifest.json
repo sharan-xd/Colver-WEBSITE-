@@ -1,10 +1,13 @@
 {
-  "name": "Colver",
+  "name": "Colver Systems",
   "short_name": "Colver",
+  "description": "High-performance digital platforms, intelligent workflows, and modern web engineering.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#0f172a",
+  "background_color": "#06090e",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "categories": ["business", "developer", "productivity"],
   "icons": [
     {
       "src": "/favicon-16x16.png",

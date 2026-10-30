@@ -10,16 +10,15 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Card({
   children,
   className = '',
-  glass = true,
+  glass = false,
   hover = true,
   ...props
 }: CardProps) {
   return (
     <div
       className={`
-        rounded-2xl p-6 md:p-8
-        ${glass ? 'glass-card' : 'bg-card border border-border'}
-        ${hover ? 'hover:border-primary/40' : ''}
+        rounded-lg p-6 sm:p-8 bg-card border border-border
+        ${hover ? 'hover:border-border-hover transition-colors' : ''}
         ${className}
       `}
       {...props}
