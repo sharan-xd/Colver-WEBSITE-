@@ -13,7 +13,7 @@ export function OrganizationJsonLd() {
     name: 'Colver Systems',
     legalName: 'Colver Systems Private Limited',
     url: 'https://colver.in',
-    logo: 'https://colver.in/brand/icon-512.png',
+    logo: 'https://colver.in/brand/colver-logo.png',
     image: 'https://colver.in/og-image.png',
     description:
       'Colver engineers bespoke software systems, high-performance web applications, digital commerce rails, and intelligent AI workflows for growing businesses.',

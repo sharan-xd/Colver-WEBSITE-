@@ -13,7 +13,7 @@ import HomeCTASection from '@/components/sections/HomeSections/HomeCTASection'
 export default function HomePage() {
   return (
     <div className="relative w-full">
-      {/* 1. Hero with Interactive 3D Isometric Monolith Canvas */}
+      {/* 1. Hero with Interactive Neural WebThreads WebGL Background */}
       <HeroSection />
 
       {/* 2. What We Do: Editorial Split Layout (Zero Cards) */}

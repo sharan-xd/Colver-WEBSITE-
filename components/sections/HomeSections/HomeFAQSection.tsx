@@ -49,10 +49,7 @@ export default function HomeFAQSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
-          <div className="space-y-3 max-w-xl animate-entrance">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#C8FF00]">
-              Operational Answers // AEO Index
-            </span>
+          <div className="space-y-2 max-w-xl animate-entrance">
             <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[#F4F1EA] leading-tight">
               Architectural Inquiries.
             </h2>
@@ -63,13 +60,13 @@ export default function HomeFAQSection() {
         </div>
 
         {/* Editorial Q&A Stream (Open editorial layout, zero card grids) */}
-        <div className="divide-y divide-white/10">
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
               <div
                 key={faq.question}
-                className="py-7 animate-entrance"
+                className="p-6 bg-[#0c0c0c] hover:bg-[#111111] transition-colors rounded-[2px] animate-entrance"
               >
                 <button
                   type="button"
@@ -77,21 +74,16 @@ export default function HomeFAQSection() {
                   className="w-full text-left flex items-start justify-between gap-6 group cursor-pointer focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-start gap-4">
-                    <span className="text-xs font-mono text-[#8E929A] mt-1.5 shrink-0">
-                      0{idx + 1}
-                    </span>
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA] group-hover:text-[#C8FF00] transition-colors leading-snug">
-                      {faq.question}
-                    </h3>
-                  </div>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1EA] group-hover:text-[#C8FF00] transition-colors leading-snug">
+                    {faq.question}
+                  </h3>
                   <span className="text-sm font-mono text-[#C8FF00] shrink-0 mt-1">
                     {isOpen ? '[ COLLAPSE ]' : '[ EXPAND ]'}
                   </span>
                 </button>
 
                 {isOpen && (
-                  <div className="mt-4 pl-8 md:pl-10 max-w-3xl">
+                  <div className="mt-4 max-w-3xl">
                     <p className="text-base text-[#BFC3C9] leading-relaxed">
                       {faq.answer}
                     </p>

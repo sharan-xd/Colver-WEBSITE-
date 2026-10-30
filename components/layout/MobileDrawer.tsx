@@ -85,7 +85,7 @@ export default function MobileDrawer({
           {/* Top Bar */}
           <div className="flex items-center justify-between pb-6 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <ColverLogo variant="full" className="h-6 w-auto text-[#F4F1EA]" />
+              <ColverLogo variant="full" className="h-7 w-7" />
               <span className="font-mono text-[11px] text-[#8E929A] tracking-wider uppercase border-l border-white/10 pl-3 hidden sm:inline">
                 {timeStr}
               </span>

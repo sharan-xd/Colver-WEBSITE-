@@ -6,9 +6,9 @@ async function createOgImage() {
   const width = 1200;
   const height = 630;
 
-  const logoPath = path.join(__dirname, '../public/brand/colver-logo-transparent.png');
+  const logoPath = path.join(__dirname, '../public/brand/colver-logo.png');
   const logoBuf = await sharp(logoPath)
-    .resize(520, null, { fit: 'inside' })
+    .resize(380, 380, { fit: 'inside' })
     .toBuffer();
 
   const svgOverlay = `
@@ -61,8 +61,8 @@ async function createOgImage() {
     .composite([
       {
         input: logoBuf,
-        top: 190,
-        left: Math.round((width - 520) / 2)
+        top: 130,
+        left: Math.round((width - 380) / 2)
       }
     ])
     .png()

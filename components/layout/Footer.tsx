@@ -72,7 +72,7 @@ export default function Footer() {
               <Link href="/" aria-label="COLVER Homepage">
                 <ColverLogo
                   variant="full"
-                  className="h-14 sm:h-20 lg:h-24 w-auto text-[#F4F1EA] hover:text-[#C8FF00] transition-colors"
+                  className="h-20 sm:h-24 lg:h-28 w-20 sm:w-24 lg:w-28"
                 />
               </Link>
             </div>
@@ -172,8 +172,8 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#8E929A]">
-          <div className="flex items-center gap-2">
-            <ColverLogo variant="emblem" className="h-4 w-auto text-[#C8FF00]" ariaLabel="Colver" />
+          <div className="flex items-center gap-2.5">
+            <ColverLogo variant="emblem" className="h-5 w-5" ariaLabel="Colver" />
             <span>© {new Date().getFullYear()} Colver Systems. Proudly engineered in Bengaluru.</span>
           </div>
           <div className="flex items-center gap-4">
