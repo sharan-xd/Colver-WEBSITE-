@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Careers',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Careers at Colver — Engineering & Design Roles',
     description:
       'Join Colver’s engineering team building high-scale web systems.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

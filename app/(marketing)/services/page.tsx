@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Software Engineering Services',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: 'Software Engineering Services & Capabilities | Colver',
     description:
       'Custom software, web applications, e-commerce platforms, and AI workflows engineered for business scale.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

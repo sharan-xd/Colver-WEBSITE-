@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Support Hub',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Production Support & SLA Incident Management | Colver',
     description:
       'Direct developer assistance and enterprise response SLAs from the engineers who built the system.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

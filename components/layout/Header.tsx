@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, Search, ArrowRight } from '@/components/ui/Icons'
+import ColverLogo from '@/components/ui/ColverLogo'
 
 export interface HeaderProps {
   onOpenMobileMenu?: () => void
@@ -46,19 +47,17 @@ export default function Header({
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
-        {/* Brand Wordmark */}
+        {/* Brand Wordmark & Official Emblem */}
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className="group flex items-center gap-3 focus:outline-none"
-            aria-label="COLVER Home"
+            className="group flex items-center gap-3 focus:outline-none py-1"
+            aria-label="COLVER — Systems Architecture Home"
           >
-            <div className="w-8 h-8 bg-[#C8FF00] text-black font-bold text-sm flex items-center justify-center rounded-[2px] transition-transform group-hover:rotate-6">
-              C/
-            </div>
-            <span className="font-display font-extrabold text-2xl tracking-tight text-[#F4F1EA] glitch-hover leading-none">
-              COLVER
-            </span>
+            <ColverLogo
+              variant="full"
+              className="h-8 sm:h-9 w-auto text-[#F4F1EA] group-hover:text-[#C8FF00] transition-colors duration-200"
+            />
           </Link>
         </div>
 

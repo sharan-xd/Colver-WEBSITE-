@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Security & Trust',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Security Architecture & Trust Specifications | Colver',
     description:
       'Hardened HTTP edge security, strict CSP, and automated vulnerability management.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

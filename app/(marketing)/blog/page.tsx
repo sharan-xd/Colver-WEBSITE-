@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Engineering Blog',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Engineering Blog & Technical Insights | Colver',
     description:
       'Deep-dive articles on web performance engineering, Core Web Vitals, and Next.js architectures.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

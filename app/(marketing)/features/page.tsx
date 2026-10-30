@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Platform Features',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Platform Features & Core Technologies | Colver',
     description:
       'Sub-second SSR, real-time WebSockets, hardened security headers, and AI workflows.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
   keywords: [
     'web platform features',

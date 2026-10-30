@@ -28,6 +28,7 @@ import {
   Zap,
   Cpu,
 } from '@/components/ui/Icons'
+import ColverLogo from '@/components/ui/ColverLogo'
 import { useTheme } from '@/lib/theme'
 
 export interface NavGroup {
@@ -114,8 +115,8 @@ export default function Sidebar({
           className="flex items-center gap-3 overflow-hidden group focus-visible:ring-1 focus-visible:ring-primary rounded-lg p-1"
         >
           {/* Logo Mark */}
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-indigo-600 to-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
-            <Zap className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 rounded bg-[#101010] border border-white/10 flex items-center justify-center shrink-0 p-1.5 group-hover:border-[#C8FF00] transition-colors">
+            <ColverLogo variant="emblem" className="w-full h-full text-[#C8FF00]" ariaLabel="Colver Emblem" />
           </div>
 
           {!isCollapsed && (

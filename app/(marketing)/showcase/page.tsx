@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Product Showcase',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Showcase & Case Studies | Colver',
     description:
       'Explore live digital products and applications engineered with sub-second speeds.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
   keywords: [
     'software case studies',

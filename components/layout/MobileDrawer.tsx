@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Search, ArrowRight } from '@/components/ui/Icons'
+import ColverLogo from '@/components/ui/ColverLogo'
 
 export interface MobileDrawerProps {
   isOpen: boolean
@@ -83,10 +84,10 @@ export default function MobileDrawer({
         >
           {/* Top Bar */}
           <div className="flex items-center justify-between pb-6 border-b border-white/10">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse" />
-              <span className="font-mono text-xs text-[#8E929A] tracking-wider uppercase">
-                COLVER STUDIO // {timeStr}
+            <div className="flex items-center gap-3">
+              <ColverLogo variant="full" className="h-6 w-auto text-[#F4F1EA]" />
+              <span className="font-mono text-[11px] text-[#8E929A] tracking-wider uppercase border-l border-white/10 pl-3 hidden sm:inline">
+                {timeStr}
               </span>
             </div>
             <button

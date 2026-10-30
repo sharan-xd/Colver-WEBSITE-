@@ -4,8 +4,8 @@
   "description": "High-performance digital platforms, intelligent workflows, and modern web engineering.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#06090e",
-  "theme_color": "#4f46e5",
+  "background_color": "#080808",
+  "theme_color": "#C8FF00",
   "orientation": "portrait-primary",
   "categories": ["business", "developer", "productivity"],
   "icons": [
@@ -25,9 +25,14 @@
       "type": "image/png"
     },
     {
-      "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
+      "src": "/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Commercial software delivery agreements and engagement terms for Colver.',
     url: 'https://colver.in/terms',
     siteName: 'Colver',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Colver Terms of Service' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Colver Terms of Service' }],
     locale: 'en_US',
     type: 'website',
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Terms of Service & Delivery Conditions | Colver',
     description: 'Commercial software delivery agreements and engagement terms for Colver.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Privacy-by-default architecture and transparent data rights at Colver.',
     url: 'https://colver.in/privacy',
     siteName: 'Colver',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Colver Privacy Policy' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Colver Privacy Policy' }],
     locale: 'en_US',
     type: 'website',
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Privacy Policy & Data Governance | Colver',
     description: 'Privacy-by-default architecture and transparent data rights at Colver.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

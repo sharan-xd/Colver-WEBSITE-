@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Github, Twitter, Linkedin, ArrowUpRight } from '@/components/ui/Icons'
+import ColverLogo from '@/components/ui/ColverLogo'
 
 const navColumns = [
   {
@@ -67,9 +68,14 @@ export default function Footer() {
             <span className="text-sm text-[#C8FF00] font-semibold block mb-2">
               Bengaluru Studio · 12.9716° N, 77.5946° E
             </span>
-            <h2 className="font-display font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#F4F1EA] leading-none">
-              COLVER<span className="text-[#C8FF00]">.</span>
-            </h2>
+            <div className="pt-2">
+              <Link href="/" aria-label="COLVER Homepage">
+                <ColverLogo
+                  variant="full"
+                  className="h-14 sm:h-20 lg:h-24 w-auto text-[#F4F1EA] hover:text-[#C8FF00] transition-colors"
+                />
+              </Link>
+            </div>
           </div>
           <div className="flex flex-col items-start lg:items-end gap-2 text-sm text-[#BFC3C9]">
             <div className="flex items-center gap-2 text-[#F4F1EA]">
@@ -166,8 +172,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#8E929A]">
-          <div>
-            © {new Date().getFullYear()} Colver Systems. Proudly engineered in Bengaluru.
+          <div className="flex items-center gap-2">
+            <ColverLogo variant="emblem" className="h-4 w-auto text-[#C8FF00]" ariaLabel="Colver" />
+            <span>© {new Date().getFullYear()} Colver Systems. Proudly engineered in Bengaluru.</span>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="hover:text-[#F4F1EA] transition-colors">Privacy Policy</Link>

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Guides & Tutorials',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Developer Guides & Architectural Walkthroughs | Colver',
     description:
       'Deep-dive technical tutorials written by systems engineers for product teams.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 

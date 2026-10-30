@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Colver',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Colver Engineering Investment',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Engineering Sprints & SLA Tiers | Colver',
     description:
       'Transparent architecture sprints, release cadences, and engineering SLAs.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 }
 
