@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -32,9 +32,28 @@ export default function MobileDrawer({
   const pathname = usePathname()
   const [timeStr, setTimeStr] = useState('')
 
+  // Track the pathname that was current when the drawer was last opened.
+  // Only close on a *genuine* navigation away — not on the initial render
+  // or when isOpen transitions from false → true.
+  const pathnameWhenOpened = useRef<string | null>(null)
+
+  // Record the pathname at the moment the drawer opens.
   useEffect(() => {
-    onClose()
-  }, [pathname, onClose])
+    if (isOpen) {
+      pathnameWhenOpened.current = pathname
+    }
+  }, [isOpen, pathname])
+
+  // Close only when the user navigates to a *different* route while the
+  // drawer is open. This avoids the instant-close that happened because
+  // onClose was an unstable inline arrow function whose identity changed
+  // on every AppShell render, causing this effect to fire immediately
+  // after setIsMobileOpen(true) set isOpen = true.
+  useEffect(() => {
+    if (isOpen && pathnameWhenOpened.current !== null && pathname !== pathnameWhenOpened.current) {
+      onClose()
+    }
+  }, [pathname, isOpen, onClose])
 
   useEffect(() => {
     const updateTime = () => {
